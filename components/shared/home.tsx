@@ -138,70 +138,98 @@ export default function Home() {
       <Brands />
 
       {/* Selected Works Section */}
-      <section className="py-24 bg-background">
-        <div className="px-8 md:px-16 mb-12">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">Selected works</p>
+      <section className="py-20 sm:py-24 bg-background">
+        <div className="px-6 sm:px-8 md:px-16 mb-8 sm:mb-12 flex items-baseline justify-between gap-4">
+          <div>
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground">
+              Selected works
+            </p>
+            <p className="mt-2 text-xs sm:text-sm text-muted-foreground/80 max-w-xs">
+              A snapshot of products and collaborations I&apos;ve been building recently.
+            </p>
+          </div>
+          <a
+            href="/work"
+            className="hidden sm:inline-flex text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors"
+          >
+            View all work +
+          </a>
         </div>
 
-        {/* Project 1: Event Parlour */}
-        <div className="grid md:grid-cols-2 gap-0 mb-0">
-          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group bg-muted/30">
-            <Image 
-              src="/images/project2 .png" 
-              alt="Event Parlour" 
-              fill
-              className="object-contain transition-opacity duration-300 group-hover:opacity-90"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </div>
-          <div className="p-8 md:p-16 flex flex-col justify-center">
-            <p className="text-xs uppercase tracking-wider mb-2 text-muted-foreground">Startup project</p>
-            <h3 className="text-6xl md:text-8xl mb-4 text-foreground">Event Parlour</h3>
-            <p className="text-lg mb-6 text-foreground/80">Event and ticketing app</p>
-            <p className="text-sm mb-8 text-foreground/70 max-w-md">
-              Built with Next.js, Supabase for DB, Drizzle ORM, Resend, Google Analytics, Paystack for payment
-            </p>
-            <a 
-              href="https://eventparlour.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground"
-            >
-              Visit website +
-            </a>
-          </div>
-        </div>
+        <div className="space-y-10 sm:space-y-16 px-6 sm:px-8 md:px-16">
+          {/* Project 1: Event Parlour */}
+          <article className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm">
+            <div className="relative h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
+              <Image 
+                src="/images/project2 .png" 
+                alt="Event Parlour" 
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </div>
+            <div className="p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Startup project
+              </p>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground">
+                Event Parlour
+              </h3>
+              <p className="text-sm sm:text-base text-foreground/80">
+                Event and ticketing platform helping creators run digital and in-person experiences.
+              </p>
+              <p className="text-xs sm:text-sm text-foreground/70 max-w-md">
+                Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.
+              </p>
+              <a 
+                href="https://eventparlour.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+              >
+                Visit website +
+              </a>
+            </div>
+          </article>
 
-        {/* Project 2: Brinex */}
-        <div className="grid md:grid-cols-2 gap-0">
-          <div className="bg-background p-8 md:p-16 flex flex-col justify-center order-1 md:order-1">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Freelance</p>
-            <h3 className="text-4xl md:text-5xl mb-4">Brinex Tech</h3>
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-6">
-              Brand / Company website
-            </p>
-            <p className="text-foreground/80 mb-8 max-w-md">
-              Brand/company website for tech company called Brinex Tech. Built with Next.js, SEO, responsive design, Motion for animation.
-            </p>
-            <a 
-              href="https://www.brinex-tech.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors"
-            >
-              Visit website +
-            </a>
-          </div>
-          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group order-2 md:order-2 bg-muted/30">
-            <Image 
-              src="/images/project1.png" 
-              alt="Brinex Tech" 
-              fill
-              className="object-contain transition-opacity duration-300 group-hover:opacity-90"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
+          {/* Project 2: Brinex */}
+          <article className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm">
+            <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Freelance
+              </p>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl leading-tight text-foreground">
+                Brinex Tech
+              </h3>
+              <p className="text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-1">
+                Brand / Company website
+              </p>
+              <p className="text-sm sm:text-base text-foreground/80 max-w-md">
+                A clean, responsive marketing site for a technology company, focused on clarity and trust.
+              </p>
+              <p className="text-xs sm:text-sm text-foreground/70 max-w-md">
+                Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.
+              </p>
+              <a 
+                href="https://www.brinex-tech.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors mt-2"
+              >
+                Visit website +
+              </a>
+            </div>
+            <div className="relative order-1 lg:order-2 h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
+              <Image 
+                src="/images/project1.png" 
+                alt="Brinex Tech" 
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </article>
         </div>
       </section>
     </div>
