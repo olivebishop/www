@@ -60,11 +60,11 @@ export function About() {
         <div className="bg-background p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center order-2 md:order-2 min-h-[50vh] sm:min-h-[60vh] md:min-h-0">
           <div className="reveal opacity-0">
             <h1 className="display-large mb-6 sm:mb-8">O.B.</h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-8 sm:mb-10 lg:mb-12">a bit about myself</h2>
+            <h2 className="page-title mb-8 sm:mb-10 lg:mb-12">a bit about myself</h2>
 
             {/* Technologies */}
             <div className="mt-8 sm:mt-12">
-              <p className="text-xs sm:text-sm uppercase tracking-wider text-muted-foreground mb-4">Technologies</p>
+              <p className="section-label mb-4">Technologies</p>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <div className="flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors">
                   <TeenyiconsNextjsSolid className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -122,9 +122,7 @@ export function About() {
       {/* Achievements */}
       <section className="px-8 md:px-16 py-16 md:py-24 bg-background">
         <div className="max-w-5xl mx-auto reveal opacity-0">
-          <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground mb-4">
-            Achievements
-          </p>
+          <p className="section-label mb-4">Achievements</p>
           <div className="space-y-3">
             <h3 className="text-2xl sm:text-3xl md:text-4xl">
               Event Parlour listed on TanStack Showcase

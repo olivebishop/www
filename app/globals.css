@@ -152,6 +152,13 @@ body {
     font-weight: 400;
   }
 
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
   .display-large {
     font-family: var(--font-cabinet-grotesk), sans-serif;
     font-size: clamp(5rem, 15vw, 15rem);

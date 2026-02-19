@@ -27,7 +27,10 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <section
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-24 sm:pt-28 md:pt-32"
+      >
         {/* Background Circle */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full border border-border/50" />
@@ -45,13 +48,14 @@ export default function Home() {
 
         {/* Main Content */}
         <div className="relative z-10 w-full px-4 sm:px-6 md:px-8">
-          {/* Name */}
+          {/* Name + Image */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-12">
-            <h1 className="hero-name text-foreground parallax">Olive</h1>
+            {/* Left Name - hidden on small screens */}
+            <h1 className="hero-name text-foreground parallax hidden md:block">Olive</h1>
             
             {/* Center Image */}
-            <div className="relative mx-4 md:mx-6 lg:mx-8 px-4 sm:px-6 md:px-8 lg:px-12">
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl">
+            <div className="relative mx-4 md:mx-6 lg:mx-8 px-2 sm:px-4 md:px-8 lg:px-12">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl">
                 <Image 
                   src="/images/hero.jpeg" 
                   alt="Portfolio Preview" 
@@ -63,28 +67,31 @@ export default function Home() {
               </div>
             </div>
             
-            <h1 className="hero-name text-foreground parallax">Bishop</h1>
+            {/* Right Name - hidden on small screens */}
+            <h1 className="hero-name text-foreground parallax hidden md:block">Bishop</h1>
           </div>
         </div>
 
         {/* Social Links */}
-        <div className="absolute left-8 md:left-16 bottom-32">
-          <p className="text-primary text-xs uppercase tracking-wider mb-4">IAM SOCIAL :)</p>
-          <div className="flex items-center gap-4">
+        <div className="absolute left-4 sm:left-8 md:left-16 bottom-8 sm:bottom-16 md:bottom-32">
+          <p className="text-primary text-[10px] sm:text-xs uppercase tracking-wider mb-3 sm:mb-4">
+            IAM SOCIAL :)
+          </p>
+          <div className="flex items-center gap-3 sm:gap-4">
             <a 
               href="https://github.com/olivebishop" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
               aria-label="GitHub"
             >
-              <HugeiconsGithub className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
+              <HugeiconsGithub className="w-4 h-4 sm:w-5 sm:h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
             </a>
             <a 
               href="https://www.instagram.com/rhymer_ke/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
               aria-label="Instagram"
             >
               <HugeiconsInstagram className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
@@ -93,7 +100,7 @@ export default function Home() {
               href="https://x.com/olivebishop_dev" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
               aria-label="Twitter"
             >
               <HugeiconsNewTwitter className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
@@ -102,7 +109,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/olivebishop/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
               aria-label="LinkedIn"
             >
               <HugeiconsLinkedin02 className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
@@ -111,14 +118,14 @@ export default function Home() {
         </div>
 
         {/* Services & Interactive Elements */}
-        <div className="absolute right-8 md:right-16 bottom-32 text-right">
-          <div className="flex items-start gap-4 mb-4">
-            <Sparkles className="text-primary w-8 h-8" />
-            <div className="text-xs text-muted-foreground uppercase tracking-wider -rotate-12 origin-bottom-left">
+        <div className="absolute right-4 sm:right-8 md:right-16 bottom-8 sm:bottom-16 md:bottom-32 text-right">
+          <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <Sparkles className="text-primary w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+            <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider -rotate-12 origin-bottom-left">
               Click click
             </div>
           </div>
-          <ul className="space-y-1 text-sm text-foreground">
+          <ul className="space-y-1 text-xs sm:text-sm text-foreground">
             <li>Software engineer</li>
             <li>Digital Events Curator</li>
             <li>Mobile photographer</li>

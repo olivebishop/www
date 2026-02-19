@@ -13,8 +13,8 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-4 sm:py-6 bg-background/80 backdrop-blur-sm border-b border-border/10">
-      <div className={`flex items-center justify-between ${pathname === '/' ? '' : 'lg:grid lg:grid-cols-3'}`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-3 sm:py-4 bg-background/80 backdrop-blur-sm border-b border-border/10">
+      <div className={`flex flex-wrap items-center justify-between gap-y-3 ${pathname === '/' ? '' : 'lg:grid lg:grid-cols-3 lg:flex-nowrap'}`}>
         {/* Left Navigation */}
         <div className="flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-16">
           <Link

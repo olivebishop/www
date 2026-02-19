@@ -6,7 +6,7 @@ export function Workflow() {
       {/* Hero Section */}
       <section className="py-24 md:py-32 px-8 md:px-16">
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl leading-tight">
+          <h1 className="page-title">
             It's all about my <em className="text-primary">design process</em>
           </h1>
         </div>

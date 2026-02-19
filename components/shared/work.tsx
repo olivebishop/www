@@ -24,10 +24,8 @@ export function Work() {
       {/* Header */}
       <section className="pt-32 pb-12 px-8 md:px-16">
         <div className="max-w-5xl">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
-            Selected work
-          </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl">
+          <p className="section-label mb-4">Selected work</p>
+          <h1 className="page-title">
             A few projects I&apos;ve worked on
           </h1>
         </div>
@@ -98,12 +96,8 @@ export function Work() {
       {/* Phone Photography */}
       <section className="pb-24 px-8 md:px-16">
         <div className="max-w-5xl mb-8">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
-            Phone photography
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl">
-            Moments captured on my phone
-          </h2>
+          <p className="section-label mb-4">Phone photography</p>
+          <h2 className="section-title">Moments captured on my phone</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16">

@@ -8,19 +8,16 @@ export function Contact() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Main Content */}
-      <section className="flex-1 flex flex-col items-center justify-center px-8 md:px-16 py-32">
+      <section className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 py-24 sm:py-32">
         {/* Main Heading */}
-        <div className="text-center max-w-5xl mb-16">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl leading-tight">
-            Let's make <em>something</em>
-          </h1>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl leading-tight">
-            great!
+        <div className="text-center max-w-3xl sm:max-w-4xl md:max-w-5xl mb-12 sm:mb-16 px-2">
+          <h1 className="page-title leading-tight break-words">
+            Let&apos;s make <em>something</em> great!
           </h1>
         </div>
 
         {/* Book Olive Button */}
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
           <a 
             href="https://cal.com/olivebishop/30min"
             target="_blank"
@@ -35,10 +32,10 @@ export function Contact() {
         </div>
 
         {/* Email */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 px-2">
           <a 
             href="mailto:olivehendrilgen1@gmail.com"
-            className="text-4xl md:text-6xl lg:text-7xl text-primary link-underline hover:opacity-80 transition-opacity"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary link-underline hover:opacity-80 transition-opacity break-words"
           >
             olivehendrilgen1@gmail.com
           </a>
