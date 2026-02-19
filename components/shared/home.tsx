@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Play, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import Brands from './brands';
+import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02 } from './icons';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -42,35 +44,21 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 w-full px-4">
+        <div className="relative z-10 w-full px-4 sm:px-6 md:px-8">
           {/* Name */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-12">
             <h1 className="hero-name text-foreground parallax">Olive</h1>
             
-            {/* Center Portfolio Preview */}
-            <div className="relative mx-4 md:mx-8 w-48 md:w-64 h-64 md:h-80 animate-float">
-              <div className="absolute inset-0 bg-muted rounded-sm overflow-hidden shadow-2xl">
+            {/* Center Image */}
+            <div className="relative mx-4 md:mx-6 lg:mx-8 px-4 sm:px-6 md:px-8 lg:px-12">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl">
                 <Image 
                   src="/images/hero.jpeg" 
                   alt="Portfolio Preview" 
                   fill
                   className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-40 bg-muted-foreground/20 rounded-sm overflow-hidden shadow-xl">
-                <Image 
-                  src="/images/about.jpeg" 
-                  alt="Portfolio Preview" 
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -top-4 -left-4 w-28 h-36 bg-muted rounded-sm overflow-hidden shadow-xl">
-                <Image 
-                  src="/images/hero.jpeg" 
-                  alt="Portfolio Preview" 
-                  fill
-                  className="object-cover"
+                  sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
+                  priority
                 />
               </div>
             </div>
@@ -79,16 +67,47 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Play Showreel Button */}
+        {/* Social Links */}
         <div className="absolute left-8 md:left-16 bottom-32">
-          <button className="flex items-center gap-3 group">
-            <span className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-              <Play size={16} className="group-hover:text-primary-foreground transition-colors" />
-            </span>
-            <span className="text-xs uppercase tracking-widest text-foreground">
-              Play<br />Showreel
-            </span>
-          </button>
+          <p className="text-primary text-xs uppercase tracking-wider mb-4">IAM SOCIAL :)</p>
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://github.com/olivebishop" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              aria-label="GitHub"
+            >
+              <HugeiconsGithub className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
+            </a>
+            <a 
+              href="https://www.instagram.com/rhymer_ke/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              aria-label="Instagram"
+            >
+              <HugeiconsInstagram className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
+            </a>
+            <a 
+              href="https://x.com/olivebishop_dev" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              aria-label="Twitter"
+            >
+              <HugeiconsNewTwitter className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/olivebishop/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+              aria-label="LinkedIn"
+            >
+              <HugeiconsLinkedin02 className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
+            </a>
+          </div>
         </div>
 
         {/* Services & Interactive Elements */}
@@ -100,59 +119,16 @@ export default function Home() {
             </div>
           </div>
           <ul className="space-y-1 text-sm text-foreground">
-            <li>Art direction</li>
-            <li>Digital production</li>
-            <li>Branding</li>
+            <li>Software engineer</li>
+            <li>Digital Events Curator</li>
+            <li>Mobile photographer</li>
           </ul>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="absolute bottom-0 left-0 right-0 px-8 md:px-16 py-6 flex justify-between items-center">
-          <button className="text-xs uppercase tracking-wider text-foreground hover:text-primary transition-colors">
-            In red
-          </button>
-          
-          <div className="flex gap-8">
-            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-sm link-underline text-foreground hover:text-primary transition-colors">
-              Dribbble
-            </a>
-            <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="text-sm link-underline text-foreground hover:text-primary transition-colors">
-              Behance
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-sm link-underline text-foreground hover:text-primary transition-colors">
-              Twitter
-            </a>
-          </div>
-          
-          <button className="text-xs uppercase tracking-wider text-primary">
-            In Light
-          </button>
-        </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-24 bg-muted">
-        <div className="px-8 md:px-16">
-          <p className="text-xs uppercase tracking-widest text-center mb-12 text-muted-foreground">My main services</p>
-          
-          <div className="space-y-4 overflow-hidden">
-            <div className="flex items-center gap-8 whitespace-nowrap animate-marquee">
-              <span className="section-title italic">Art direction</span>
-              <span className="text-2xl text-muted-foreground/50">&&</span>
-              <span className="section-title">Product design</span>
-              <span className="text-2xl text-muted-foreground/50">&&</span>
-              <span className="section-title italic">Visual design</span>
-            </div>
-            <div className="flex items-center gap-8 whitespace-nowrap animate-marquee-reverse">
-              <span className="section-title">Mobile & web design</span>
-              <span className="text-2xl text-muted-foreground/50">&&</span>
-              <span className="section-title italic">Interaction design</span>
-              <span className="text-2xl text-muted-foreground/50">&&</span>
-              <span className="section-title">Animation</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Brands Section */}
+      <Brands />
 
       {/* Selected Works Section */}
       <section className="py-24 bg-background">
@@ -160,62 +136,65 @@ export default function Home() {
           <p className="text-xs uppercase tracking-widest text-muted-foreground">Selected works</p>
         </div>
 
-        {/* Project 1: Cure */}
+        {/* Project 1: Event Parlour */}
         <div className="grid md:grid-cols-2 gap-0 mb-0">
-          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group">
+          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group bg-muted/30">
             <Image 
-              src="/images/about.jpeg" 
-              alt="Cure Project" 
+              src="/images/project2 .png" 
+              alt="Event Parlour" 
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-contain transition-opacity duration-300 group-hover:opacity-90"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
             />
           </div>
-          <div className="bg-primary text-primary-foreground p-8 md:p-16 flex flex-col justify-center">
-            <h3 className="text-6xl md:text-8xl mb-4">Cure</h3>
-            <p className="text-lg mb-6 opacity-90">Boutique promo website</p>
-          </div>
-        </div>
-
-        {/* Project 2: Rafal Bojar */}
-        <div className="grid md:grid-cols-2 gap-0">
-          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group order-2 md:order-1">
-            <Image 
-              src="/images/hero.jpeg" 
-              alt="Rafal Bojar Project" 
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <div className="bg-background p-8 md:p-16 flex flex-col justify-center order-1 md:order-2">
-            <div className="text-8xl md:text-9xl text-muted-foreground/30 mb-4">R.</div>
-            <h3 className="text-4xl md:text-5xl mb-4">Rafal Bojar</h3>
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-6">
-              Art direction / Interface design / Interaction design
+          <div className="p-8 md:p-16 flex flex-col justify-center">
+            <p className="text-xs uppercase tracking-wider mb-2 text-muted-foreground">Startup project</p>
+            <h3 className="text-6xl md:text-8xl mb-4 text-foreground">Event Parlour</h3>
+            <p className="text-lg mb-6 text-foreground/80">Event and ticketing app</p>
+            <p className="text-sm mb-8 text-foreground/70 max-w-md">
+              Built with Next.js, Supabase for DB, Drizzle ORM, Resend, Google Analytics, Paystack for payment
             </p>
-            <p className="text-foreground/80 mb-8 max-w-md">
-              Folio of a polish photographer and videographer, who loves to create visual stories.
-            </p>
-            <a href="#" className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors">
-              Check full case +
+            <a 
+              href="https://eventparlour.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground"
+            >
+              Visit website +
             </a>
           </div>
         </div>
-      </section>
 
-      {/* Footer CTA */}
-      <section className="py-32 bg-background text-center">
-        <div className="px-8 md:px-16">
-          <a href="#" className="display-large text-foreground hover:text-primary transition-colors duration-500">
-            All cases here
-          </a>
-          <div className="w-64 h-px bg-border mx-auto mt-4" />
-        </div>
-        
-        <div className="mt-24 text-center">
-          <p className="text-sm text-muted-foreground">
-            Special thanks to <a href="#" className="link-underline hover:text-primary transition-colors">Romain Avalle</a>
-          </p>
-          <p className="text-sm text-muted-foreground">for development.</p>
+        {/* Project 2: Brinex */}
+        <div className="grid md:grid-cols-2 gap-0">
+          <div className="bg-background p-8 md:p-16 flex flex-col justify-center order-1 md:order-1">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Freelance</p>
+            <h3 className="text-4xl md:text-5xl mb-4">Brinex Tech</h3>
+            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-6">
+              Brand / Company website
+            </p>
+            <p className="text-foreground/80 mb-8 max-w-md">
+              Brand/company website for tech company called Brinex Tech. Built with Next.js, SEO, responsive design, Motion for animation.
+            </p>
+            <a 
+              href="https://www.brinex-tech.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors"
+            >
+              Visit website +
+            </a>
+          </div>
+          <div className="relative h-[60vh] md:h-[80vh] overflow-hidden group order-2 md:order-2 bg-muted/30">
+            <Image 
+              src="/images/project1.png" 
+              alt="Brinex Tech" 
+              fill
+              className="object-contain transition-opacity duration-300 group-hover:opacity-90"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
     </div>

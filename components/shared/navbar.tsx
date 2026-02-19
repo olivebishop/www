@@ -13,56 +13,56 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 bg-background/80 backdrop-blur-sm">
-      <div className="grid grid-cols-3 items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-4 sm:py-6 bg-background/80 backdrop-blur-sm border-b border-border/10">
+      <div className={`flex items-center justify-between ${pathname === '/' ? '' : 'lg:grid lg:grid-cols-3'}`}>
         {/* Left Navigation */}
-        <div className="flex items-center gap-8 md:gap-16">
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-16">
           <Link
             href="/about"
-            className={`nav-link ${isActive('/about') ? 'text-primary' : 'text-foreground'}`}
+            className={`nav-link ${isActive('/about') ? 'active text-primary' : 'text-foreground'}`}
           >
-            <span className="text-lg md:text-xl">Info</span>
-            <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">About me</span>
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl">Info</span>
+            <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">About me</span>
           </Link>
           
           <Link
             href="/work"
-            className={`nav-link ${isActive('/work') ? 'text-primary' : 'text-foreground'}`}
+            className={`nav-link ${isActive('/work') ? 'active text-primary' : 'text-foreground'}`}
           >
-            <span className="text-lg md:text-xl">Work</span>
-            <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Some cases</span>
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl">Work</span>
+            <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Some cases</span>
           </Link>
         </div>
 
         {/* Center Navigation - Home */}
         {pathname !== '/' && (
-          <div className="flex justify-center">
+          <div className="hidden lg:flex justify-center">
             <Link
               href="/"
               className="nav-link text-foreground"
             >
-              <span className="text-lg md:text-xl">Home</span>
-              <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Main page</span>
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl">Home</span>
+              <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Main page</span>
             </Link>
           </div>
         )}
 
         {/* Right Navigation */}
-        <div className="flex items-center justify-end gap-8 md:gap-16">
+        <div className="flex items-center justify-end gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-16">
           <Link
             href="/workflow"
-            className={`nav-link ${isActive('/workflow') ? 'text-primary' : 'text-foreground'}`}
+            className={`nav-link ${isActive('/workflow') ? 'active text-primary' : 'text-foreground'}`}
           >
-            <span className="text-lg md:text-xl">Workflow</span>
-            <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">All the processes</span>
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl">Workflow</span>
+            <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">All the processes</span>
           </Link>
           
           <Link
             href="/contact"
-            className={`nav-link ${isActive('/contact') ? 'text-primary' : 'text-foreground'}`}
+            className={`nav-link ${isActive('/contact') ? 'active text-primary' : 'text-foreground'}`}
           >
-            <span className="text-lg md:text-xl">Contact me</span>
-            <span className="block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">For any collaborations</span>
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl">Contact me</span>
+            <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">For any collaborations</span>
           </Link>
         </div>
       </div>

@@ -4,6 +4,8 @@ import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Navigation } from "@/components/shared/navbar";
+import GrainOverlay from "@/components/shared/grain-overlay";
+import Footer from "@/components/shared/footer";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -32,8 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(cabinetGrotesk.className, geist.variable)}>
       <body className="antialiased">
+        <GrainOverlay />
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   );

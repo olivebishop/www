@@ -1,20 +1,19 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import { HugeiconsArrowUpRight } from './icons';
 
 interface Project {
   id: number;
   name: string;
   image: string;
+  url: string;
 }
 
 const projects: Project[] = [
-  { id: 1, name: 'Limnia', image: '/images/hero.jpeg' },
-  { id: 2, name: 'Dennis Berti', image: '/images/about.jpeg' },
-  { id: 3, name: 'Epicurrence', image: '/images/hero.jpeg' },
-  { id: 4, name: 'Max Shkret', image: '/images/about.jpeg' },
-  { id: 5, name: 'Adobe editorial kit', image: '/images/hero.jpeg' },
-  { id: 6, name: 'Cure', image: '/images/about.jpeg' },
+  { id: 1, name: 'Event Parlour', image: '/images/project2 .png', url: 'https://eventparlour.com/' },
+  { id: 2, name: 'Brinex Tech', image: '/images/project1.png', url: 'https://brinex-tech.com/' },
+  { id: 3, name: 'Sol of African', image: '/images/sol.png', url: 'https://www.thesolofafrican.com/' },
 ];
 
 export function Work() {
@@ -22,8 +21,20 @@ export function Work() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="pt-32 pb-12 px-8 md:px-16">
+        <div className="max-w-5xl">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+            Selected work
+          </p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl">
+            A few projects I&apos;ve worked on
+          </h1>
+        </div>
+      </section>
+
       {/* Projects Grid */}
-      <section className="min-h-screen py-32 px-8 md:px-16">
+      <section className="pb-32 px-8 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
           {projects.map((project, index) => (
             <div
@@ -38,13 +49,15 @@ export function Work() {
                 </span>
                 
                 <a 
-                  href="#"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`text-5xl md:text-7xl lg:text-8xl transition-all duration-500 ${
                     hoveredProject === project.id 
                       ? 'text-primary' 
                       : hoveredProject !== null 
                         ? 'text-muted-foreground/30' 
-                        : 'text-primary'
+                        : 'text-foreground'
                   }`}
                 >
                   {project.name}
@@ -80,40 +93,56 @@ export function Work() {
           ))}
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-center">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            scroll down for all cases
-          </p>
-        </div>
       </section>
 
-      {/* Social Links */}
-      <section className="py-16 px-8 md:px-16 border-t border-border">
-        <div className="flex justify-center gap-12">
-          <a 
-            href="https://dribbble.com" 
-            target="_blank" 
+      {/* Phone Photography */}
+      <section className="pb-24 px-8 md:px-16">
+        <div className="max-w-5xl mb-8">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+            Phone photography
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">
+            Moments captured on my phone
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16">
+          {[
+            '/images/photography/image0.jpeg',
+            '/images/photography/image1.jpeg',
+            '/images/photography/image2.jpeg',
+            '/images/photography/image6.jpeg',
+            '/images/photography/image7.jpeg',
+            '/images/photography/image8.jpeg',
+            '/images/photography/image9.jpeg',
+          ].map((src, index) => (
+            <div
+              key={src}
+              className="relative aspect-[3/4] bg-muted overflow-hidden group"
+            >
+              <Image
+                src={src}
+                alt={`Phone photography ${index + 1}`}
+                fill
+                className="object-cover transition-all duration-500 saturate-0 group-hover:saturate-100 group-hover:scale-105"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* X Thread CTA */}
+        <div className="max-w-5xl border-t border-border/40 pt-8 mt-4">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+            More context
+          </p>
+          <a
+            href="https://x.com/olivebishop_dev/status/1999532067701359103?s=20"
+            target="_blank"
             rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-sm md:text-base text-foreground hover:text-primary transition-colors link-underline"
           >
-            Dribbble
-          </a>
-          <a 
-            href="https://behance.net" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
-          >
-            Behance
-          </a>
-          <a 
-            href="https://twitter.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
-          >
-            Twitter
+            Read the X thread about this work
+            <HugeiconsArrowUpRight className="w-4 h-4" />
           </a>
         </div>
       </section>

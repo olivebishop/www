@@ -6,7 +6,7 @@ export function Contact() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="min-h-screen bg-muted flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Main Content */}
       <section className="flex-1 flex flex-col items-center justify-center px-8 md:px-16 py-32">
         {/* Main Heading */}
@@ -19,25 +19,28 @@ export function Contact() {
           </h1>
         </div>
 
-        {/* Reach Out Button */}
+        {/* Book Olive Button */}
         <div className="mb-12">
-          <button 
-            className="px-8 py-4 border border-foreground/20 rounded-full text-sm uppercase tracking-widest hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 text-foreground"
+          <a 
+            href="https://cal.com/olivebishop/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 border border-foreground/20 text-sm uppercase tracking-widest hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 text-foreground"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            Reach out
+            Book Olive
             <ArrowUpRight size={16} className={`transition-transform duration-300 ${isHovered ? 'translate-x-1 -translate-y-1' : ''}`} />
-          </button>
+          </a>
         </div>
 
         {/* Email */}
         <div className="text-center mb-8">
           <a 
-            href="mailto:hey@olivebishop.com"
+            href="mailto:olivehendrilgen1@gmail.com"
             className="text-4xl md:text-6xl lg:text-7xl text-primary link-underline hover:opacity-80 transition-opacity"
           >
-            hey@olivebishop.com
+            olivehendrilgen1@gmail.com
           </a>
         </div>
 
@@ -51,35 +54,6 @@ export function Contact() {
         </div>
       </section>
 
-      {/* Social Links */}
-      <section className="py-12 px-8 md:px-16 border-t border-border">
-        <div className="flex justify-center gap-12">
-          <a 
-            href="https://dribbble.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
-          >
-            Dribbble
-          </a>
-          <a 
-            href="https://behance.net" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
-          >
-            Behance
-          </a>
-          <a 
-            href="https://twitter.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm link-underline text-foreground hover:text-primary transition-colors"
-          >
-            Twitter
-          </a>
-        </div>
-      </section>
     </div>
   );
 }
