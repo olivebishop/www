@@ -126,9 +126,7 @@ export default function Home() {
             </div>
           </div>
           <ul className="space-y-1 text-xs sm:text-sm text-foreground">
-            <li>Software engineer</li>
-            <li>Digital Events Curator</li>
-            <li>Mobile photographer</li>
+            <li>Software Engineer</li>
           </ul>
         </div>
 
@@ -159,7 +157,7 @@ export default function Home() {
         <div className="space-y-10 sm:space-y-16 px-6 sm:px-8 md:px-16">
           {/* Project 1: Event Parlour */}
           <article className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm">
-            <div className="relative h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
+            <div className="relative hidden sm:block h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
               <Image 
                 src="/images/project2 .png" 
                 alt="Event Parlour" 
@@ -220,7 +218,7 @@ export default function Home() {
                 Visit website +
               </a>
             </div>
-            <div className="relative order-1 lg:order-2 h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
+            <div className="relative hidden sm:block order-1 lg:order-2 h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30">
               <Image 
                 src="/images/project1.png" 
                 alt="Brinex Tech" 
