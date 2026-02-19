@@ -119,6 +119,31 @@ export function About() {
         </div>
       </section>
 
+      {/* Achievements */}
+      <section className="px-8 md:px-16 py-16 md:py-24 bg-background">
+        <div className="max-w-5xl mx-auto reveal opacity-0">
+          <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground mb-4">
+            Achievements
+          </p>
+          <div className="space-y-3">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl">
+              Event Parlour listed on TanStack Showcase
+            </h3>
+            <p className="text-sm sm:text-base text-foreground/80 max-w-xl">
+              Event Parlour, the event and ticketing platform I&apos;m building, is featured on the official TanStack Showcase as a production use case for TanStack Query and TanStack Table.
+            </p>
+            <a
+              href="https://tanstack.com/showcase/3c337dc8-cc31-40ee-adfc-413e9bdf041b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm sm:text-base text-foreground hover:text-primary transition-colors link-underline"
+            >
+              View on TanStack Showcase
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
