@@ -7,6 +7,7 @@ import { Navigation } from "@/components/shared/navbar";
 import GrainOverlay from "@/components/shared/grain-overlay";
 import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
+import Preloader from "@/components/shared/preloader";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -113,6 +114,7 @@ export default function RootLayout({
     <html lang="en" className={cn(cabinetGrotesk.className, geist.variable)}>
       <body className="antialiased">
         <StructuredData />
+        <Preloader />
         <GrainOverlay />
         <Navigation />
         {children}
