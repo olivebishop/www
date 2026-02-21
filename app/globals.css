@@ -167,6 +167,22 @@ body {
     font-weight: 400;
   }
 
+  .display-large-sm {
+    font-family: var(--font-cabinet-grotesk), sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+  }
+
+  .page-title-sm {
+    font-family: var(--font-cabinet-grotesk), sans-serif;
+    font-size: clamp(2rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+
   .link-underline {
     position: relative;
     text-decoration: none;

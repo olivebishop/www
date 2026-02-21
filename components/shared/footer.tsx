@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { HugeiconsCopy01 } from './icons';
+import { ScrambleText } from '@/components/ui/scramble-text';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,16 +27,16 @@ export default function Footer() {
           {/* Navigation Links */}
           <nav className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8 text-sm sm:text-base text-black">
             <Link href="/work" className="hover:text-primary transition-colors">
-              Work
+              <ScrambleText text="Work" duration={1000} delay={0} />
             </Link>
             <Link href="/workflow" className="hover:text-primary transition-colors">
-              Workflow
+              <ScrambleText text="Workflow" duration={1000} delay={200} />
             </Link>
             <Link href="/about" className="hover:text-primary transition-colors">
-              About
+              <ScrambleText text="About" duration={1000} delay={400} />
             </Link>
             <Link href="/contact" className="hover:text-primary transition-colors">
-              Contact
+              <ScrambleText text="Contact" duration={1000} delay={600} />
             </Link>
           </nav>
 
