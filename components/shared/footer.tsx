@@ -35,6 +35,9 @@ export default function Footer() {
             <Link href="/about" className="hover:text-primary transition-colors">
               <ScrambleText text="About" duration={1000} delay={400} />
             </Link>
+            <Link href="/bookmarks" className="hover:text-primary transition-colors">
+              <ScrambleText text="Bookmarks" duration={1000} delay={500} />
+            </Link>
             <Link href="/contact" className="hover:text-primary transition-colors">
               <ScrambleText text="Contact" duration={1000} delay={600} />
             </Link>
@@ -127,6 +130,11 @@ export default function Footer() {
               <li>
                 <Link href="/work" className="text-black/80 hover:text-primary transition-colors">
                   Work
+                </Link>
+              </li>
+              <li>
+                <Link href="/bookmarks" className="text-black/80 hover:text-primary transition-colors">
+                  Bookmarks
                 </Link>
               </li>
             </ul>
