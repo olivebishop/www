@@ -12,6 +12,11 @@ interface Project {
   description: string;
   tech: string;
   subtitle?: string;
+  problem: string;
+  systemArchitecture: string;
+  keyFeatures: string[];
+  techStack: string[];
+  businessImpact: string;
 }
 
 const projects: Project[] = [
@@ -22,7 +27,18 @@ const projects: Project[] = [
     url: 'https://eventparlour.com/',
     type: 'Startup project',
     description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
-    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.'
+    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
+    problem: 'Event organizers were juggling multiple tools (Luma for events, Google Forms for call for speakers) and creating multiple accounts instead of having unified workspaces. A user could be an organizer at Angular, GDG Pwani, etc., but had to manage separate accounts for each.',
+    systemArchitecture: 'Multi-tenant SaaS architecture with workspace-based organization, allowing users to manage multiple event organizations from a single account. Built on serverless infrastructure with real-time capabilities.',
+    keyFeatures: [
+      'Unified workspace system for managing multiple organizations',
+      'Event creation and management in one platform',
+      'Call for speakers functionality',
+      'Ticketing and registration system',
+      'Real-time updates and notifications'
+    ],
+    techStack: ['Next.js', 'Supabase', 'Drizzle ORM', 'Resend', 'Google Analytics', 'Paystack'],
+    businessImpact: 'Currently in beta with strong reception. The platform addresses a real gap in the event management space, providing organizers with a streamlined solution that eliminates the need for multiple tools and accounts.'
   },
   { 
     id: 2, 
@@ -32,7 +48,18 @@ const projects: Project[] = [
     type: 'Freelance',
     description: 'A clean, responsive marketing site for a technology company, focused on clarity and trust.',
     subtitle: 'Brand / Company website',
-    tech: 'Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.'
+    tech: 'Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.',
+    problem: 'The owner was selling smart tech equipment (smart curtains, intelligent car parking, CCTV maintenance) with solid products, but couldn\'t make sales or reach a wide audience due to lack of digital presence.',
+    systemArchitecture: 'Static site generation with optimized performance, SEO-first architecture, and analytics integration for lead tracking and conversion optimization.',
+    keyFeatures: [
+      'SEO optimization for better search visibility',
+      'Google Analytics integration for tracking and insights',
+      'Fast page loads and performance optimization',
+      'Fully responsive design across all devices',
+      'Clear product showcase and lead generation forms'
+    ],
+    techStack: ['Next.js', 'SEO Optimization', 'Google Analytics', 'Responsive Design', 'Performance Optimization'],
+    businessImpact: 'Generated significant leads and improved online visibility. The digital presence helped Brinex Tech reach a wider audience, resulting in increased inquiries and sales opportunities for their smart tech equipment.'
   },
   { 
     id: 3, 
@@ -41,7 +68,19 @@ const projects: Project[] = [
     url: 'https://www.thesolofafrican.com/',
     type: 'Redesign',
     description: 'A modern redesign for a cultural platform celebrating African heritage and stories.',
-    tech: 'Built with Next.js, modern design principles, and engaging user experience.'
+    tech: 'Built with Next.js, modern design principles, and engaging user experience.',
+    problem: 'Micheal had a poor website with no booking functionality, requiring manual handling of bookings, scheduling, and testimonial management. This created excessive workload and limited the ability to attract clients beyond the local market.',
+    systemArchitecture: 'Modern web application with integrated booking system, automated scheduling, and content management. Built with performance and user experience as core priorities.',
+    keyFeatures: [
+      'Modern, attractive design that appeals to travel audience',
+      'Fast loading times and responsive across all devices',
+      'Integrated booking system following modern best practices',
+      'Automated scheduling to reduce manual work',
+      'Testimonial management system',
+      'SEO optimization for broader reach'
+    ],
+    techStack: ['Next.js', 'Booking System', 'Responsive Design', 'Performance Optimization', 'Modern UX/UI'],
+    businessImpact: 'Dramatically reduced Micheal\'s workload by automating bookings, scheduling, and testimonial management. The modern web app attracted more clients both locally and overseas, expanding the business reach and improving operational efficiency.'
   },
 ];
 
@@ -164,26 +203,73 @@ export function Work() {
                 >
                   {project.description}
                 </motion.p>
-                <motion.p 
-                  className="text-xs sm:text-sm text-foreground/70 max-w-md"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
+
+                {/* Detailed Project Information */}
+                <motion.div 
+                  className="mt-6 sm:mt-8 space-y-6 sm:space-y-8 max-w-md"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.15 + 0.8 }}
                 >
-                  {project.tech}
-                </motion.p>
+                  {/* Problem */}
+                  <div>
+                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Problem</h4>
+                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.problem}</p>
+                  </div>
+
+                  {/* System Architecture */}
+                  <div>
+                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">System Architecture</h4>
+                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.systemArchitecture}</p>
+                  </div>
+
+                  {/* Key Features */}
+                  <div>
+                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Key Features</h4>
+                    <ul className="space-y-1.5">
+                      {project.keyFeatures.map((feature, idx) => (
+                        <li key={idx} className="text-xs sm:text-sm text-foreground/70 flex items-start gap-2">
+                          <span className="text-primary mt-1.5">•</span>
+                          <span className="leading-relaxed">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div>
+                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.map((tech, idx) => (
+                        <span 
+                          key={idx}
+                          className="text-xs px-2.5 py-1 border border-border/40 bg-background/40 rounded-sm text-foreground/70"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Business Impact */}
+                  <div>
+                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Business Impact</h4>
+                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.businessImpact}</p>
+                  </div>
+                </motion.div>
+
                 <motion.a 
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-6 sm:mt-8"
                   whileHover={{ x: 5, scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 + 0.9 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 + 1.0 }}
                 >
                   Visit website +
                 </motion.a>

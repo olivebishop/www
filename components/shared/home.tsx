@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Sparkles } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Brands from './brands';
+import Testimonials from './testimonials';
 import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02 } from './icons';
 
 export default function Home() {
@@ -394,6 +395,9 @@ export default function Home() {
           </motion.article>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
     </div>
   );
 }

@@ -1,54 +1,85 @@
 'use client';
 import { brands } from "@/data/brands";
 import { motion } from 'motion/react';
+import Image from 'next/image';
 
 export default function Brands() {
-  // Double the brands array for seamless infinite scroll
-  const duplicatedBrands = [...brands, ...brands];
-
   return (
     <motion.section 
-      className="py-8 sm:py-10 overflow-hidden bg-background"
+      className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-8 sm:gap-12">
-          {/* Left text */}
-          <motion.p 
-            className="text-muted-foreground text-xs sm:text-sm tracking-wide flex-shrink-0 max-w-[140px] sm:max-w-none leading-relaxed"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Brands and companies I have worked with
-          </motion.p>
-
-          {/* Marquee Container */}
-          <div className="relative flex-1 overflow-hidden">
-            {/* Left fade gradient */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-            
-            {/* Right fade gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
-            {/* Scrolling brands */}
-            <div className="flex gap-8 sm:gap-12 items-center animate-marquee">
-              {duplicatedBrands.map((brand, index) => (
-                <motion.span
-                  key={`${brand.name}-${index}`}
-                  className="flex-shrink-0 text-foreground/80 text-sm sm:text-base font-medium tracking-tight whitespace-nowrap"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {brand.name}
-                </motion.span>
-              ))}
-            </div>
+        <div className="flex flex-col gap-8 sm:gap-12">
+          {/* Top Section: Headline */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* Headline */}
+            <motion.h1 
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-[1.1] text-foreground max-w-5xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              High-performance web platforms & AI-enabled internal systems for growing tech and service businesses.
+            </motion.h1>
           </div>
+
+          {/* Additional Info - Above Logo Grid */}
+          <motion.div 
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-8 lg:gap-12 text-xs sm:text-sm text-foreground/70"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+          >
+            <p className="text-center sm:text-left">+ Worked with startups across Kenya, US & Europe</p>
+            <div className="flex flex-col gap-1 sm:gap-1.5 text-[10px] sm:text-xs">
+              <p>Accepting 1–2 new system builds per month</p>
+              <p>Systems • Platforms • Automation</p>
+            </div>
+          </motion.div>
+
+          {/* Logo Grid - All 6 logos in one row with boxes */}
+          <motion.div 
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-1"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {brands.map((brand, index) => (
+              <motion.div
+                key={brand.name}
+                className="border border-border/50 bg-muted p-2 sm:p-6 md:p-8 flex items-center justify-center min-h-[60px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden group aspect-square"
+                style={{ backgroundColor: 'oklch(var(--muted))' }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+              >
+                {brand.logo ? (
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image 
+                      src={brand.logo} 
+                      alt={brand.name}
+                      width={100}
+                      height={50}
+                      className="max-w-[70%] max-h-[50%] sm:max-w-[80%] sm:max-h-[60%] object-contain"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-foreground/80 text-sm sm:text-base font-medium tracking-tight">
+                    {brand.name}
+                  </span>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </motion.section>
