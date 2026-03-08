@@ -9,6 +9,7 @@ import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
 import Preloader from "@/components/shared/preloader";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -120,6 +121,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
+        <Toaster />
         <Analytics />
       </body>
     </html>

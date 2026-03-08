@@ -1,14 +1,16 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Sparkles } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import Brands from './brands';
 import Testimonials from './testimonials';
-import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02 } from './icons';
+import ProjectDrawer from './project-drawer';
+import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02, HugeiconsArrowUpRight } from './icons';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const circleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
   const circleOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.3]);
@@ -197,9 +199,26 @@ export default function Home() {
           >
             <li>Software Engineer</li>
           </motion.ul>
+          <motion.button
+            onClick={() => setDrawerOpen(true)}
+            className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-foreground text-background text-[10px] sm:text-xs md:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.9, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start a Project
+            <HugeiconsArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+          </motion.button>
         </motion.div>
 
       </section>
+
+      {/* Project Drawer */}
+      <AnimatePresence>
+        <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      </AnimatePresence>
 
       {/* Brands Section */}
       <Brands />
