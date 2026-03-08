@@ -60,12 +60,12 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <motion.a 
-            href="mailto:olivehendrilgen1@gmail.com"
+            href="mailto:hello@olivebishop.com"
             className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-primary link-underline hover:opacity-80 transition-opacity break-all sm:break-words font-normal"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            olivehendrilgen1@gmail.com
+            hello@olivebishop.com
           </motion.a>
         </motion.div>
 

@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     // Send notification email to admin
     const { error: adminError } = await resend.emails.send({
       from: "Olive Bishop <hello@olivebishop.com>",
-      to: "olivehendrilgen1@gmail.com",
+      to: "hello@olivebishop.com",
       subject: `New Project Request from ${name}`,
       react: AdminNotificationEmail({ name, email, project, projectType, budget }),
     })

@@ -11,7 +11,7 @@ export default function Footer() {
 
   const handleCopy = () => {
     navigator.clipboard
-      ?.writeText('olivehendrilgen1@gmail.com')
+      ?.writeText('hello@olivebishop.com')
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -46,10 +46,10 @@ export default function Footer() {
           {/* Email */}
           <div className="flex items-center gap-2">
             <a 
-              href="mailto:olivehendrilgen1@gmail.com" 
+              href="mailto:hello@olivebishop.com" 
               className="text-xs sm:text-sm md:text-base text-black hover:text-primary transition-colors"
             >
-              olivehendrilgen1@gmail.com
+              hello@olivebishop.com
             </a>
             <button
               type="button"
