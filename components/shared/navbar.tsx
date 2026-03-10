@@ -35,7 +35,7 @@ export function Navigation() {
   return (
     <>
       <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-3 sm:py-4 bg-background/80 backdrop-blur-sm border-b border-border/10"
+        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-3 sm:py-4 bg-background/60 backdrop-blur-md border-b border-border/10"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -202,7 +202,7 @@ export function Navigation() {
             onClick={closeMenu}
           >
             <motion.div 
-              className="absolute inset-0 bg-background/80 backdrop-blur-md"
+              className="absolute inset-0 bg-background/60 backdrop-blur-md"
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
@@ -225,13 +225,13 @@ export function Navigation() {
               stiffness: 200,
               duration: 0.5
             }}
-            className="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-background/95 backdrop-blur-xl border-l border-border/30 shadow-2xl lg:hidden"
+            className="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-background/80 backdrop-blur-xl border-l border-border/30 shadow-2xl lg:hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/98 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/85 to-background/90" />
             <div className="relative flex flex-col h-full">
               {/* Menu Header */}
               <motion.div 
-                className="flex items-center justify-between p-6 border-b border-border/30 bg-background/50 backdrop-blur-sm"
+                className="flex items-center justify-between p-6 border-b border-border/30 bg-background/40 backdrop-blur-sm"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}

@@ -1,7 +1,9 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { HugeiconsArrowUpRight } from './icons';
+import ProjectDrawer from './project-drawer';
 
 interface Project {
   id: number;
@@ -61,8 +63,51 @@ const projects: Project[] = [
     techStack: ['Next.js', 'SEO Optimization', 'Google Analytics', 'Responsive Design', 'Performance Optimization'],
     businessImpact: 'Generated significant leads and improved online visibility. The digital presence helped Brinex Tech reach a wider audience, resulting in increased inquiries and sales opportunities for their smart tech equipment.'
   },
+  {
+    id: 3,
+    name: 'Navejo',
+    image: '/images/navejo.png',
+    url: 'https://navejo.crowstudios.tech/',
+    type: 'Personal Product',
+    description: 'A bookmark management workspace built for frontend engineers and designers who are tired of losing track of useful links.',
+    tech: 'Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).',
+    problem: 'As a frontend engineer, I was constantly losing track of useful links — tutorials, design references, tools, docs. Browser bookmarks were messy, unsearchable, and impossible to share with teammates. I needed something purpose-built for how developers actually work.',
+    systemArchitecture: 'Full-stack Next.js application with Prisma ORM connected to XATA (PostgreSQL). Authentication handled via Better Auth with session management. AI-powered auto-tagging pipeline for bookmark categorization. Real-time sync for team collaboration features.',
+    keyFeatures: [
+      'AI-powered auto-tagging and smart folder organization',
+      'Team collaboration with shared workspaces and real-time sync',
+      'Collection sharing with public/private visibility controls',
+      'Browser-ready experience with import from Chrome, Safari, and Firefox',
+      'Advanced search across all bookmarks and collections',
+      'Pricing tiers with free and premium plans'
+    ],
+    techStack: ['Next.js', 'Prisma', 'Better Auth', 'XATA DB (PostgreSQL)', 'AI Auto-tagging'],
+    businessImpact: 'Turned a personal pain point into a real product with authentication, pricing tiers, and a polished browser-ready experience. Actively used by frontend engineers and designers to organize their digital resources.'
+  },
+  {
+    id: 4,
+    name: 'Crow Studios',
+    image: '/images/crow.png',
+    url: 'https://www.crowstudios.tech/',
+    type: 'Agency Website',
+    description: 'A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.',
+    subtitle: 'Tech Agency / Brand Website',
+    tech: 'Built with Next.js, Tailwind CSS, and Motion for smooth animations.',
+    problem: 'Crow Studios needed a strong digital presence that communicated credibility, showcased past work, and converted visitors into leads. The site had to reflect the agency\'s bold brand while maintaining performance and accessibility.',
+    systemArchitecture: 'Static-first Next.js site with dynamic sections powered by Motion for scroll-driven animations. Tailwind CSS for rapid, consistent styling. Optimized for performance with lazy loading and responsive images.',
+    keyFeatures: [
+      'Bold, modern design reflecting the agency brand identity',
+      'Project showcases with detailed case studies',
+      'Smooth scroll-driven animations using Motion',
+      'Service breakdowns with clear call-to-actions',
+      'Client testimonials and social proof sections',
+      'Fully responsive across all devices'
+    ],
+    techStack: ['Next.js', 'Tailwind CSS', 'Motion', 'Responsive Design', 'SEO Optimization'],
+    businessImpact: 'Established a strong brand presence for Crow Studios, driving client inquiries and building trust through professional design, case studies, and a seamless user experience.'
+  },
   { 
-    id: 3, 
+    id: 5, 
     name: 'Sol of African', 
     image: '/images/sol.png', 
     url: 'https://www.thesolofafrican.com/',
@@ -85,6 +130,8 @@ const projects: Project[] = [
 ];
 
 export function Work() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -137,7 +184,7 @@ export function Work() {
               {/* Image - Alternates left/right */}
               {index % 2 === 0 ? (
                 <motion.div 
-                  className="relative hidden sm:block h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30"
+                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -148,9 +195,13 @@ export function Work() {
                     src={project.image} 
                     alt={project.name} 
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority={index === 0}
+                    loading="eager"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
                   />
                 </motion.div>
               ) : null}
@@ -278,7 +329,7 @@ export function Work() {
               {/* Image - For odd indices (right side) */}
               {index % 2 === 1 ? (
                 <motion.div 
-                  className="relative hidden sm:block h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30"
+                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -289,15 +340,42 @@ export function Work() {
                     src={project.image} 
                     alt={project.name} 
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="eager"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
                   />
                 </motion.div>
               ) : null}
             </motion.article>
           ))}
         </div>
+        {/* Start a Project CTA */}
+        <motion.div
+          className="flex justify-center mt-10 sm:mt-14 md:mt-16 px-6 sm:px-8 md:px-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.button
+            onClick={() => setDrawerOpen(true)}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-foreground text-background text-[10px] sm:text-xs md:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start a Project
+            <HugeiconsArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+          </motion.button>
+        </motion.div>
       </section>
+
+      {/* Project Drawer */}
+      <AnimatePresence>
+        <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      </AnimatePresence>
 
       {/* Phone Photography */}
       <section className="py-24 md:py-32 px-6 sm:px-8 md:px-16">
@@ -373,6 +451,10 @@ export function Work() {
                   alt={`Phone photography ${index + 1}`}
                   fill
                   className="object-cover transition-all duration-500 saturate-0 group-hover:saturate-100 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  quality={80}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
                 />
               </motion.div>
             ))}

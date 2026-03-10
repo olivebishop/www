@@ -94,17 +94,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm sm:text-base">
               <li>
-                <Link href="#" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/privacy-policy" className="text-black/80 hover:text-primary transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/terms-of-service" className="text-black/80 hover:text-primary transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/cookies" className="text-black/80 hover:text-primary transition-colors">
                   Cookies
                 </Link>
               </li>

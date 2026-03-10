@@ -107,6 +107,9 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
                   priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
                 />
               </motion.div>
             </motion.div>
@@ -261,7 +264,7 @@ export default function Home() {
             whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
           >
             <motion.div 
-              className="relative hidden sm:block h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30"
+              className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
             >
@@ -269,9 +272,12 @@ export default function Home() {
                 src="/images/project2.png" 
                 alt="Event Parlour" 
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
               />
             </motion.div>
             <div className="p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4">
@@ -328,7 +334,185 @@ export default function Home() {
             </div>
           </motion.article>
 
-          {/* Project 2: Brinex */}
+          {/* Project 2: Navejo */}
+          <motion.article 
+            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+          >
+            <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4">
+              <motion.p 
+                className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Personal Product
+              </motion.p>
+              <motion.h3 
+                className="text-3xl sm:text-4xl md:text-5xl leading-tight text-foreground"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Navejo
+              </motion.h3>
+              <motion.p 
+                className="text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-1"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                Bookmarking Tool
+              </motion.p>
+              <motion.p 
+                className="text-sm sm:text-base text-foreground/80 max-w-md"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                A bookmark management workspace built for frontend engineers and designers. Features AI-powered auto-tagging, smart folders, team collaboration, and collection sharing.
+              </motion.p>
+              <motion.p 
+                className="text-xs sm:text-sm text-foreground/70 max-w-md"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).
+              </motion.p>
+              <motion.a 
+                href="https://navejo.crowstudios.tech/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors mt-2"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Visit website +
+              </motion.a>
+            </div>
+            <motion.div 
+              className="relative hidden sm:block order-1 lg:order-2 aspect-[9/4] overflow-hidden group bg-muted/50"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image 
+                src="/images/navejo.png" 
+                alt="Navejo" 
+                fill
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                loading="eager"
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+              />
+            </motion.div>
+          </motion.article>
+
+          {/* Project 3: Crow Studios */}
+          <motion.article 
+            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+          >
+            <motion.div 
+              className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Image 
+                src="/images/crow.png" 
+                alt="Crow Studios" 
+                fill
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                loading="eager"
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+              />
+            </motion.div>
+            <div className="p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4">
+              <motion.p 
+                className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Agency Website
+              </motion.p>
+              <motion.h3 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Crow Studios
+              </motion.h3>
+              <motion.p 
+                className="text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-1"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Tech Agency / Brand Website
+              </motion.p>
+              <motion.p 
+                className="text-sm sm:text-base text-foreground/80"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.
+              </motion.p>
+              <motion.p 
+                className="text-xs sm:text-sm text-foreground/70 max-w-md"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                Built with Next.js, Tailwind CSS, and Motion for smooth animations.
+              </motion.p>
+              <motion.a 
+                href="https://www.crowstudios.tech/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                Visit website +
+              </motion.a>
+            </div>
+          </motion.article>
+
+          {/* Project 4: Brinex */}
           <motion.article 
             className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm"
             initial={{ opacity: 0, y: 50 }}
@@ -399,7 +583,7 @@ export default function Home() {
               </motion.a>
             </div>
             <motion.div 
-              className="relative hidden sm:block order-1 lg:order-2 h-64 sm:h-80 md:h-[420px] lg:h-[70vh] overflow-hidden group bg-muted/30"
+              className="relative hidden sm:block order-1 lg:order-2 aspect-[9/4] overflow-hidden group bg-muted/50"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
             >
@@ -407,12 +591,35 @@ export default function Home() {
                 src="/images/project1.png" 
                 alt="Brinex Tech" 
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                loading="eager"
+                quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
               />
             </motion.div>
           </motion.article>
         </div>
+
+        {/* Start a Project CTA */}
+        <motion.div
+          className="flex justify-center mt-10 sm:mt-14 md:mt-16 px-6 sm:px-8 md:px-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.button
+            onClick={() => setDrawerOpen(true)}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-foreground text-background text-[10px] sm:text-xs md:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start a Project
+            <HugeiconsArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+          </motion.button>
+        </motion.div>
       </section>
 
       {/* Testimonials Section */}

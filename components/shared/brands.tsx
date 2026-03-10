@@ -70,6 +70,8 @@ export default function Brands() {
                       width={100}
                       height={50}
                       className="max-w-[70%] max-h-[50%] sm:max-w-[80%] sm:max-h-[60%] object-contain"
+                      loading="eager"
+                      quality={80}
                     />
                   </div>
                 ) : (
