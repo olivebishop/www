@@ -57,6 +57,27 @@ const bookmarks: Bookmark[] = [
     url: 'https://cheatsheets.zip/',
     category: 'Resources',
   },
+  {
+    id: 7,
+    title: 'Typescale',
+    description: 'Create perfect typography systems with mathematical precision. Generate harmonious type scales for consistent design systems.',
+    url: 'https://typescale.net/',
+    category: 'Design',
+  },
+  {
+    id: 8,
+    title: 'UNCUT.wtf',
+    description: 'Download somewhat contemporary fonts, free for commercial use. A free typeface catalogue focusing on contemporary type.',
+    url: 'https://uncut.wtf/',
+    category: 'Design',
+  },
+  {
+    id: 9,
+    title: 'Vercel AI SDK',
+    description: 'The AI Toolkit for TypeScript. A free open-source library from the creators of Next.js to build AI-powered products.',
+    url: 'https://ai-sdk.dev/',
+    category: 'Development',
+  },
 ];
 
 export function Bookmarks() {
