@@ -1,11 +1,16 @@
 'use client';
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { HugeiconsArrowUpRight } from './icons';
+import ProjectDrawer from './project-drawer';
 
 export function Workflow() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 px-8 md:px-16">
+      <section className="pt-28 sm:pt-32 md:pt-36 pb-14 sm:pb-20 md:pb-24 px-5 sm:px-8 md:px-16">
         <motion.div 
           className="max-w-5xl mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -15,25 +20,33 @@ export function Workflow() {
           <h1 className="page-title">
             It&apos;s all about my <em className="text-primary">design process</em>
           </h1>
+          <motion.p 
+            className="mt-6 body-lg text-foreground/50 max-w-lg mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            A proven approach that turns ideas into products that solve real problems and deliver results.
+          </motion.p>
         </motion.div>
       </section>
 
       {/* Process Cards Section */}
-      <section className="py-12 md:py-16 px-8 md:px-16 bg-background">
+      <section className="py-12 md:py-20 px-5 sm:px-8 md:px-16 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Learn Card */}
             <motion.div 
-              className="border border-border/50 p-6 md:p-8 hover:border-primary/50 transition-colors"
+              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <div className="mb-6">
+              <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm"
+                  className="text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -42,7 +55,7 @@ export function Workflow() {
                   A.
                 </motion.span>
                 <motion.h2 
-                  className="text-4xl md:text-5xl mt-2 font-normal"
+                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -52,7 +65,7 @@ export function Workflow() {
                 </motion.h2>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-7">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -60,7 +73,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -69,7 +82,7 @@ export function Workflow() {
                     Briefing
                   </motion.h3>
                   <motion.ul 
-                    className="space-y-1.5 text-sm text-foreground/80"
+                    className="space-y-2 body-sm text-foreground/60"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -96,7 +109,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -105,7 +118,7 @@ export function Workflow() {
                     Market
                   </motion.h3>
                   <motion.ul 
-                    className="space-y-1.5 text-sm text-foreground/80"
+                    className="space-y-2 body-sm text-foreground/60"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -129,16 +142,16 @@ export function Workflow() {
 
             {/* Think Card */}
             <motion.div 
-              className="border border-border/50 p-6 md:p-8 hover:border-primary/50 transition-colors"
+              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <div className="mb-6">
+              <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm"
+                  className="text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -147,7 +160,7 @@ export function Workflow() {
                   B.
                 </motion.span>
                 <motion.h2 
-                  className="text-4xl md:text-5xl mt-2 font-normal"
+                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -158,7 +171,7 @@ export function Workflow() {
               </div>
               
               <motion.p 
-                className="text-foreground/80 text-sm md:text-base leading-relaxed"
+                className="text-foreground/60 body-base leading-[1.8]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -171,16 +184,16 @@ export function Workflow() {
 
             {/* Create Card */}
             <motion.div 
-              className="border border-border/50 p-6 md:p-8 hover:border-primary/50 transition-colors md:col-span-2 lg:col-span-1"
+              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated md:col-span-2 lg:col-span-1"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.02, y: -5 }}
             >
-              <div className="mb-6">
+              <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm"
+                  className="text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -189,7 +202,7 @@ export function Workflow() {
                   C.
                 </motion.span>
                 <motion.h2 
-                  className="text-4xl md:text-5xl mt-2 font-normal"
+                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -199,7 +212,7 @@ export function Workflow() {
                 </motion.h2>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-7">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -207,7 +220,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -216,7 +229,7 @@ export function Workflow() {
                     Visual strategy
                   </motion.h3>
                   <motion.p 
-                    className="text-foreground/80 text-sm md:text-base leading-relaxed"
+                    className="text-foreground/60 body-base leading-[1.8]"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -233,7 +246,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 1.1 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -251,7 +264,7 @@ export function Workflow() {
                     {['UX architecture', 'Visual concepts', 'Interactions', 'Development', 'Testing'].map((item, index) => (
                       <motion.span 
                         key={item} 
-                        className="px-3 py-1 border border-border/50 rounded-none text-xs text-foreground/80"
+                        className="px-3 py-1.5 border border-border/50 rounded-none text-[0.8125rem] text-foreground/60 tracking-[-0.01em]"
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -276,7 +289,7 @@ export function Workflow() {
       </section>
 
       {/* Collaboration Section */}
-      <section className="py-24 md:py-32 px-8 md:px-16 bg-background">
+      <section className="py-24 md:py-32 px-5 sm:px-8 md:px-16 bg-background">
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -295,17 +308,80 @@ export function Workflow() {
           </motion.h2>
           
           <motion.p 
-            className="text-foreground/80 text-lg leading-relaxed max-w-2xl mx-auto"
+            className="text-foreground/60 body-lg leading-[1.8] max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             I truly believe in the power of a strong business relationship and years-long collaboration. 
-            Success is not a 1-day phenomenon it takes a lot of time and joint effort.
+            Success is not a 1-day phenomenon — it takes time, trust, and joint effort.
           </motion.p>
         </motion.div>
       </section>
+
+      {/* CTA Section — Goal: Convert */}
+      <section className="py-20 md:py-28 px-5 sm:px-8 md:px-16 bg-background border-t border-border/30">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.h2 
+            className="section-title mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Convinced by the <em className="text-primary">process</em>?
+          </motion.h2>
+          <motion.p 
+            className="body-lg text-foreground/50 mb-10 max-w-lg mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Let&apos;s put this process to work for your next project. Share your idea and I&apos;ll get back to you within 24 hours.
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.button
+              onClick={() => setDrawerOpen(true)}
+              className="cta-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start a Project
+              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.button>
+            <motion.a
+              href="https://cal.com/olivebishop/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book a Call
+              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Project Drawer */}
+      <AnimatePresence>
+        <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      </AnimatePresence>
     </div>
   );
 }

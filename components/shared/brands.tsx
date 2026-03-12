@@ -6,40 +6,40 @@ import Image from 'next/image';
 export default function Brands() {
   return (
     <motion.section 
-      className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background"
+      className="py-20 sm:py-24 md:py-28 lg:py-32 bg-background"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-8 sm:gap-12">
-          {/* Top Section: Headline */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
+        <div className="flex flex-col gap-10 sm:gap-14">
+          {/* Top Section: Headline — Clear value proposition */}
           <div className="space-y-6 sm:space-y-8">
             {/* Headline */}
-            <motion.h1 
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-[1.1] text-foreground max-w-5xl"
+            <motion.h2 
+              className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal leading-[1.2] tracking-[-0.02em] text-foreground max-w-5xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               High-performance web platforms & AI-enabled internal systems for growing tech and service businesses.
-            </motion.h1>
+            </motion.h2>
           </div>
 
-          {/* Additional Info - Above Logo Grid */}
+          {/* Additional Info - Trust indicators */}
           <motion.div 
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-8 lg:gap-12 text-xs sm:text-sm text-foreground/70"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-8 lg:gap-12 body-sm text-foreground/50"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35 }}
           >
             <p className="text-center sm:text-left">+ Worked with startups across Kenya, US & Europe</p>
-            <div className="flex flex-col gap-1 sm:gap-1.5 text-[10px] sm:text-xs">
+            <div className="flex flex-col gap-1.5 text-[0.8125rem]">
               <p>Accepting 1–2 new system builds per month</p>
-              <p>Systems • Platforms • Automation</p>
+              <p className="text-foreground/40">Systems • Platforms • Automation</p>
             </div>
           </motion.div>
 
@@ -54,7 +54,7 @@ export default function Brands() {
             {brands.map((brand, index) => (
               <motion.div
                 key={brand.name}
-                className="border border-border/50 bg-muted p-2 sm:p-6 md:p-8 flex items-center justify-center min-h-[60px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden group aspect-square"
+                className="border border-border/50 bg-muted p-3 sm:p-6 md:p-8 flex items-center justify-center min-h-[80px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden group sm:aspect-square depth-ambient transition-shadow duration-300 hover:depth-card"
                 style={{ backgroundColor: 'oklch(var(--muted))' }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -75,7 +75,7 @@ export default function Brands() {
                     />
                   </div>
                 ) : (
-                  <span className="text-foreground/80 text-sm sm:text-base font-medium tracking-tight">
+                  <span className="text-foreground/70 text-sm sm:text-[0.9375rem] font-medium tracking-[-0.01em]">
                     {brand.name}
                   </span>
                 )}

@@ -11,7 +11,11 @@ import Preloader from "@/components/shared/preloader";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist',
+  display: 'swap',
+});
 
 const cabinetGrotesk = localFont({
   src: [
@@ -113,7 +117,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(cabinetGrotesk.className, geist.variable)}>
+    <html lang="en" className={cn(cabinetGrotesk.variable, geist.variable)}>
       <body className="antialiased">
         <StructuredData />
         <Preloader />

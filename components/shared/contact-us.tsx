@@ -44,10 +44,10 @@ export function Contact() {
 
       {/* Content - Right Side */}
       <div className="w-full lg:w-1/2">
-        <div className="px-6 sm:px-10 md:px-14 lg:px-16 py-24 sm:py-28 md:py-32 lg:py-40 max-w-2xl">
+        <div className="px-5 sm:px-8 md:px-14 lg:px-16 pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-40 max-w-2xl mx-auto lg:mx-0">
           {/* Label */}
           <motion.p
-            className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6"
+            className="section-label mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -57,20 +57,20 @@ export function Contact() {
 
           {/* Heading */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
+            className="font-display text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] leading-[1.12] mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             Let&apos;s make{' '}
-            <em className="text-primary not-italic">something</em>
-            <br />
+            <em className="text-primary not-italic">something</em>{' '}
+            <span className="hidden sm:inline"><br /></span>
             great together.
           </motion.h1>
 
           {/* Subtext */}
           <motion.p
-            className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed mb-10 sm:mb-12 max-w-lg"
+            className="body-base sm:body-lg text-foreground/50 leading-[1.7] mb-8 sm:mb-12 max-w-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -81,37 +81,62 @@ export function Contact() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-14 sm:mb-16"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.button
-              onClick={() => setDrawerOpen(true)}
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 bg-foreground text-background text-xs sm:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start a Project
-              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
+            <div className="w-full sm:w-auto">
+              <motion.button
+                onClick={() => setDrawerOpen(true)}
+                className="cta-primary w-full sm:w-auto justify-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start a Project
+                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.button>
+            </div>
 
-            <motion.a
-              href="https://cal.com/olivebishop/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 border border-foreground/20 text-foreground text-xs sm:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-foreground hover:text-background transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Book a Call
-              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.a>
+            <div className="w-full sm:w-auto">
+              <motion.a
+                href="https://cal.com/olivebishop/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-secondary w-full sm:w-auto justify-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Book a Call
+                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div
+            className="mb-8 sm:mb-12 grid grid-cols-3 gap-4 sm:gap-10 font-body"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div>
+              <p className="font-display text-xl sm:text-3xl font-bold text-foreground tracking-[-0.02em]">24h</p>
+              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Response time</p>
+            </div>
+            <div>
+              <p className="font-display text-xl sm:text-3xl font-bold text-foreground tracking-[-0.02em]">5+</p>
+              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Projects delivered</p>
+            </div>
+            <div>
+              <p className="font-display text-xl sm:text-3xl font-bold text-primary tracking-[-0.02em]">100%</p>
+              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Client satisfaction</p>
+            </div>
           </motion.div>
 
           {/* Divider */}
           <motion.div
-            className="h-px bg-border mb-10 sm:mb-12"
+            className="h-px bg-border mb-8 sm:mb-12"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -120,32 +145,32 @@ export function Contact() {
 
           {/* Email Section */}
           <motion.div
-            className="mb-10 sm:mb-12"
+            className="mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-3">
+            <p className="section-label mb-3">
               Email
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <a
                 href="mailto:hello@olivebishop.com"
-                className="text-lg sm:text-xl md:text-2xl font-medium hover:text-primary transition-colors"
+                className="text-base sm:text-xl md:text-2xl font-medium tracking-[-0.02em] hover:text-primary transition-colors truncate"
               >
                 hello@olivebishop.com
               </a>
               <button
                 type="button"
                 onClick={handleCopy}
-                className="p-1.5 rounded border border-foreground/10 hover:border-primary hover:text-primary transition-colors"
+                className="p-1.5 rounded border border-foreground/10 hover:border-primary hover:text-primary transition-colors flex-shrink-0"
                 aria-label="Copy email address"
               >
                 <HugeiconsCopy01 className="w-4 h-4" />
               </button>
               {copied && (
                 <motion.span
-                  className="text-xs text-muted-foreground"
+                  className="text-[0.8125rem] text-foreground/40 flex-shrink-0"
                   initial={{ opacity: 0, x: -5 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0 }}
@@ -158,15 +183,15 @@ export function Contact() {
 
           {/* Based In */}
           <motion.div
-            className="mb-10 sm:mb-12"
+            className="mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-3">
+            <p className="section-label mb-3">
               Based in
             </p>
-            <p className="text-lg sm:text-xl md:text-2xl font-medium">
+            <p className="text-base sm:text-xl md:text-2xl font-medium tracking-[-0.02em]">
               Nairobi, Kenya
             </p>
           </motion.div>
@@ -177,17 +202,17 @@ export function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
+            <p className="section-label mb-4">
               Socials
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
               {socials.map((social, index) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-foreground/10 text-sm text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 rounded-sm"
+                  className="inline-flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 border border-foreground/10 text-[0.8125rem] sm:text-sm text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 rounded-sm tracking-[-0.01em]"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.8 + index * 0.08 }}
@@ -195,7 +220,7 @@ export function Contact() {
                   whileTap={{ scale: 0.95 }}
                 >
                   {social.name}
-                  <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
+                  <HugeiconsArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </motion.a>
               ))}
             </div>

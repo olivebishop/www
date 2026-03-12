@@ -35,14 +35,24 @@ export function Navigation() {
   return (
     <>
       <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 py-3 sm:py-4 bg-background/60 backdrop-blur-md border-b border-border/10"
+        className="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 md:px-12 py-4 sm:py-5 bg-background/80 backdrop-blur-xl border-b border-border/10 depth-ambient overflow-hidden"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className={`flex flex-wrap items-center justify-between gap-y-3 ${pathname === '/' ? '' : 'lg:grid lg:grid-cols-3 lg:flex-nowrap'}`}>
+        {/* Noise texture — matches body grain */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' seed='1'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0.05 0.1 0.15 0.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: '200px 200px',
+            opacity: 0.6,
+            mixBlendMode: 'screen',
+          }}
+        />
+        <div className={`relative flex flex-wrap items-center justify-between gap-y-3 ${pathname === '/' ? '' : 'lg:grid lg:grid-cols-3 lg:flex-nowrap'}`}>
           {/* Left Navigation - Desktop */}
-          <div className="hidden lg:flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-16">
+          <div className="hidden lg:flex items-center gap-4 md:gap-8 lg:gap-10 xl:gap-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -52,8 +62,8 @@ export function Navigation() {
                 href="/about"
                 className={`nav-link ${isActive('/about') ? 'active text-primary' : 'text-foreground'}`}
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl">Info</span>
-                <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">About me</span>
+                <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Info</span>
+                <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">About me</span>
               </Link>
             </motion.div>
             
@@ -66,8 +76,8 @@ export function Navigation() {
                 href="/work"
                 className={`nav-link ${isActive('/work') ? 'active text-primary' : 'text-foreground'}`}
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl">Work</span>
-                <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Some cases</span>
+                <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Work</span>
+                <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">Some cases</span>
               </Link>
             </motion.div>
           </div>
@@ -151,14 +161,14 @@ export function Navigation() {
                 href="/"
                 className="nav-link text-foreground"
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl">Home</span>
-                <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Main page</span>
+                <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Home</span>
+                <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">Main page</span>
               </Link>
             </motion.div>
           )}
 
           {/* Right Navigation - Desktop */}
-          <div className="hidden lg:flex items-center justify-end gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-16">
+          <div className="hidden lg:flex items-center justify-end gap-4 md:gap-8 lg:gap-10 xl:gap-16">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -168,8 +178,8 @@ export function Navigation() {
                 href="/workflow"
                 className={`nav-link ${isActive('/workflow') ? 'active text-primary' : 'text-foreground'}`}
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl">Workflow</span>
-                <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">All the processes</span>
+                <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Workflow</span>
+                <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">All the processes</span>
               </Link>
             </motion.div>
             
@@ -182,8 +192,8 @@ export function Navigation() {
                 href="/contact"
                 className={`nav-link ${isActive('/contact') ? 'active text-primary' : 'text-foreground'}`}
               >
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl">Contact me</span>
-                <span className="hidden xl:block text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">For any collaborations</span>
+                <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Contact me</span>
+                <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">For any collaborations</span>
               </Link>
             </motion.div>
           </div>
@@ -202,7 +212,7 @@ export function Navigation() {
             onClick={closeMenu}
           >
             <motion.div 
-              className="absolute inset-0 bg-background/60 backdrop-blur-md"
+              className="absolute inset-0 bg-background/70 backdrop-blur-xl"
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
@@ -225,18 +235,28 @@ export function Navigation() {
               stiffness: 200,
               duration: 0.5
             }}
-            className="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-background/80 backdrop-blur-xl border-l border-border/30 shadow-2xl lg:hidden"
+            className="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-background/95 backdrop-blur-2xl border-l border-border/20 shadow-2xl lg:hidden overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/85 to-background/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
+            {/* Noise texture — matches body grain */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' seed='1'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0.05 0.1 0.15 0.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundSize: '200px 200px',
+                opacity: 0.6,
+                mixBlendMode: 'screen',
+              }}
+            />
             <div className="relative flex flex-col h-full">
               {/* Menu Header */}
               <motion.div 
-                className="flex items-center justify-between p-6 border-b border-border/30 bg-background/40 backdrop-blur-sm"
+                className="flex items-center justify-between p-6 border-b border-border/20 bg-background/50 backdrop-blur-sm"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <h2 className="text-lg font-normal text-foreground">Menu</h2>
+                <h2 className="text-lg font-normal tracking-[-0.01em] text-foreground">Menu</h2>
                 <motion.button
                   onClick={closeMenu}
                   className="p-2 text-foreground hover:text-primary transition-colors"
@@ -260,12 +280,12 @@ export function Navigation() {
                       <Link
                         href="/"
                         onClick={closeMenu}
-                        className={`block px-4 py-3 rounded-sm text-base font-normal transition-colors hover:bg-muted/30 ${
+                        className={`block px-4 py-4 rounded-sm text-base font-normal tracking-[-0.01em] transition-colors hover:bg-muted/30 ${
                           isActive('/') ? 'text-primary bg-primary/10' : 'text-foreground hover:text-primary'
                         }`}
                       >
                         <span>Home</span>
-                        <span className="block text-xs uppercase tracking-wider text-muted-foreground mt-1">Main page</span>
+                        <span className="block text-[11px] uppercase tracking-[0.1em] text-foreground/40 mt-1.5">Main page</span>
                       </Link>
                     </motion.div>
                   )}
@@ -280,12 +300,12 @@ export function Navigation() {
                       <Link
                         href={link.href}
                         onClick={closeMenu}
-                        className={`block px-4 py-3 rounded-sm text-base font-normal transition-colors hover:bg-muted/30 ${
+                        className={`block px-4 py-4 rounded-sm text-base font-normal tracking-[-0.01em] transition-colors hover:bg-muted/30 ${
                           isActive(link.href) ? 'text-primary bg-primary/10' : 'text-foreground hover:text-primary'
                         }`}
                       >
                         <span>{link.label}</span>
-                        <span className="block text-xs uppercase tracking-wider text-muted-foreground mt-1">{link.subtitle}</span>
+                        <span className="block text-[11px] uppercase tracking-[0.1em] text-foreground/40 mt-1.5">{link.subtitle}</span>
                       </Link>
                     </motion.div>
                   ))}

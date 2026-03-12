@@ -111,11 +111,11 @@ export default function ProjectDrawer({ isOpen, onClose }: { isOpen: boolean; on
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed right-0 top-0 h-full w-full md:w-[500px] bg-white z-[70] overflow-y-auto font-[family-name:var(--font-cabinet-grotesk)]"
+        className="fixed right-0 top-0 h-full w-full md:w-[500px] bg-white z-[70] overflow-y-auto font-body"
       >
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7 flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-gray-900">Request a Quote</h2>
+          <h2 className="font-display text-2xl font-semibold text-gray-900">Request a Quote</h2>
           <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"

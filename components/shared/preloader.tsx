@@ -12,35 +12,30 @@ export default function Preloader() {
     // Prevent body scroll during preloader
     document.body.style.overflowY = 'hidden';
 
-    // Phase 1: Show container (immediate, duration: 0)
+    // Phase 1: Show container immediately
     const timer0 = setTimeout(() => {
       setAnimationPhase('in');
     }, 0);
 
-    // Phase 2: Animate text in (delay: 1s, duration: 1.5s, stagger: 0.4s)
-    // Phase 3: Animate text out (duration: 1s, stagger: 0.2s) - starts after text in completes
-    // Total: 1s delay + 1.5s duration + (3 * 0.4s stagger) = ~3.7s for all text in
-    // Then 1s duration + (3 * 0.2s stagger) = ~1.6s for all text out
-    // Preloader collapse starts 2s before text out ends (overlap)
-    
+    // Phase 2: Enable scroll earlier for better perceived performance
     const timer1 = setTimeout(() => {
-      // Enable body scroll after text animation starts
       document.body.style.overflowY = 'scroll';
-    }, 2000);
+    }, 1500);
 
+    // Phase 3: Start text out animation
     const timer2 = setTimeout(() => {
       setAnimationPhase('out');
-    }, 2500); // Start text out after text in completes (1s delay + 1.5s duration)
+    }, 2000);
 
-    // Phase 4: Hide preloader (starts overlapping with text out)
+    // Phase 4: Hide preloader (collapse)
     const timer3 = setTimeout(() => {
       setAnimationPhase('hide');
-    }, 3000); // Start collapse slightly before text out completes
+    }, 2400);
 
-    // Phase 5: Remove from DOM
+    // Phase 5: Remove from DOM - faster total time (3.5s vs 4.5s)
     const timer4 = setTimeout(() => {
       setIsLoading(false);
-    }, 4500); // Total: ~4.5s
+    }, 3500);
 
     return () => {
       clearTimeout(timer0);
@@ -48,7 +43,6 @@ export default function Preloader() {
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
-      // Restore body overflow on cleanup
       document.body.style.overflowY = '';
     };
   }, []);
@@ -58,7 +52,7 @@ export default function Preloader() {
       {isLoading && (
         <motion.div
           key="preloader"
-          className="preloader fixed inset-0 z-[55] flex items-center justify-center overflow-hidden bg-black"
+          className="preloader fixed inset-0 z-[55] flex items-center justify-center overflow-hidden bg-black will-change-transform"
           initial={{ height: '100vh' }}
           animate={
             animationPhase === 'hide'
@@ -66,12 +60,12 @@ export default function Preloader() {
               : { height: '100vh' }
           }
           exit={{ height: '0vh' }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
-            className="texts-container flex items-center justify-center gap-[5px] sm:gap-[14px] md:gap-[18px] lg:gap-[24px] xl:gap-[28px] overflow-hidden text-[#e4ded7]"
+            className="texts-container flex items-center justify-center gap-[5px] sm:gap-[14px] md:gap-[18px] lg:gap-[24px] xl:gap-[28px] overflow-hidden text-[#e4ded7] will-change-transform"
             style={{
-              fontFamily: 'var(--font-cabinet-grotesk), sans-serif',
+              fontFamily: 'var(--font-cabinet-grotesk), system-ui, sans-serif',
               fontSize: 'clamp(1rem, 3.5vw, 4.5rem)',
               fontWeight: 400,
               letterSpacing: '-0.02em',
@@ -85,7 +79,7 @@ export default function Preloader() {
             {greetings.map((greeting, index) => (
               <motion.span
                 key={greeting}
-                className="inline-block whitespace-nowrap"
+                className="inline-block whitespace-nowrap will-change-transform"
                 initial={{ y: 70, opacity: 0 }}
                 animate={
                   animationPhase === 'in'
@@ -104,8 +98,8 @@ export default function Preloader() {
                         }
                 }
                 transition={{
-                  duration: animationPhase === 'in' ? 1.5 : 1,
-                  delay: animationPhase === 'in' ? 1 + index * 0.4 : index * 0.2,
+                  duration: animationPhase === 'in' ? 1.2 : 0.8,
+                  delay: animationPhase === 'in' ? 0.6 + index * 0.3 : index * 0.15,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >

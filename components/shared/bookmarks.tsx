@@ -1,8 +1,10 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { HugeiconsArrowUpRight } from './icons';
 import Link from 'next/link';
+import ProjectDrawer from './project-drawer';
 
 interface Bookmark {
   id: number;
@@ -58,13 +60,15 @@ const bookmarks: Bookmark[] = [
 ];
 
 export function Bookmarks() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 px-6 sm:px-8 md:px-16">
+      <section className="pt-28 sm:pt-32 md:pt-36 pb-14 sm:pb-18 px-5 sm:px-8 md:px-16">
         <div className="max-w-5xl">
           <motion.p 
-            className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4"
+            className="section-label mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -80,18 +84,18 @@ export function Bookmarks() {
             Resources i <em className="text-primary">use</em>
           </motion.h1>
           <motion.p 
-            className="mt-6 sm:mt-8 text-xs sm:text-sm text-muted-foreground/80 max-w-xs"
+            className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            A curated collection of tools and resources for web development and design.
+            A curated collection of tools and resources I rely on for web development and design. Sharing what works.
           </motion.p>
         </div>
       </section>
 
       {/* Bookmarks List */}
-      <section className="py-20 sm:py-24 px-6 sm:px-8 md:px-16">
+      <section className="py-20 sm:py-24 px-5 sm:px-8 md:px-16">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-1">
             {bookmarks.map((bookmark, index) => (
@@ -100,7 +104,7 @@ export function Bookmarks() {
                 href={bookmark.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between gap-4 py-3 px-4 hover:bg-muted/30 transition-colors border-b border-border/20 last:border-b-0"
+                className="group flex items-center justify-between gap-4 py-4 px-5 hover:bg-muted/30 transition-colors border-b border-border/20 last:border-b-0"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -111,24 +115,86 @@ export function Bookmarks() {
                 }}
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-sm sm:text-base font-medium text-foreground group-hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <h3 className="text-[0.9375rem] sm:text-base font-medium text-foreground group-hover:text-primary transition-colors tracking-[-0.01em]">
                       {bookmark.title}
                     </h3>
-                    <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                    <span className="text-[11px] sm:text-[0.8125rem] uppercase tracking-[0.1em] text-foreground/35 font-medium">
                       {bookmark.category}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-muted-foreground truncate">
+                  <p className="text-[0.8125rem] sm:text-sm text-foreground/45 truncate">
                     {bookmark.description}
                   </p>
                 </div>
-                <HugeiconsArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                <HugeiconsArrowUpRight className="w-4 h-4 text-foreground/30 group-hover:text-primary transition-colors flex-shrink-0" />
               </motion.a>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Conversion CTA - Tie back to main goal */}
+      <section className="py-20 md:py-28 px-5 sm:px-8 md:px-16 bg-background border-t border-border/30">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.h2 
+            className="section-title mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Like what you <em className="text-primary">see</em>?
+          </motion.h2>
+          <motion.p 
+            className="body-lg text-foreground/50 mb-10 max-w-lg mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            I use these same tools and principles to build fast, beautiful products for my clients. Let&apos;s build yours.
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.button
+              onClick={() => setDrawerOpen(true)}
+              className="cta-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start a Project
+              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.button>
+            <Link href="/work">
+              <motion.span
+                className="cta-secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View My Work
+                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.span>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Project Drawer */}
+      <AnimatePresence>
+        <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      </AnimatePresence>
     </div>
   );
 }

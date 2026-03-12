@@ -135,10 +135,10 @@ export function Work() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 px-6 sm:px-8 md:px-16">
+      <section className="pt-28 sm:pt-32 md:pt-36 pb-14 sm:pb-18 px-5 sm:px-8 md:px-16">
         <div className="max-w-5xl">
           <motion.p 
-            className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4"
+            className="section-label mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -154,29 +154,29 @@ export function Work() {
             A few <em className="text-primary">projects</em> I&apos;ve worked on
           </motion.h1>
           <motion.p 
-            className="mt-6 sm:mt-8 text-xs sm:text-sm text-muted-foreground/80 max-w-xs"
+            className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            A snapshot of products and collaborations I&apos;ve been building recently.
+            A snapshot of products and collaborations I&apos;ve been building recently. Each one solved a real problem for a real business.
           </motion.p>
         </div>
       </section>
 
       {/* Projects */}
-      <section className="py-20 sm:py-24 px-6 sm:px-8 md:px-16">
-        <div className="space-y-10 sm:space-y-16">
+      <section className="py-20 sm:py-24 px-5 sm:px-8 md:px-16">
+        <div className="space-y-12 sm:space-y-16 md:space-y-20">
           {projects.map((project, index) => (
             <motion.article 
               key={project.id}
-              className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm"
+              className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ 
                 duration: 0.8, 
-                delay: index * 0.15,
+                delay: index * 0.1,
                 ease: [0.16, 1, 0.3, 1] 
               }}
               whileHover={{ borderColor: 'rgba(var(--primary), 0.3)', scale: 1.01 }}
@@ -188,7 +188,7 @@ export function Work() {
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
                   whileHover={{ scale: 1.02 }}
                 >
                   <Image 
@@ -208,49 +208,49 @@ export function Work() {
 
               {/* Content */}
               <motion.div 
-                className={`p-6 sm:p-8 md:p-12 flex flex-col justify-center gap-3 sm:gap-4 ${
+                className={`p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5 ${
                   index % 2 === 1 ? 'lg:order-1' : ''
                 }`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
+                transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
               >
                 <motion.p 
-                  className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                  className="section-label"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 + 0.4 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
                 >
                   {project.type}
                 </motion.p>
                 <motion.h3 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground font-normal"
+                  className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground font-normal"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.15 + 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.8, delay: index * 0.1 + 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {project.name}
                 </motion.h3>
                 {project.subtitle && (
                   <motion.p 
-                    className="text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-1"
+                    className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.6 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
                   >
                     {project.subtitle}
                   </motion.p>
                 )}
                 <motion.p 
-                  className="text-sm sm:text-base text-foreground/80 max-w-md"
+                  className="body-base text-foreground/70 max-w-md"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 + 0.7 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
                 >
                   {project.description}
                 </motion.p>
@@ -261,28 +261,28 @@ export function Work() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 + 0.8 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.8 }}
                 >
                   {/* Problem */}
                   <div>
-                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Problem</h4>
-                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.problem}</p>
+                    <h4 className="section-label mb-3">Problem</h4>
+                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.problem}</p>
                   </div>
 
                   {/* System Architecture */}
                   <div>
-                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">System Architecture</h4>
-                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.systemArchitecture}</p>
+                    <h4 className="section-label mb-3">System Architecture</h4>
+                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.systemArchitecture}</p>
                   </div>
 
                   {/* Key Features */}
                   <div>
-                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Key Features</h4>
-                    <ul className="space-y-1.5">
+                    <h4 className="section-label mb-3">Key Features</h4>
+                    <ul className="space-y-2">
                       {project.keyFeatures.map((feature, idx) => (
-                        <li key={idx} className="text-xs sm:text-sm text-foreground/70 flex items-start gap-2">
-                          <span className="text-primary mt-1.5">•</span>
-                          <span className="leading-relaxed">{feature}</span>
+                        <li key={idx} className="body-sm text-foreground/60 flex items-start gap-2.5">
+                          <span className="text-primary mt-1.5 text-sm">•</span>
+                          <span className="leading-[1.7]">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -290,12 +290,12 @@ export function Work() {
 
                   {/* Tech Stack */}
                   <div>
-                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Tech Stack</h4>
+                    <h4 className="section-label mb-3">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.techStack.map((tech, idx) => (
                         <span 
                           key={idx}
-                          className="text-xs px-2.5 py-1 border border-border/40 bg-background/40 rounded-sm text-foreground/70"
+                          className="text-[0.8125rem] px-3 py-1.5 border border-border/40 bg-background/40 rounded-sm text-foreground/60 tracking-[-0.01em]"
                         >
                           {tech}
                         </span>
@@ -305,8 +305,8 @@ export function Work() {
 
                   {/* Business Impact */}
                   <div>
-                    <h4 className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground mb-2">Business Impact</h4>
-                    <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">{project.businessImpact}</p>
+                    <h4 className="section-label mb-3">Business Impact</h4>
+                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.businessImpact}</p>
                   </div>
                 </motion.div>
 
@@ -314,13 +314,13 @@ export function Work() {
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-6 sm:mt-8"
+                  className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-6 sm:mt-8"
                   whileHover={{ x: 5, scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 + 1.0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 1.0 }}
                 >
                   Visit website +
                 </motion.a>
@@ -333,7 +333,7 @@ export function Work() {
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.15 + 0.2 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
                   whileHover={{ scale: 1.02 }}
                 >
                   <Image 
@@ -354,7 +354,7 @@ export function Work() {
         </div>
         {/* Start a Project CTA */}
         <motion.div
-          className="flex justify-center mt-10 sm:mt-14 md:mt-16 px-6 sm:px-8 md:px-16"
+          className="flex justify-center mt-14 sm:mt-16 md:mt-20 px-5 sm:px-8 md:px-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
@@ -362,12 +362,12 @@ export function Work() {
         >
           <motion.button
             onClick={() => setDrawerOpen(true)}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-foreground text-background text-[10px] sm:text-xs md:text-sm font-medium tracking-wide uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            className="cta-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Start a Project
-            <HugeiconsArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </motion.button>
         </motion.div>
       </section>
@@ -378,17 +378,17 @@ export function Work() {
       </AnimatePresence>
 
       {/* Phone Photography */}
-      <section className="py-24 md:py-32 px-6 sm:px-8 md:px-16">
+      <section className="py-24 md:py-32 px-5 sm:px-8 md:px-16">
         <div className="max-w-7xl mx-auto">
           <motion.div 
-            className="mb-12 sm:mb-16"
+            className="mb-14 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.p 
-              className="section-label mb-4"
+              className="section-label mb-5"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -397,7 +397,7 @@ export function Work() {
               Phone photography
             </motion.p>
             <motion.h2 
-              className="section-title mb-4 sm:mb-6"
+              className="section-title mb-5 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -406,7 +406,7 @@ export function Work() {
               Moments captured on my phone
             </motion.h2>
             <motion.p 
-              className="text-base sm:text-lg text-foreground/70 max-w-3xl"
+              className="body-lg text-foreground/50 max-w-3xl"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -462,14 +462,14 @@ export function Work() {
 
           {/* X Thread CTA */}
           <motion.div 
-            className="border-t border-border/40 pt-8"
+            className="border-t border-border/30 pt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.p 
-              className="text-xs uppercase tracking-widest text-muted-foreground mb-4"
+              className="section-label mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -481,7 +481,7 @@ export function Work() {
               href="https://x.com/olivebishop_dev/status/1999532067701359103?s=20"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm md:text-base text-foreground hover:text-primary transition-colors underline"
+              className="inline-flex items-center gap-2 text-sm md:text-[0.9375rem] text-foreground hover:text-primary transition-colors underline tracking-[-0.01em]"
               whileHover={{ x: 5, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0 }}

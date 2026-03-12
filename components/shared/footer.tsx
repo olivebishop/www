@@ -22,10 +22,10 @@ export default function Footer() {
   return (
     <footer className="relative bg-white text-black">
       {/* Top Navigation and Contact Section */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-6 md:py-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6 mb-6">
+      <div className="px-5 sm:px-8 md:px-12 lg:px-16 py-6 md:py-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-6">
           {/* Navigation Links */}
-          <nav className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8 text-sm sm:text-base text-black">
+          <nav className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-8 text-[0.9375rem] text-black tracking-[-0.01em]">
             <Link href="/work" className="hover:text-primary transition-colors">
               <ScrambleText text="Work" duration={1000} delay={0} />
             </Link>
@@ -44,10 +44,10 @@ export default function Footer() {
           </nav>
 
           {/* Email */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <a 
               href="mailto:hello@olivebishop.com" 
-              className="text-xs sm:text-sm md:text-base text-black hover:text-primary transition-colors"
+              className="text-[0.8125rem] sm:text-sm md:text-[0.9375rem] text-black/80 hover:text-primary transition-colors tracking-[-0.01em]"
             >
               hello@olivebishop.com
             </a>
@@ -60,7 +60,7 @@ export default function Footer() {
               <HugeiconsCopy01 className="w-4 h-4" />
             </button>
             {copied && (
-              <span className="text-xs text-black/60">
+              <span className="text-[0.8125rem] text-black/50">
                 Copied
               </span>
             )}
@@ -72,39 +72,39 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Content - Three Column Layout */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+      <div className="px-5 sm:px-8 md:px-12 lg:px-16 py-10 md:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-12">
           {/* Left Column - Company Info */}
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-[-0.02em]">
               Olive Bishop
             </h2>
-            <p className="text-sm sm:text-base text-black/80 max-w-md">
+            <p className="text-[0.9375rem] text-black/70 max-w-md leading-[1.7]">
               Focusing on creating visual experiences that feel purposeful, elegant and approachable
             </p>
-            <p className="text-xs sm:text-sm text-black/60">
+            <p className="text-[0.8125rem] text-black/50">
               ©{currentYear} Olive Bishop. All rights reserved.
             </p>
           </div>
 
           {/* Middle Column - Legal */}
           <div className="space-y-4">
-            <h3 className="text-sm sm:text-base font-medium text-black uppercase tracking-wider">
+            <h3 className="text-[0.8125rem] font-medium text-black uppercase tracking-[0.12em]">
               Legal
             </h3>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-[0.9375rem]">
               <li>
-                <Link href="/privacy-policy" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/privacy-policy" className="text-black/70 hover:text-primary transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/terms-of-service" className="text-black/70 hover:text-primary transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/cookies" className="text-black/70 hover:text-primary transition-colors">
                   Cookies
                 </Link>
               </li>
@@ -113,27 +113,27 @@ export default function Footer() {
 
           {/* Middle Column - Pages */}
           <div className="space-y-4">
-            <h3 className="text-sm sm:text-base font-medium text-black uppercase tracking-wider">
+            <h3 className="text-[0.8125rem] font-medium text-black uppercase tracking-[0.12em]">
               Pages
             </h3>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-[0.9375rem]">
               <li>
-                <Link href="/" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/" className="text-black/70 hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/contact" className="text-black/70 hover:text-primary transition-colors">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/work" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/work" className="text-black/70 hover:text-primary transition-colors">
                   Work
                 </Link>
               </li>
               <li>
-                <Link href="/bookmarks" className="text-black/80 hover:text-primary transition-colors">
+                <Link href="/bookmarks" className="text-black/70 hover:text-primary transition-colors">
                   Bookmarks
                 </Link>
               </li>
@@ -142,16 +142,16 @@ export default function Footer() {
 
           {/* Right Column - Socials */}
           <div className="space-y-4">
-            <h3 className="text-sm sm:text-base font-medium text-black uppercase tracking-wider">
+            <h3 className="text-[0.8125rem] font-medium text-black uppercase tracking-[0.12em]">
               Socials
             </h3>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-[0.9375rem]">
               <li>
                 <a 
                   href="https://www.instagram.com/rhymer_ke/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-primary transition-colors"
+                  className="text-black/70 hover:text-primary transition-colors"
                 >
                   Instagram
                 </a>
@@ -161,7 +161,7 @@ export default function Footer() {
                   href="https://x.com/olivebishop_dev" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-primary transition-colors"
+                  className="text-black/70 hover:text-primary transition-colors"
                 >
                   Twitter/X
                 </a>
@@ -171,7 +171,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/in/olivebishop/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-primary transition-colors"
+                  className="text-black/70 hover:text-primary transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -181,7 +181,7 @@ export default function Footer() {
                   href="https://github.com/olivebishop" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-black/80 hover:text-primary transition-colors"
+                  className="text-black/70 hover:text-primary transition-colors"
                 >
                   GitHub
                 </a>
@@ -192,11 +192,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section with Stylistic Elements */}
-      <div className="relative px-4 sm:px-6 md:px-8 lg:px-16 py-6 md:py-8 overflow-hidden">
+      <div className="relative px-5 sm:px-8 md:px-12 lg:px-16 py-6 md:py-8 overflow-hidden">
         {/* Large Blurred Brand Text */}
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
           <div 
-            className="text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] xl:text-[30rem] font-bold text-black/5 select-none whitespace-nowrap"
+            className="font-display text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] xl:text-[30rem] font-bold text-black/5 select-none whitespace-nowrap"
             style={{
               filter: 'blur(60px)',
               lineHeight: '0.8',
