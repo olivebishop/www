@@ -184,25 +184,31 @@ export function Work() {
               {/* Image - Alternates left/right */}
               {index % 2 === 0 ? (
                 <motion.div 
-                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
+                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Image 
-                    src={project.image} 
-                    alt={project.name} 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={index === 0}
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
+                  <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
+                      <Image 
+                        src={project.image} 
+                        alt={project.name} 
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={index === 0}
+                        loading="eager"
+                        quality={85}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
                 </motion.div>
               ) : null}
 
@@ -329,24 +335,30 @@ export function Work() {
               {/* Image - For odd indices (right side) */}
               {index % 2 === 1 ? (
                 <motion.div 
-                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group bg-muted/50"
+                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Image 
-                    src={project.image} 
-                    alt={project.name} 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
+                  <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
+                      <Image 
+                        src={project.image} 
+                        alt={project.name} 
+                        fill
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        loading="eager"
+                        quality={85}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
                 </motion.div>
               ) : null}
             </motion.article>

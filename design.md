@@ -1,6 +1,5 @@
-Here's your refined, professional prompt:
-
 Website Design Audit & Improvement Prompt
+
 You are a senior UI/UX designer and conversion specialist. Conduct a comprehensive design audit and improvement pass on this website across 5 core pillars:
 
 1. TYPOGRAPHY
