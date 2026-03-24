@@ -52,9 +52,13 @@ export default function Brands() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             {brands.map((brand, index) => (
-              <motion.div
+              <motion.a
                 key={brand.name}
-                className="border border-border/50 bg-muted p-3 sm:p-6 md:p-8 flex items-center justify-center min-h-[80px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden group sm:aspect-square depth-ambient transition-shadow duration-300 hover:depth-card"
+                href={brand.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${brand.name} (opens in new tab)`}
+                className="border border-border/50 bg-muted p-3 sm:p-6 md:p-8 flex items-center justify-center min-h-[80px] sm:min-h-[120px] md:min-h-[140px] overflow-hidden group sm:aspect-square depth-ambient transition-shadow duration-300 hover:depth-card outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 style={{ backgroundColor: 'oklch(var(--muted))' }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -63,10 +67,10 @@ export default function Brands() {
                 whileHover={{ scale: 1.05, zIndex: 10 }}
               >
                 {brand.logo ? (
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <Image 
-                      src={brand.logo} 
-                      alt={brand.name}
+                  <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+                    <Image
+                      src={brand.logo}
+                      alt=""
                       width={100}
                       height={50}
                       className="max-w-[70%] max-h-[50%] sm:max-w-[80%] sm:max-h-[60%] object-contain"
@@ -79,7 +83,7 @@ export default function Brands() {
                     {brand.name}
                   </span>
                 )}
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
         </div>
