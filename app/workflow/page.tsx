@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import { Workflow } from "@/components/shared/workflow";
+import { seo } from "@/lib/seo";
+
+const fullTitle = `${seo.workflowTitle} | ${seo.brand}`;
 
 export const metadata: Metadata = {
-  title: "Workflow",
-  description: "Olive Bishop's design process - Learn, Think, Create. A solution-based design approach focusing on UX architecture, visual concepts, interactions, development, and testing.",
+  title: seo.workflowTitle,
+  description: seo.workflowDescription,
+  alternates: {
+    canonical: "/workflow",
+  },
   openGraph: {
-    title: "Workflow - Olive Bishop Design Process",
-    description: "Olive Bishop's design process - Learn, Think, Create. A solution-based design approach.",
+    title: fullTitle,
+    description: seo.workflowDescription,
     url: "/workflow",
+  },
+  twitter: {
+    title: fullTitle,
+    description: seo.workflowDescription,
   },
 };
 

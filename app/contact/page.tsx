@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/shared/contact-us";
+import { seo } from "@/lib/seo";
+
+const fullTitle = `${seo.contactTitle} | ${seo.brand}`;
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with Olive Bishop - Software Engineer, Digital Events Curator, and Mobile Photographer. Available for collaborations and projects.",
+  title: seo.contactTitle,
+  description: seo.contactDescription,
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
-    title: "Contact Olive Bishop",
-    description: "Get in touch with Olive Bishop - Software Engineer, Digital Events Curator, and Mobile Photographer.",
+    title: fullTitle,
+    description: seo.contactDescription,
     url: "/contact",
+  },
+  twitter: {
+    title: fullTitle,
+    description: seo.contactDescription,
   },
 };
 

@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import Home from "@/components/shared/home";
+import { seo } from "@/lib/seo";
+
+const fullTitle = `${seo.homeTitle} | ${seo.brand}`;
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Olive Bishop - Software Engineer, Digital Events Curator, and Mobile Photographer. Specializing in Next.js, React, TypeScript, and modern web development. Creator of Event Parlour and featured on TanStack Showcase.",
+  title: seo.homeTitle,
+  description: seo.homeDescription,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Olive Bishop - Software Engineer & Digital Events Curator",
-    description: "Portfolio of Olive Bishop - Software Engineer, Digital Events Curator, and Mobile Photographer.",
+    title: fullTitle,
+    description: seo.homeDescription,
     url: "/",
+  },
+  twitter: {
+    title: fullTitle,
+    description: seo.homeDescription,
   },
 };
 

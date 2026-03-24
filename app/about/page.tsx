@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import { About } from "@/components/shared/about-us";
+import { seo } from "@/lib/seo";
+
+const fullTitle = `${seo.aboutTitle} | ${seo.brand}`;
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn about Olive Bishop - Software Engineer specializing in Next.js, React, TypeScript, Docker, AWS, and modern web technologies. Featured on TanStack Showcase for Event Parlour project.",
+  title: seo.aboutTitle,
+  description: seo.aboutDescription,
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
-    title: "About Olive Bishop - Software Engineer",
-    description: "Learn about Olive Bishop - Software Engineer specializing in Next.js, React, TypeScript, and modern web technologies.",
+    title: fullTitle,
+    description: seo.aboutDescription,
     url: "/about",
+  },
+  twitter: {
+    title: fullTitle,
+    description: seo.aboutDescription,
   },
 };
 
