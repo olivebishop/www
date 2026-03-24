@@ -206,7 +206,7 @@ export default function Home() {
 
         {/* Desktop Social Links — absolute positioned, hidden on mobile */}
         <motion.div 
-          className="absolute left-8 md:left-16 bottom-16 md:bottom-32 hidden md:block"
+          className="absolute left-8 md:left-16 bottom-16 md:bottom-32 z-20 hidden md:block"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -253,7 +253,7 @@ export default function Home() {
 
         {/* Desktop Services & CTA — absolute positioned, hidden on mobile */}
         <motion.div 
-          className="absolute right-8 md:right-16 bottom-16 md:bottom-32 text-right hidden md:block"
+          className="absolute right-8 md:right-16 bottom-16 md:bottom-32 z-20 text-right hidden md:block"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}

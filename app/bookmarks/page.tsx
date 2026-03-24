@@ -3,10 +3,12 @@ import { Bookmarks } from "@/components/shared/bookmarks";
 
 export const metadata: Metadata = {
   title: "Bookmarks",
-  description: "A curated collection of useful tools and resources for web development and design.",
+  description:
+    "Curated tools, design inspiration (Landbook, Mobbin, paywalls, ecommerce UI), and dev resources.",
   openGraph: {
     title: "Bookmarks - Olive Bishop",
-    description: "A curated collection of useful tools and resources for web development and design.",
+    description:
+      "Curated tools, design inspiration, and dev resources — ecommerce UI, galleries, app UX, and more.",
     url: "/bookmarks",
   },
 };
