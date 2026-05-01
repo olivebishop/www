@@ -22,111 +22,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { 
-    id: 1, 
-    name: 'Event Parlour', 
-    image: '/images/project2.png', 
-    url: 'https://eventparlour.com/',
-    type: 'Startup project',
-    description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
-    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
-    problem: 'Event organizers were juggling multiple tools (Luma for events, Google Forms for call for speakers) and creating multiple accounts instead of having unified workspaces. A user could be an organizer at Angular, GDG Pwani, etc., but had to manage separate accounts for each.',
-    systemArchitecture: 'Multi-tenant SaaS architecture with workspace-based organization, allowing users to manage multiple event organizations from a single account. Built on serverless infrastructure with real-time capabilities.',
-    keyFeatures: [
-      'Unified workspace system for managing multiple organizations',
-      'Event creation and management in one platform',
-      'Call for speakers functionality',
-      'Ticketing and registration system',
-      'Real-time updates and notifications'
-    ],
-    techStack: ['Next.js', 'Supabase', 'Drizzle ORM', 'Resend', 'Google Analytics', 'Paystack'],
-    businessImpact: 'Currently in beta with strong reception. The platform addresses a real gap in the event management space, providing organizers with a streamlined solution that eliminates the need for multiple tools and accounts.'
-  },
-  { 
-    id: 2, 
-    name: 'Brinex Tech', 
-    image: '/images/project1.png', 
-    url: 'https://brinex-tech.com/',
-    type: 'Freelance',
-    description: 'A clean, responsive marketing site for a technology company, focused on clarity and trust.',
-    subtitle: 'Brand / Company website',
-    tech: 'Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.',
-    problem: 'The owner was selling smart tech equipment (smart curtains, intelligent car parking, CCTV maintenance) with solid products, but couldn\'t make sales or reach a wide audience due to lack of digital presence.',
-    systemArchitecture: 'Static site generation with optimized performance, SEO-first architecture, and analytics integration for lead tracking and conversion optimization.',
-    keyFeatures: [
-      'SEO optimization for better search visibility',
-      'Google Analytics integration for tracking and insights',
-      'Fast page loads and performance optimization',
-      'Fully responsive design across all devices',
-      'Clear product showcase and lead generation forms'
-    ],
-    techStack: ['Next.js', 'SEO Optimization', 'Google Analytics', 'Responsive Design', 'Performance Optimization'],
-    businessImpact: 'Generated significant leads and improved online visibility. The digital presence helped Brinex Tech reach a wider audience, resulting in increased inquiries and sales opportunities for their smart tech equipment.'
-  },
-  {
-    id: 3,
-    name: 'Navejo',
-    image: '/images/navejo.png',
-    url: 'https://navejo.crowstudios.tech/',
-    type: 'Personal Product',
-    description: 'A bookmark management workspace built for frontend engineers and designers who are tired of losing track of useful links.',
-    tech: 'Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).',
-    problem: 'As a frontend engineer, I was constantly losing track of useful links — tutorials, design references, tools, docs. Browser bookmarks were messy, unsearchable, and impossible to share with teammates. I needed something purpose-built for how developers actually work.',
-    systemArchitecture: 'Full-stack Next.js application with Prisma ORM connected to XATA (PostgreSQL). Authentication handled via Better Auth with session management. AI-powered auto-tagging pipeline for bookmark categorization. Real-time sync for team collaboration features.',
-    keyFeatures: [
-      'AI-powered auto-tagging and smart folder organization',
-      'Team collaboration with shared workspaces and real-time sync',
-      'Collection sharing with public/private visibility controls',
-      'Browser-ready experience with import from Chrome, Safari, and Firefox',
-      'Advanced search across all bookmarks and collections',
-      'Pricing tiers with free and premium plans'
-    ],
-    techStack: ['Next.js', 'Prisma', 'Better Auth', 'XATA DB (PostgreSQL)', 'AI Auto-tagging'],
-    businessImpact: 'Turned a personal pain point into a real product with authentication, pricing tiers, and a polished browser-ready experience. Actively used by frontend engineers and designers to organize their digital resources.'
-  },
-  {
-    id: 4,
-    name: 'Crow Studios',
-    image: '/images/crow.png',
-    url: 'https://www.crowstudios.tech/',
-    type: 'Agency Website',
-    description: 'A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.',
-    subtitle: 'Tech Agency / Brand Website',
-    tech: 'Built with Next.js, Tailwind CSS, and Motion for smooth animations.',
-    problem: 'Crow Studios needed a strong digital presence that communicated credibility, showcased past work, and converted visitors into leads. The site had to reflect the agency\'s bold brand while maintaining performance and accessibility.',
-    systemArchitecture: 'Static-first Next.js site with dynamic sections powered by Motion for scroll-driven animations. Tailwind CSS for rapid, consistent styling. Optimized for performance with lazy loading and responsive images.',
-    keyFeatures: [
-      'Bold, modern design reflecting the agency brand identity',
-      'Project showcases with detailed case studies',
-      'Smooth scroll-driven animations using Motion',
-      'Service breakdowns with clear call-to-actions',
-      'Client testimonials and social proof sections',
-      'Fully responsive across all devices'
-    ],
-    techStack: ['Next.js', 'Tailwind CSS', 'Motion', 'Responsive Design', 'SEO Optimization'],
-    businessImpact: 'Established a strong brand presence for Crow Studios, driving client inquiries and building trust through professional design, case studies, and a seamless user experience.'
-  },
-  { 
-    id: 5, 
-    name: 'Sol of African', 
-    image: '/images/sol.png', 
-    url: 'https://www.thesolofafrican.com/',
-    type: 'Redesign',
-    description: 'A modern redesign for a cultural platform celebrating African heritage and stories.',
-    tech: 'Built with Next.js, modern design principles, and engaging user experience.',
-    problem: 'Micheal had a poor website with no booking functionality, requiring manual handling of bookings, scheduling, and testimonial management. This created excessive workload and limited the ability to attract clients beyond the local market.',
-    systemArchitecture: 'Modern web application with integrated booking system, automated scheduling, and content management. Built with performance and user experience as core priorities.',
-    keyFeatures: [
-      'Modern, attractive design that appeals to travel audience',
-      'Fast loading times and responsive across all devices',
-      'Integrated booking system following modern best practices',
-      'Automated scheduling to reduce manual work',
-      'Testimonial management system',
-      'SEO optimization for broader reach'
-    ],
-    techStack: ['Next.js', 'Booking System', 'Responsive Design', 'Performance Optimization', 'Modern UX/UI'],
-    businessImpact: 'Dramatically reduced Micheal\'s workload by automating bookings, scheduling, and testimonial management. The modern web app attracted more clients both locally and overseas, expanding the business reach and improving operational efficiency.'
-  },
   {
     id: 6,
     name: 'Irungu',
@@ -161,6 +56,111 @@ const projects: Project[] = [
     ],
     businessImpact:
       'The client gets a fast, trustworthy portfolio that reflects their personal brand, reduces back-and-forth scheduling, and ships with metrics and metadata that support growth from day one.',
+  },
+  { 
+    id: 2, 
+    name: 'Brinex Tech', 
+    image: '/images/project1.png', 
+    url: 'https://brinex-tech.com/',
+    type: 'Freelance',
+    description: 'A clean, responsive marketing site for a technology company, focused on clarity and trust.',
+    subtitle: 'Brand / Company website',
+    tech: 'Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.',
+    problem: 'The owner was selling smart tech equipment (smart curtains, intelligent car parking, CCTV maintenance) with solid products, but couldn\'t make sales or reach a wide audience due to lack of digital presence.',
+    systemArchitecture: 'Static site generation with optimized performance, SEO-first architecture, and analytics integration for lead tracking and conversion optimization.',
+    keyFeatures: [
+      'SEO optimization for better search visibility',
+      'Google Analytics integration for tracking and insights',
+      'Fast page loads and performance optimization',
+      'Fully responsive design across all devices',
+      'Clear product showcase and lead generation forms'
+    ],
+    techStack: ['Next.js', 'SEO Optimization', 'Google Analytics', 'Responsive Design', 'Performance Optimization'],
+    businessImpact: 'Generated significant leads and improved online visibility. The digital presence helped Brinex Tech reach a wider audience, resulting in increased inquiries and sales opportunities for their smart tech equipment.'
+  },
+  { 
+    id: 1, 
+    name: 'Event Parlour', 
+    image: '/images/project2.png', 
+    url: 'https://eventparlour.com/',
+    type: 'Startup project',
+    description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
+    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
+    problem: 'Event organizers were juggling multiple tools (Luma for events, Google Forms for call for speakers) and creating multiple accounts instead of having unified workspaces. A user could be an organizer at Angular, GDG Pwani, etc., but had to manage separate accounts for each.',
+    systemArchitecture: 'Multi-tenant SaaS architecture with workspace-based organization, allowing users to manage multiple event organizations from a single account. Built on serverless infrastructure with real-time capabilities.',
+    keyFeatures: [
+      'Unified workspace system for managing multiple organizations',
+      'Event creation and management in one platform',
+      'Call for speakers functionality',
+      'Ticketing and registration system',
+      'Real-time updates and notifications'
+    ],
+    techStack: ['Next.js', 'Supabase', 'Drizzle ORM', 'Resend', 'Google Analytics', 'Paystack'],
+    businessImpact: 'Currently in beta with strong reception. The platform addresses a real gap in the event management space, providing organizers with a streamlined solution that eliminates the need for multiple tools and accounts.'
+  },
+  {
+    id: 3,
+    name: 'Navejo',
+    image: '/images/navejo.png',
+    url: 'https://navejo.crowstudios.tech/',
+    type: 'Personal Product',
+    description: 'A bookmark management workspace built for frontend engineers and designers who are tired of losing track of useful links.',
+    tech: 'Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).',
+    problem: 'As a frontend engineer, I was constantly losing track of useful links — tutorials, design references, tools, docs. Browser bookmarks were messy, unsearchable, and impossible to share with teammates. I needed something purpose-built for how developers actually work.',
+    systemArchitecture: 'Full-stack Next.js application with Prisma ORM connected to XATA (PostgreSQL). Authentication handled via Better Auth with session management. AI-powered auto-tagging pipeline for bookmark categorization. Real-time sync for team collaboration features.',
+    keyFeatures: [
+      'AI-powered auto-tagging and smart folder organization',
+      'Team collaboration with shared workspaces and real-time sync',
+      'Collection sharing with public/private visibility controls',
+      'Browser-ready experience with import from Chrome, Safari, and Firefox',
+      'Advanced search across all bookmarks and collections',
+      'Pricing tiers with free and premium plans'
+    ],
+    techStack: ['Next.js', 'Prisma', 'Better Auth', 'XATA DB (PostgreSQL)', 'AI Auto-tagging'],
+    businessImpact: 'Turned a personal pain point into a real product with authentication, pricing tiers, and a polished browser-ready experience. Actively used by frontend engineers and designers to organize their digital resources.'
+  },
+  {
+    id: 5, 
+    name: 'Sol of African', 
+    image: '/images/sol.png', 
+    url: 'https://www.thesolofafrican.com/',
+    type: 'Redesign',
+    description: 'A modern redesign for a cultural platform celebrating African heritage and stories.',
+    tech: 'Built with Next.js, modern design principles, and engaging user experience.',
+    problem: 'Micheal had a poor website with no booking functionality, requiring manual handling of bookings, scheduling, and testimonial management. This created excessive workload and limited the ability to attract clients beyond the local market.',
+    systemArchitecture: 'Modern web application with integrated booking system, automated scheduling, and content management. Built with performance and user experience as core priorities.',
+    keyFeatures: [
+      'Modern, attractive design that appeals to travel audience',
+      'Fast loading times and responsive across all devices',
+      'Integrated booking system following modern best practices',
+      'Automated scheduling to reduce manual work',
+      'Testimonial management system',
+      'SEO optimization for broader reach'
+    ],
+    techStack: ['Next.js', 'Booking System', 'Responsive Design', 'Performance Optimization', 'Modern UX/UI'],
+    businessImpact: 'Dramatically reduced Micheal\'s workload by automating bookings, scheduling, and testimonial management. The modern web app attracted more clients both locally and overseas, expanding the business reach and improving operational efficiency.'
+  },
+  {
+    id: 4,
+    name: 'Crow Studios',
+    image: '/images/crow.png',
+    url: 'https://www.crowstudios.tech/',
+    type: 'Agency Website',
+    description: 'A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.',
+    subtitle: 'Tech Agency / Brand Website',
+    tech: 'Built with Next.js, Tailwind CSS, and Motion for smooth animations.',
+    problem: 'Crow Studios needed a strong digital presence that communicated credibility, showcased past work, and converted visitors into leads. The site had to reflect the agency\'s bold brand while maintaining performance and accessibility.',
+    systemArchitecture: 'Static-first Next.js site with dynamic sections powered by Motion for scroll-driven animations. Tailwind CSS for rapid, consistent styling. Optimized for performance with lazy loading and responsive images.',
+    keyFeatures: [
+      'Bold, modern design reflecting the agency brand identity',
+      'Project showcases with detailed case studies',
+      'Smooth scroll-driven animations using Motion',
+      'Service breakdowns with clear call-to-actions',
+      'Client testimonials and social proof sections',
+      'Fully responsive across all devices'
+    ],
+    techStack: ['Next.js', 'Tailwind CSS', 'Motion', 'Responsive Design', 'SEO Optimization'],
+    businessImpact: 'Established a strong brand presence for Crow Studios, driving client inquiries and building trust through professional design, case studies, and a seamless user experience.'
   },
 ];
 
