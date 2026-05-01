@@ -201,201 +201,86 @@ export function Work() {
 
       {/* Projects */}
       <section className="py-20 sm:py-24 px-5 sm:px-8 md:px-16">
-        <div className="space-y-12 sm:space-y-16 md:space-y-20">
+        <div className="space-y-10 sm:space-y-12 md:space-y-14 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.article 
               key={project.id}
-              className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-              initial={{ opacity: 0, y: 60 }}
+              className="group border border-border/40 bg-black/40 overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ 
-                duration: 0.8, 
-                delay: index * 0.1,
+                duration: 0.7, 
+                delay: index * 0.08,
                 ease: [0.16, 1, 0.3, 1] 
               }}
-              whileHover={{ borderColor: 'rgba(var(--primary), 0.3)', scale: 1.01 }}
             >
-              {/* Image - Alternates left/right */}
-              {index % 2 === 0 ? (
-                <motion.div 
-                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                      <Image 
-                        src={project.image} 
-                        alt={project.name} 
-                        fill
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        priority={index === 0}
-                        loading="eager"
-                        quality={85}
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-                </motion.div>
-              ) : null}
-
-              {/* Content */}
-              <motion.div 
-                className={`p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5 ${
-                  index % 2 === 1 ? 'lg:order-1' : ''
-                }`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
+              <motion.a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+                whileTap={{ scale: 0.995 }}
               >
-                <motion.p 
-                  className="section-label"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-                >
-                  {project.type}
-                </motion.p>
-                <motion.h3 
-                  className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground font-normal"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 + 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {project.name}
-                </motion.h3>
-                {project.subtitle && (
-                  <motion.p 
-                    className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.6 }}
-                  >
-                    {project.subtitle}
-                  </motion.p>
-                )}
-                <motion.p 
-                  className="body-base text-foreground/70 max-w-md"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
-                >
-                  {project.description}
-                </motion.p>
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-muted">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 90vw"
+                    priority={index === 0}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    quality={88}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+                </div>
 
-                {/* Detailed Project Information */}
-                <motion.div 
-                  className="mt-6 sm:mt-8 space-y-6 sm:space-y-8 max-w-md"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.8 }}
-                >
-                  {/* Problem */}
-                  <div>
-                    <h4 className="section-label mb-3">Problem</h4>
-                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.problem}</p>
-                  </div>
+                <div className="border-t border-white/10 px-5 sm:px-7 md:px-8 py-5 sm:py-6 md:py-7 bg-[#0b0b0b]">
+                  <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                    <div className="md:col-span-5">
+                      <h3 className="font-display text-[1.35rem] sm:text-[1.6rem] md:text-[1.9rem] leading-[1.2] tracking-[-0.02em] text-white">
+                        {project.name} — {project.description}
+                      </h3>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.techStack.slice(0, 3).map((tech) => (
+                          <span
+                            key={`${project.id}-${tech}`}
+                            className="text-[0.6875rem] uppercase tracking-[0.08em] px-2.5 py-1 border border-white/15 text-white/55"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-                  {/* System Architecture */}
-                  <div>
-                    <h4 className="section-label mb-3">System Architecture</h4>
-                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.systemArchitecture}</p>
-                  </div>
+                    <div className="md:col-span-5">
+                      <p className="text-[0.95rem] text-white/80 leading-[1.65]">
+                        {project.problem}
+                      </p>
+                      <p className="mt-3 text-[0.8125rem] text-white/50 leading-[1.6]">
+                        {project.businessImpact}
+                      </p>
+                    </div>
 
-                  {/* Key Features */}
-                  <div>
-                    <h4 className="section-label mb-3">Key Features</h4>
-                    <ul className="space-y-2">
-                      {project.keyFeatures.map((feature, idx) => (
-                        <li key={idx} className="body-sm text-foreground/60 flex items-start gap-2.5">
-                          <span className="text-primary mt-1.5 text-sm">•</span>
-                          <span className="leading-[1.7]">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div>
-                    <h4 className="section-label mb-3">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech, idx) => (
-                        <span 
-                          key={idx}
-                          className="text-[0.8125rem] px-3 py-1.5 border border-border/40 bg-background/40 rounded-sm text-foreground/60 tracking-[-0.01em]"
-                        >
-                          {tech}
+                    <div className="md:col-span-2 md:text-right space-y-3">
+                      <div>
+                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Industry</p>
+                        <p className="mt-1 text-[0.875rem] text-white/80">{project.type}</p>
+                      </div>
+                      <div>
+                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Live site</p>
+                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-primary">
+                          Visit
+                          <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
                         </span>
-                      ))}
+                      </div>
                     </div>
                   </div>
-
-                  {/* Business Impact */}
-                  <div>
-                    <h4 className="section-label mb-3">Business Impact</h4>
-                    <p className="body-sm text-foreground/60 leading-[1.7]">{project.businessImpact}</p>
-                  </div>
-                </motion.div>
-
-                <motion.a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-6 sm:mt-8"
-                  whileHover={{ x: 5, scale: 1.02 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 1.0 }}
-                >
-                  Visit website +
-                </motion.a>
-              </motion.div>
-
-              {/* Image - For odd indices (right side) */}
-              {index % 2 === 1 ? (
-                <motion.div 
-                  className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                      <Image 
-                        src={project.image} 
-                        alt={project.name} 
-                        fill
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        loading="eager"
-                        quality={85}
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-                </motion.div>
-              ) : null}
+                </div>
+              </motion.a>
             </motion.article>
           ))}
         </div>

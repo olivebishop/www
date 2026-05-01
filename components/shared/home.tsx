@@ -8,6 +8,60 @@ import Testimonials from './testimonials';
 import ProjectDrawer from './project-drawer';
 import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02, HugeiconsArrowUpRight } from './icons';
 
+interface HomeWorkItem {
+  name: string;
+  type: string;
+  image: string;
+  url: string;
+  headline: string;
+  detail: string;
+  industry: string;
+  live: string;
+}
+
+const homeSelectedWorks: HomeWorkItem[] = [
+  {
+    name: 'Irungu',
+    type: 'Client project',
+    image: '/images/irungu.jpeg',
+    url: 'https://irungu.pages.dev',
+    headline: 'Premium portfolio and booking experience for a personal brand.',
+    detail: 'Designed to build trust fast, reduce booking friction, and convert profile visits into meetings through performance-first UX.',
+    industry: 'Personal brand',
+    live: 'irungu.pages.dev',
+  },
+  {
+    name: 'Brinex Tech',
+    type: 'Business website',
+    image: '/images/project1.png',
+    url: 'https://brinex-tech.com/',
+    headline: 'Business website built to generate consistent qualified leads.',
+    detail: 'Improved visibility and credibility with a clear offer structure, stronger SEO foundations, and conversion-focused sections.',
+    industry: 'Smart tech',
+    live: 'brinex-tech.com',
+  },
+  {
+    name: 'Event Parlour',
+    type: 'Startup project',
+    image: '/images/project2.png',
+    url: 'https://eventparlour.com/',
+    headline: 'Event platform unifying ticketing, speaker calls, and operations.',
+    detail: 'Created a streamlined organizer workflow that removes tool fragmentation and supports multi-organization collaboration.',
+    industry: 'Events SaaS',
+    live: 'eventparlour.com',
+  },
+  {
+    name: 'Navejo',
+    type: 'Product',
+    image: '/images/navejo.png',
+    url: 'https://navejo.crowstudios.tech/',
+    headline: 'Bookmark workspace for designers and frontend teams.',
+    detail: 'Structured around smart organization and collaboration so teams can save, find, and share high-value resources faster.',
+    industry: 'Productivity',
+    live: 'navejo.crowstudios.tech',
+  },
+];
+
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -36,7 +90,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex flex-col bg-background pt-24 sm:pt-28 md:pt-32 overflow-hidden"
+        className="relative min-h-[100svh] flex flex-col bg-background pt-20 sm:pt-24 md:pt-28 lg:pt-32 overflow-hidden"
       >
         {/* Background Circle — scaled down on mobile */}
         <motion.div 
@@ -44,7 +98,7 @@ export default function Home() {
           style={{ scale: circleScale, opacity: circleOpacity }}
         >
           <motion.div 
-            className="w-[90vw] h-[90vw] sm:w-[80vw] sm:h-[80vw] max-w-[800px] max-h-[800px] rounded-full border border-border/50"
+            className="w-[96vw] h-[96vw] sm:w-[86vw] sm:h-[86vw] md:w-[78vw] md:h-[78vw] max-w-[800px] max-h-[800px] rounded-full border border-border/50"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -75,12 +129,12 @@ export default function Home() {
         </div>
 
         {/* Main Content — centered vertically */}
-        <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center px-5 sm:px-8 md:px-12">
+        <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center px-5 sm:px-8 md:px-12 pt-4 sm:pt-6">
           {/* Name + Image */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-10 xl:gap-12">
             {/* Left Name - hidden on small screens */}
             <motion.h1 
-              className="hero-name text-foreground parallax hidden md:block"
+              className="hero-name text-foreground parallax hidden lg:block"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -90,13 +144,13 @@ export default function Home() {
             
             {/* Center Image */}
             <motion.div 
-              className="relative px-2 sm:px-4 md:px-8 lg:px-12"
+              className="relative px-1 sm:px-3 md:px-6 lg:px-10 xl:px-12"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <motion.div 
-                className="relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl"
+                className="relative w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.02, rotate: 0.5 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
@@ -116,7 +170,7 @@ export default function Home() {
             
             {/* Right Name - hidden on small screens */}
             <motion.h1 
-              className="hero-name text-foreground parallax hidden md:block"
+              className="hero-name text-foreground parallax hidden lg:block"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -127,7 +181,7 @@ export default function Home() {
 
           {/* Mobile Name - Shown only on small screens */}
           <motion.h1 
-            className="hero-name text-foreground text-center mt-4 sm:mt-6 md:hidden"
+            className="hero-name text-foreground text-center mt-4 sm:mt-6 lg:hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -137,7 +191,7 @@ export default function Home() {
 
           {/* Value Proposition - Below hero name */}
           <motion.p
-            className="text-center mt-4 sm:mt-6 md:mt-8 text-foreground/60 body-base max-w-md mx-auto px-4"
+            className="text-center mt-4 sm:mt-6 md:mt-7 lg:mt-8 text-foreground/60 body-base max-w-[22rem] sm:max-w-md mx-auto px-2 sm:px-4"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -164,7 +218,7 @@ export default function Home() {
 
         {/* Mobile Bottom Bar — social links, centered, only on small screens */}
         <motion.div 
-          className="relative z-10 flex md:hidden flex-col items-center gap-4 px-5 pb-8 pt-4"
+          className="relative z-10 flex md:hidden flex-col items-center gap-3 px-5 pb-7 sm:pb-8 pt-3 sm:pt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
@@ -305,6 +359,110 @@ export default function Home() {
       <Brands />
 
       {/* Selected Works Section */}
+      <section className="py-24 sm:py-28 md:py-32 bg-background">
+        <motion.div
+          className="px-5 sm:px-8 md:px-16 mb-10 sm:mb-14 flex items-baseline justify-between gap-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div>
+            <p className="section-label mb-2">Selected works</p>
+            <p className="mt-3 body-sm text-foreground/50 max-w-sm">
+              A snapshot of products and collaborations I&apos;ve been building recently.
+            </p>
+          </div>
+          <motion.a
+            href="/work"
+            className="hidden sm:inline-flex text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/50 hover:text-primary transition-colors font-medium"
+            whileHover={{ scale: 1.05, x: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View all work +
+          </motion.a>
+        </motion.div>
+
+        <div className="space-y-10 sm:space-y-12 md:space-y-14 px-5 sm:px-8 md:px-16">
+          {homeSelectedWorks.map((item, index) => (
+            <motion.article
+              key={item.name}
+              className="border border-white/10 bg-[#0b0b0b] overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="block group">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-muted">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 90vw"
+                    priority={index === 0}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    quality={88}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+                </div>
+
+                <div className="border-t border-white/10 px-5 sm:px-7 md:px-8 py-5 sm:py-6 md:py-7">
+                  <div className="grid gap-6 md:grid-cols-12 md:items-start">
+                    <div className="md:col-span-5">
+                      <h3 className="font-display text-[1.35rem] sm:text-[1.6rem] md:text-[1.9rem] leading-[1.2] tracking-[-0.02em] text-white">
+                        {item.name} — {item.headline}
+                      </h3>
+                    </div>
+
+                    <div className="md:col-span-5">
+                      <p className="text-[0.95rem] text-white/80 leading-[1.65]">{item.detail}</p>
+                    </div>
+
+                    <div className="md:col-span-2 md:text-right space-y-3">
+                      <div>
+                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Industry</p>
+                        <p className="mt-1 text-[0.875rem] text-white/80">{item.industry}</p>
+                      </div>
+                      <div>
+                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Live site</p>
+                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-primary">
+                          {item.live}
+                          <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div
+          className="flex justify-center mt-14 sm:mt-16 md:mt-20 px-5 sm:px-8 md:px-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.a
+            href="/work"
+            className="cta-secondary"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View All Work
+            <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          </motion.a>
+        </motion.div>
+      </section>
+
+      {/* Legacy Selected Works (disabled) */}
+      {false && (
       <section className="py-24 sm:py-28 md:py-32 bg-background">
         <motion.div 
           className="px-5 sm:px-8 md:px-16 mb-10 sm:mb-14 flex items-baseline justify-between gap-4"
@@ -818,6 +976,7 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
+      )}
 
       {/* Testimonials Section */}
       <Testimonials />

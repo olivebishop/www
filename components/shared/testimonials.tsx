@@ -1,6 +1,5 @@
 'use client';
 import { motion } from 'motion/react';
-import { Quote } from 'lucide-react';
 
 interface Testimonial {
   id: number;
@@ -9,24 +8,27 @@ interface Testimonial {
   company: string;
   content: string;
   project?: string;
+  companyUrl?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
     name: 'Micheal',
-    role: 'FOUNDER AND CEO',
+    role: 'Founder',
     company: 'Sol of African',
     content: 'The redesign transformed our digital presence. Olive understood our vision and brought it to life with beautiful, functional design.',
-    project: 'Sol of African'
+    project: 'Sol of African',
+    companyUrl: 'https://www.thesolofafrican.com/'
   },
   {
     id: 2,
-    name: 'brian',
+    name: 'Brian',
     role: 'CEO',
     company: 'Brinex Tech',
     content: 'Working with Olive was seamless. The website perfectly captures our brand identity and has significantly improved our online presence.',
-    project: 'Brinex Tech'
+    project: 'Brinex Tech',
+    companyUrl: 'https://brinex-tech.com/'
   },
 ];
 
@@ -83,7 +85,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              className="border border-border/60 bg-background/60 backdrop-blur-sm p-7 sm:p-9 flex flex-col gap-5 depth-card transition-shadow duration-300 hover:depth-elevated"
+              className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#101010] p-7 sm:p-9 flex flex-col gap-6 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
@@ -92,20 +94,36 @@ export default function Testimonials() {
                 delay: index * 0.15,
                 ease: [0.16, 1, 0.3, 1] 
               }}
-              whileHover={{ borderColor: 'rgba(var(--primary), 0.3)', scale: 1.02 }}
             >
-              <Quote className="w-8 h-8 text-primary/60 mb-1" />
-              <p className="body-base text-foreground/70 leading-[1.75] flex-1">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,125,72,0.16)_0%,rgba(255,125,72,0.07)_24%,rgba(255,125,72,0.02)_42%,transparent_58%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_82%,rgba(255,125,72,0.08)_0%,transparent_36%)]" />
+              <div className="relative flex items-center gap-2.5">
+                <span className="h-px w-8 bg-primary/55" />
+                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-white/55 font-medium">Client feedback</span>
+              </div>
+              <p className="relative body-base text-white/85 leading-[1.85] flex-1">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
-              <div className="pt-5 border-t border-border/30">
-                <p className="text-[0.9375rem] font-medium text-foreground tracking-[-0.01em]">{testimonial.name}</p>
-                <p className="text-[0.8125rem] text-foreground/40 mt-1">
-                  {testimonial.role}, {testimonial.company}
-                </p>
-                {testimonial.project && (
-                  <p className="text-[0.8125rem] text-primary mt-1.5 font-medium">{testimonial.project}</p>
-                )}
+              <div className="relative pt-5 border-t border-white/10 flex items-center gap-3">
+                <div>
+                  <p className="text-[0.9375rem] font-medium text-white tracking-[-0.01em]">{testimonial.name}</p>
+                  <p className="text-[0.8125rem] text-white/55 mt-1.5">
+                    <span className="text-white/65">{testimonial.role}</span>
+                    <span className="mx-1.5 text-white/30">at</span>
+                    {testimonial.companyUrl ? (
+                      <a
+                        href={testimonial.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/55 hover:text-white/75 no-underline hover:underline underline-offset-2 transition-colors"
+                      >
+                        {testimonial.company}
+                      </a>
+                    ) : (
+                      testimonial.company
+                    )}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

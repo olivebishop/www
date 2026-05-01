@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { HugeiconsArrowUpRight } from './icons';
 import ProjectDrawer from './project-drawer';
+import { CalBookingDrawer, CalBookingPreload } from './cal-booking-drawer';
 
 export function Workflow() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [callDrawerOpen, setCallDrawerOpen] = useState(false);
+  const [shouldPreloadCal, setShouldPreloadCal] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,16 +40,18 @@ export function Workflow() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Learn Card */}
             <motion.div 
-              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated"
+              className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#101010] p-7 md:p-10 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={{ y: -2 }}
             >
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,125,72,0.16)_0%,rgba(255,125,72,0.07)_24%,rgba(255,125,72,0.02)_42%,transparent_58%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_82%,rgba(255,125,72,0.08)_0%,transparent_36%)]" />
               <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm font-medium"
+                  className="relative text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -55,7 +60,7 @@ export function Workflow() {
                   A.
                 </motion.span>
                 <motion.h2 
-                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
+                  className="relative font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em] text-white/95"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -65,7 +70,7 @@ export function Workflow() {
                 </motion.h2>
               </div>
               
-              <div className="space-y-7">
+              <div className="relative space-y-7">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -73,7 +78,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em] text-white/90"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -82,7 +87,7 @@ export function Workflow() {
                     Briefing
                   </motion.h3>
                   <motion.ul 
-                    className="space-y-2 body-sm text-foreground/60"
+                    className="space-y-2 body-sm text-white/65"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -109,7 +114,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em] text-white/90"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -118,7 +123,7 @@ export function Workflow() {
                     Market
                   </motion.h3>
                   <motion.ul 
-                    className="space-y-2 body-sm text-foreground/60"
+                    className="space-y-2 body-sm text-white/65"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -142,16 +147,18 @@ export function Workflow() {
 
             {/* Think Card */}
             <motion.div 
-              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated"
+              className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#101010] p-7 md:p-10 transition-all duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={{ y: -2 }}
             >
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,125,72,0.16)_0%,rgba(255,125,72,0.07)_24%,rgba(255,125,72,0.02)_42%,transparent_58%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_82%,rgba(255,125,72,0.08)_0%,transparent_36%)]" />
               <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm font-medium"
+                  className="relative text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -160,7 +167,7 @@ export function Workflow() {
                   B.
                 </motion.span>
                 <motion.h2 
-                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
+                  className="relative font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em] text-white/95"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -171,7 +178,7 @@ export function Workflow() {
               </div>
               
               <motion.p 
-                className="text-foreground/60 body-base leading-[1.8]"
+                className="relative text-white/65 body-base leading-[1.8]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -184,16 +191,18 @@ export function Workflow() {
 
             {/* Create Card */}
             <motion.div 
-              className="border border-border/50 p-7 md:p-10 hover:border-primary/50 transition-all duration-300 depth-card hover:depth-elevated md:col-span-2 lg:col-span-1"
+              className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#101010] p-7 md:p-10 transition-all duration-300 md:col-span-2 lg:col-span-1"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={{ y: -2 }}
             >
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,125,72,0.16)_0%,rgba(255,125,72,0.07)_24%,rgba(255,125,72,0.02)_42%,transparent_58%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_82%,rgba(255,125,72,0.08)_0%,transparent_36%)]" />
               <div className="mb-8">
                 <motion.span 
-                  className="text-primary text-sm font-medium"
+                  className="relative text-primary text-sm font-medium"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -202,7 +211,7 @@ export function Workflow() {
                   C.
                 </motion.span>
                 <motion.h2 
-                  className="font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em]"
+                  className="relative font-display text-4xl md:text-5xl mt-3 font-normal tracking-[-0.02em] text-white/95"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -212,7 +221,7 @@ export function Workflow() {
                 </motion.h2>
               </div>
               
-              <div className="space-y-7">
+              <div className="relative space-y-7">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -220,7 +229,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em] text-white/90"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -229,7 +238,7 @@ export function Workflow() {
                     Visual strategy
                   </motion.h3>
                   <motion.p 
-                    className="text-foreground/60 body-base leading-[1.8]"
+                    className="text-white/65 body-base leading-[1.8]"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -246,7 +255,7 @@ export function Workflow() {
                   transition={{ duration: 0.6, delay: 1.1 }}
                 >
                   <motion.h3 
-                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em]"
+                    className="text-lg md:text-xl mb-3 font-normal tracking-[-0.01em] text-white/90"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -264,7 +273,7 @@ export function Workflow() {
                     {['UX architecture', 'Visual concepts', 'Interactions', 'Development', 'Testing'].map((item, index) => (
                       <motion.span 
                         key={item} 
-                        className="px-3 py-1.5 border border-border/50 rounded-none text-[0.8125rem] text-foreground/60 tracking-[-0.01em]"
+                        className="px-3 py-1.5 border border-white/15 rounded-none text-[0.8125rem] text-white/60 tracking-[-0.01em]"
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -275,7 +284,7 @@ export function Workflow() {
                           stiffness: 200,
                           damping: 15
                         }}
-                        whileHover={{ scale: 1.1, borderColor: 'var(--primary)' }}
+                        whileHover={{ scale: 1.06, borderColor: 'rgba(var(--primary),0.45)' }}
                       >
                         {item}
                       </motion.span>
@@ -363,17 +372,18 @@ export function Workflow() {
               Start a Project
               <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
-            <motion.a
-              href="https://cal.com/olivebishop/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => setCallDrawerOpen(true)}
+              onMouseEnter={() => setShouldPreloadCal(true)}
+              onFocus={() => setShouldPreloadCal(true)}
+              onTouchStart={() => setShouldPreloadCal(true)}
               className="cta-secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Book a Call
               <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.a>
+            </motion.button>
           </motion.div>
         </motion.div>
       </section>
@@ -382,6 +392,14 @@ export function Workflow() {
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
+
+      {/* Call Drawer */}
+      <AnimatePresence>
+        <CalBookingDrawer isOpen={callDrawerOpen} onClose={() => setCallDrawerOpen(false)} />
+      </AnimatePresence>
+
+      {/* Cal preloader: warm iframe before drawer opens */}
+      <CalBookingPreload enabled={shouldPreloadCal && !callDrawerOpen} />
     </div>
   );
 }

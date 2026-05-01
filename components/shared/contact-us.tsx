@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { HugeiconsArrowUpRight, HugeiconsCopy01 } from './icons';
 import ProjectDrawer from './project-drawer';
+import { CalBookingDrawer, CalBookingPreload } from './cal-booking-drawer';
 
 const socials = [
   { name: 'Twitter/X', href: 'https://x.com/olivebishop_dev' },
@@ -14,6 +15,8 @@ const socials = [
 
 export function Contact() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [callDrawerOpen, setCallDrawerOpen] = useState(false);
+  const [shouldPreloadCal, setShouldPreloadCal] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -99,17 +102,18 @@ export function Contact() {
             </div>
 
             <div className="w-full sm:w-auto">
-              <motion.a
-                href="https://cal.com/olivebishop/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => setCallDrawerOpen(true)}
+                onMouseEnter={() => setShouldPreloadCal(true)}
+                onFocus={() => setShouldPreloadCal(true)}
+                onTouchStart={() => setShouldPreloadCal(true)}
                 className="cta-secondary w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Book a Call
                 <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.a>
+              </motion.button>
             </div>
           </motion.div>
 
@@ -232,6 +236,14 @@ export function Contact() {
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
+
+      {/* Call Drawer */}
+      <AnimatePresence>
+        <CalBookingDrawer isOpen={callDrawerOpen} onClose={() => setCallDrawerOpen(false)} />
+      </AnimatePresence>
+
+      {/* Cal preloader: warm iframe before drawer opens */}
+      <CalBookingPreload enabled={shouldPreloadCal && !callDrawerOpen} />
     </div>
   );
 }

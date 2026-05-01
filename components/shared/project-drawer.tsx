@@ -111,14 +111,17 @@ export default function ProjectDrawer({ isOpen, onClose }: { isOpen: boolean; on
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed right-0 top-0 h-full w-full md:w-[500px] bg-white z-[70] overflow-y-auto font-body"
+        className="fixed right-3 sm:right-4 top-3 sm:top-4 h-[calc(100%-1.5rem)] sm:h-[calc(100%-2rem)] w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-[680px] bg-white z-[70] overflow-y-auto font-body rounded-2xl border border-black/10 shadow-2xl"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7 flex items-center justify-between">
-          <h2 className="font-display text-2xl font-semibold text-gray-900">Request a Quote</h2>
+        <div className="sticky top-0 bg-white border-b border-gray-100 px-7 py-5 sm:px-10 sm:py-6 md:px-12 md:py-7 flex items-center justify-between gap-4">
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-gray-900">Request a Quote</h2>
+            <p className="text-sm text-gray-500 mt-1">Build a purposeful web presence that grows your business.</p>
+          </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-full text-black hover:bg-gray-100 transition-colors"
             disabled={isSubmitting}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +131,7 @@ export default function ProjectDrawer({ isOpen, onClose }: { isOpen: boolean; on
         </div>
 
         {/* Form Content */}
-        <div className="px-6 py-6 sm:px-8 sm:py-7 md:px-10 md:py-8 space-y-5 sm:space-y-6 md:space-y-7">
+        <div className="px-7 py-6 sm:px-10 sm:py-7 md:px-12 md:py-8 space-y-5 sm:space-y-6 md:space-y-7">
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
