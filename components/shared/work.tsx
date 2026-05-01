@@ -127,6 +127,41 @@ const projects: Project[] = [
     techStack: ['Next.js', 'Booking System', 'Responsive Design', 'Performance Optimization', 'Modern UX/UI'],
     businessImpact: 'Dramatically reduced Micheal\'s workload by automating bookings, scheduling, and testimonial management. The modern web app attracted more clients both locally and overseas, expanding the business reach and improving operational efficiency.'
   },
+  {
+    id: 6,
+    name: 'Irungu',
+    image: '/images/irungu.jpeg',
+    url: 'https://irungu.pages.dev',
+    type: 'Client project',
+    description:
+      'A minimal, premium personal portfolio for a client: responsive bento layout, restrained motion, and Cal.com booking — built to feel editorial, not template-driven.',
+    subtitle: 'Personal portfolio website',
+    tech: 'Next.js (latest), TypeScript, Tailwind CSS, GSAP, View Transitions API, Cloudflare hosting, and Cal.com for scheduling.',
+    problem:
+      'The client needed a polished one-page presence that communicated credibility and made it effortless to book time — without a heavy CMS or cluttered UI. It had to perform well on mobile, rank cleanly for search and social previews, and still feel bespoke.',
+    systemArchitecture:
+      'Next.js App Router with TypeScript and Tailwind CSS. GSAP handles scroll and micro-interactions; the View Transitions API ties route and UI state changes into smooth, native-feeling motion. Deployed on Cloudflare for fast global delivery; Cal.com embedded for booking. Typography pairs Figtree and Geist Mono with Chillax for display moments. SEO includes Open Graph metadata and performance-minded defaults; Lighthouse scores landed above 94% in lab testing.',
+    keyFeatures: [
+      'Responsive bento-style layout: structured grids that scale cleanly from phone to desktop',
+      'Minimal visual language with premium spacing, hierarchy, and motion (GSAP + View Transitions)',
+      'Cal.com integration so visitors can book without leaving the experience',
+      'SEO and Open Graph setup for accurate link previews and discoverability',
+      'Strong Core Web Vitals and Lighthouse lab scores (94%+ overall)',
+      'Cloudflare-hosted edge delivery for low latency worldwide',
+    ],
+    techStack: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'GSAP',
+      'View Transitions API',
+      'Cloudflare',
+      'Cal.com',
+      'Open Graph / SEO',
+    ],
+    businessImpact:
+      'The client gets a fast, trustworthy portfolio that reflects their personal brand, reduces back-and-forth scheduling, and ships with metrics and metadata that support growth from day one.',
+  },
 ];
 
 export function Work() {
