@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import Brands from './brands';
-import Testimonials from './testimonials';
 import ProjectDrawer from './project-drawer';
 import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02, HugeiconsArrowUpRight } from './icons';
 
@@ -92,13 +91,13 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-[100svh] flex flex-col bg-background pt-20 sm:pt-24 md:pt-28 lg:pt-32 overflow-hidden"
       >
-        {/* Background Circle — scaled down on mobile */}
-        <motion.div 
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        {/* Background circle — desktop / large tablet only (removed on small screens for clarity) */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 hidden items-center justify-center lg:flex"
           style={{ scale: circleScale, opacity: circleOpacity }}
         >
-          <motion.div 
-            className="w-[96vw] h-[96vw] sm:w-[86vw] sm:h-[86vw] md:w-[78vw] md:h-[78vw] max-w-[800px] max-h-[800px] rounded-full border border-border/50"
+          <motion.div
+            className="h-[78vw] w-[78vw] max-h-[800px] max-w-[800px] rounded-full border border-border/50 md:h-[78vw] md:w-[78vw]"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -129,34 +128,32 @@ export default function Home() {
         </div>
 
         {/* Main Content — centered vertically */}
-        <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center px-5 sm:px-8 md:px-12 pt-4 sm:pt-6">
-          {/* Name + Image */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-10 xl:gap-12">
-            {/* Left Name - hidden on small screens */}
-            <motion.h1 
-              className="hero-name text-foreground parallax hidden lg:block"
+        <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-center px-5 pt-2 sm:px-8 sm:pt-4 md:px-12 lg:pt-6">
+          {/* Desktop: split name + hero image */}
+          <div className="hidden flex-row items-center justify-center gap-4 sm:gap-6 lg:flex lg:gap-10 xl:gap-12">
+            <motion.h1
+              className="hero-name text-foreground parallax"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               Olive
             </motion.h1>
-            
-            {/* Center Image */}
-            <motion.div 
+
+            <motion.div
               className="relative px-1 sm:px-3 md:px-6 lg:px-10 xl:px-12"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <motion.div 
-                className="relative w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 bg-muted rounded-sm overflow-hidden shadow-2xl"
+              <motion.div
+                className="relative h-36 w-36 overflow-hidden rounded-sm bg-muted shadow-2xl sm:h-52 sm:w-52 md:h-64 md:w-64 lg:h-80 lg:w-80 xl:h-96 xl:w-96"
                 whileHover={{ scale: 1.02, rotate: 0.5 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Image 
-                  src="/images/hero.jpeg" 
-                  alt="Portfolio Preview" 
+                <Image
+                  src="/images/hero.jpeg"
+                  alt="Portfolio Preview"
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
@@ -167,10 +164,9 @@ export default function Home() {
                 />
               </motion.div>
             </motion.div>
-            
-            {/* Right Name - hidden on small screens */}
-            <motion.h1 
-              className="hero-name text-foreground parallax hidden lg:block"
+
+            <motion.h1
+              className="hero-name text-foreground parallax"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -179,19 +175,27 @@ export default function Home() {
             </motion.h1>
           </div>
 
-          {/* Mobile Name - Shown only on small screens */}
-          <motion.h1 
-            className="hero-name text-foreground text-center mt-4 sm:mt-6 lg:hidden"
-            initial={{ opacity: 0, y: 20 }}
+          {/* Small screens: no circle / no photo — typographic hero */}
+          <motion.div
+            className="flex w-full max-w-xl flex-col items-center text-center lg:hidden"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.75, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            Olive Bishop
-          </motion.h1>
+            <p className="section-label mb-3 text-primary sm:mb-4">Next.js · React · TypeScript</p>
+            <h1 className="font-display flex flex-row flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-2.5 text-[clamp(2.65rem,10vw,4.25rem)] font-normal leading-none tracking-[-0.035em] sm:text-[clamp(3rem,9.5vw,4.75rem)]">
+              <span className="text-foreground">Olive</span>
+              <span className="text-primary">Bishop</span>
+            </h1>
+            <div
+              className="mx-auto mt-4 h-px w-16 max-w-[min(12rem,40vw)] bg-gradient-to-r from-transparent via-primary/70 to-transparent sm:mt-5"
+              aria-hidden
+            />
+          </motion.div>
 
           {/* Value Proposition - Below hero name */}
           <motion.p
-            className="text-center mt-4 sm:mt-6 md:mt-7 lg:mt-8 text-foreground/60 body-base max-w-[22rem] sm:max-w-md mx-auto px-2 sm:px-4"
+            className="body-base mx-auto mt-6 max-w-[22rem] px-2 text-center text-foreground/60 sm:mt-7 sm:max-w-md sm:px-4 md:mt-8 lg:mt-8"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -978,8 +982,6 @@ export default function Home() {
       </section>
       )}
 
-      {/* Testimonials Section */}
-      <Testimonials />
     </div>
   );
 }

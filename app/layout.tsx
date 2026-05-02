@@ -124,8 +124,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(cabinetGrotesk.variable, geist.variable)}>
-      <body className="antialiased">
+    <html lang="en" className={cn(cabinetGrotesk.variable, geist.variable)} suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         <StructuredData />
         <Preloader />
         <GrainOverlay />

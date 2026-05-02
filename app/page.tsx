@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Home from "@/components/shared/home";
+import Testimonials from "@/components/shared/testimonials";
 import { seo } from "@/lib/seo";
 
 const fullTitle = `${seo.homeTitle} | ${seo.brand}`;
@@ -22,5 +23,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <>
+      <Home />
+      <Testimonials />
+    </>
+  );
 }

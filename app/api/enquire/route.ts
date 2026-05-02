@@ -3,10 +3,17 @@ import { Resend } from "resend"
 import AdminNotificationEmail from "@/emails/admin-notification"
 import ClientConfirmationEmail from "@/emails/client-confirmation"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend(): Resend {
+  const key = process.env.RESEND_API_KEY
+  if (!key) {
+    throw new Error("RESEND_API_KEY is not configured")
+  }
+  return new Resend(key)
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const resend = getResend()
     const body = await request.json()
     const { name, email, project, projectType, budget } = body
 

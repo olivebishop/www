@@ -66,7 +66,7 @@ export function Contact() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             Let&apos;s make{' '}
-            <em className="text-primary not-italic">something</em>{' '}
+            <span className="text-primary">something</span>{' '}
             <span className="hidden sm:inline"><br /></span>
             great together.
           </motion.h1>

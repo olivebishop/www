@@ -21,7 +21,7 @@ export function Workflow() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className="page-title">
-            It&apos;s all about my <em className="text-primary">design process</em>
+            It&apos;s all about my <span className="text-primary">design process</span>
           </h1>
           <motion.p 
             className="mt-6 body-lg text-foreground/50 max-w-lg mx-auto"
@@ -345,7 +345,7 @@ export function Workflow() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Convinced by the <em className="text-primary">process</em>?
+            Convinced by the <span className="text-primary">process</span>?
           </motion.h2>
           <motion.p 
             className="body-lg text-foreground/50 mb-10 max-w-lg mx-auto"

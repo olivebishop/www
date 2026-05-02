@@ -26,4 +26,7 @@ export const seo = {
   bookmarksTitle: "Bookmarks — Tools & Design Inspiration",
   bookmarksDescription:
     "Curated tools, UI inspiration, and dev resources Olive uses — ecommerce UI, galleries, Mobbin, and more.",
+  feedbackTitle: "Share feedback — Client testimonial",
+  feedbackDescription:
+    "Add your testimonial in the same spirit as the homepage quotes: your role, company, star rating, and how the work improved your vision, brand, or digital presence.",
 } as const;

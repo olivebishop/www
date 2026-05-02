@@ -170,7 +170,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Building with <em className="text-primary">purpose</em>
+            Building with <span className="text-primary">purpose</span>
           </motion.h2>
           <motion.p 
             className="body-lg text-foreground/70 mb-6 leading-[1.8]"
@@ -267,7 +267,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Ready to build <em className="text-primary">together</em>?
+            Ready to build <span className="text-primary">together</span>?
           </motion.h2>
           <motion.p 
             className="body-lg text-foreground/60 mb-10 max-w-lg mx-auto"

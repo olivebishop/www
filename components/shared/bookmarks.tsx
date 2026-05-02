@@ -222,7 +222,7 @@ export function Bookmarks() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Resources i <em className="text-primary">use</em>
+            Resources i <span className="text-primary">use</span>
           </motion.h1>
           <motion.p
             className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-xl"
@@ -319,7 +319,7 @@ export function Bookmarks() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Like what you <em className="text-primary">see</em>?
+            Like what you <span className="text-primary">see</span>?
           </motion.h2>
           <motion.p
             className="body-lg text-foreground/50 mb-10 max-w-lg mx-auto"

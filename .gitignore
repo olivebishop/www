@@ -43,3 +43,7 @@ next-env.d.ts
 # custom folders
 /.agents/
 /skills/
+
+# local SQLite (testimonials); keep folder via data/.gitkeep
+/data/*.sqlite
+/data/*.sqlite-journal

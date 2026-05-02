@@ -186,7 +186,7 @@ export function Work() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            A few <em className="text-primary">projects</em> I&apos;ve worked on
+            A few <span className="text-primary">projects</span> I&apos;ve worked on
           </motion.h1>
           <motion.p 
             className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-md"
