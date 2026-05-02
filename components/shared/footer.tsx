@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HugeiconsCopy01 } from "./icons";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
-/** SSR / prerender fallback; `useEffect` syncs to the real year on the client (Cache Components–safe). */
-const COPYRIGHT_YEAR_FALLBACK = 2026;
+/**
+ * No `new Date()` here — Cache Components prerender flags that on client modules.
+ * Override per deploy: set `NEXT_PUBLIC_COPYRIGHT_YEAR` (e.g. `2027`) in Vercel env.
+ */
+const COPYRIGHT_YEAR =
+  typeof process.env.NEXT_PUBLIC_COPYRIGHT_YEAR === "string" &&
+  /^\d{4}$/.test(process.env.NEXT_PUBLIC_COPYRIGHT_YEAR.trim())
+    ? process.env.NEXT_PUBLIC_COPYRIGHT_YEAR.trim()
+    : "2026";
 
 export default function Footer() {
-  const [year, setYear] = useState(COPYRIGHT_YEAR_FALLBACK);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
 
   const handleCopy = () => {
     navigator.clipboard
@@ -84,7 +86,7 @@ export default function Footer() {
               Focusing on creating visual experiences that feel purposeful, elegant and approachable
             </p>
             <p className="text-[0.8125rem] text-black/50">
-              ©{year} Olive Bishop. All rights reserved.
+              ©{COPYRIGHT_YEAR} Olive Bishop. All rights reserved.
               <span className="text-black/25 mx-1.5" aria-hidden>
                 ·
               </span>
