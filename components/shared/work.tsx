@@ -26,7 +26,7 @@ const projects: Project[] = [
     id: 6,
     name: 'Irungu',
     image: '/images/irungu.jpeg',
-    url: 'https://irungu.pages.dev',
+    url: 'https://gatambiairungu.com',
     type: 'Client project',
     description:
       'A minimal, premium personal portfolio for a client: responsive bento layout, restrained motion, and Cal.com booking — built to feel editorial, not template-driven.',

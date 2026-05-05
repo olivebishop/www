@@ -23,7 +23,7 @@ const homeSelectedWorks: HomeWorkItem[] = [
     name: 'Irungu',
     type: 'Client project',
     image: '/images/irungu.jpeg',
-    url: 'https://irungu.pages.dev',
+    url: 'https://gatambiairungu.com',
     headline: 'Premium portfolio and booking experience for a personal brand.',
     detail: 'Designed to build trust fast, reduce booking friction, and convert profile visits into meetings through performance-first UX.',
     industry: 'Personal brand',
@@ -944,7 +944,7 @@ export default function Home() {
                 Next.js (latest), TypeScript, Tailwind CSS, hosted on Cloudflare.
               </motion.p>
               <motion.a 
-                href="https://irungu.pages.dev" 
+                href="https://gatambiairungu.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
