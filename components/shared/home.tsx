@@ -27,7 +27,7 @@ const homeSelectedWorks: HomeWorkItem[] = [
     headline: 'Premium portfolio and booking experience for a personal brand.',
     detail: 'Designed to build trust fast, reduce booking friction, and convert profile visits into meetings through performance-first UX.',
     industry: 'Personal brand',
-    live: 'irungu.pages.dev',
+    live: 'gatambiairungu.com',
   },
   {
     name: 'Brinex Tech',
