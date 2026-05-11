@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FeedbackPageClient } from "@/components/shared/feedback-page-client";
+import Testimonials from "@/components/shared/testimonials";
 import { seo } from "@/lib/seo";
 
 const fullTitle = `${seo.feedbackTitle} | ${seo.brand}`;
@@ -22,5 +22,5 @@ export const metadata: Metadata = {
 };
 
 export default function FeedbackPage() {
-  return <FeedbackPageClient />;
+  return <Testimonials />;
 }

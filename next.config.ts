@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /** Cache Components + `"use cache"` (e.g. testimonials list). @see https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents */
+  /** Cache Components + `"use cache"` (e.g. Google reviews list). @see https://nextjs.org/docs/app/api/reference/config/next-config-js/cacheComponents */
   cacheComponents: true,
   images: {
     formats: ["image/avif", "image/webp"],

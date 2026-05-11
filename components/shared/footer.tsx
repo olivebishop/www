@@ -94,7 +94,7 @@ export default function Footer() {
                 href="/feedback"
                 className="text-black/35 hover:text-black/55 transition-colors underline-offset-2 hover:underline"
               >
-                Client testimonial
+                Google reviews
               </Link>
             </p>
           </div>
