@@ -8,14 +8,14 @@ function stripTrailingSlash(url: string): string {
 }
 
 /**
- * Production: Cloudflare Image Resizing via `/cdn-cgi/image/...` so assets are
- * optimized at the edge and cached on Cloudflare’s CDN.
+ * Production: optional Cloudflare Image Resizing via `/cdn-cgi/image/...`.
  * @see https://developers.cloudflare.com/images/transform-images/transform-url/
  *
- * Local paths use **same-origin relative** `/cdn-cgi/image/...` URLs so the browser
- * always hits the live hostname (avoids wrong absolute origin from build-time env).
+ * **Default:** plain `src` URLs (reliable on Workers + OpenNext). Many zones need
+ * Image Resizing enabled separately; `/cdn-cgi/` via the Worker often breaks images.
  *
- * Set `NEXT_PUBLIC_CF_IMAGES=0` to skip resizing (plain `src` URLs).
+ * Set **`NEXT_PUBLIC_CF_IMAGES=1`** when Image Resizing is enabled on the zone and
+ * you want transformed URLs. Set **`NEXT_PUBLIC_CF_IMAGES=0`** to force plain URLs.
  */
 export default function cloudflareImageLoader({
   src,
@@ -27,9 +27,10 @@ export default function cloudflareImageLoader({
 
   const site = stripTrailingSlash(siteUrl);
   const isProd = process.env.NODE_ENV === "production";
-  const disabled = process.env.NEXT_PUBLIC_CF_IMAGES === "0";
+  const cf = process.env.NEXT_PUBLIC_CF_IMAGES?.trim();
+  const useTransforms = isProd && cf === "1";
 
-  if (!isProd || disabled) {
+  if (!useTransforms) {
     return src;
   }
 
