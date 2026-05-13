@@ -1,5 +1,22 @@
 /** Base site copy for SEO — single place to keep titles/descriptions aligned. */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://olivebishop.com";
+
+const DEFAULT_SITE_URL = "https://olivebishop.com";
+
+/** Safe origin for metadata, JSON-LD, and loaders. Malformed env (spaces, no scheme) must not crash the Worker. */
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return DEFAULT_SITE_URL;
+  const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  try {
+    const u = new URL(candidate);
+    if (u.protocol !== "http:" && u.protocol !== "https:") return DEFAULT_SITE_URL;
+    return u.origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
+export const siteUrl = resolveSiteUrl();
 
 export const seo = {
   brand: "Olive Bishop",

@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://olivebishop.com";
+import { siteUrl } from "@/lib/seo";
 
 /** Higher priority on conversion and money pages for crawlers. */
 const routes: {
@@ -22,7 +21,7 @@ const routes: {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map(({ path, changeFrequency, priority }) => ({
-    url: `${baseUrl}${path}`,
+    url: `${siteUrl}${path}`,
     lastModified: new Date(),
     changeFrequency,
     priority,

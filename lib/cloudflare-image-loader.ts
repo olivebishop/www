@@ -1,3 +1,5 @@
+import { siteUrl } from "./seo";
+
 /** Matches `next/image` custom loader args (keeps this file free of `next/image` imports). */
 type LoaderParams = { src: string; width: number; quality?: number };
 
@@ -21,7 +23,7 @@ export default function cloudflareImageLoader({
   const q = Math.min(100, Math.max(1, quality ?? 75));
   const options = `width=${width},format=auto,quality=${q}`;
 
-  const site = stripTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || "");
+  const site = stripTrailingSlash(siteUrl);
   const isProd = process.env.NODE_ENV === "production";
   const disabled = process.env.NEXT_PUBLIC_CF_IMAGES === "0";
 
