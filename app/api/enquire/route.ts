@@ -1,7 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
+import { workerEnvPick, workerEnvString } from "@/lib/worker-env"
 import AdminNotificationEmail from "@/emails/admin-notification"
 import ClientConfirmationEmail from "@/emails/client-confirmation"
+
+const FROM_LINE = "Olive Bishop <hello@olivebishop.com>"
+const DEFAULT_OWNER_INBOX = "hello@olivebishop.com"
 
 function resendErrorMessage(err: unknown): string {
   if (err && typeof err === "object" && "message" in err && typeof (err as { message: unknown }).message === "string") {
@@ -10,16 +14,37 @@ function resendErrorMessage(err: unknown): string {
   return String(err)
 }
 
+/** Lowercase mailbox inside `<…>` or bare `user@host`. */
+function parseMailbox(from: string): string | null {
+  const angle = from.match(/<([^>]+)>/)
+  const raw = (angle?.[1] ?? from).trim().toLowerCase()
+  return raw.includes("@") ? raw : null
+}
+
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.RESEND_API_KEY?.trim()
+  const apiKey = await workerEnvString("RESEND_API_KEY")
   if (!apiKey) {
     return NextResponse.json(
       {
         error: "Email is not configured",
-        hint: "In Cloudflare: Workers → www → Settings → Variables and Secrets → add secret RESEND_API_KEY (Resend dashboard → API Keys).",
+        hint:
+          "Add secret RESEND_API_KEY on Worker `www`, then redeploy. Optional: ADMIN_NOTIFY_EMAIL for owner alerts.",
       },
       { status: 503 },
     )
+  }
+
+  const extra = await workerEnvPick(["ADMIN_NOTIFY_EMAIL", "NOTIFICATION_EMAIL"])
+  const configured =
+    extra.ADMIN_NOTIFY_EMAIL?.trim() || extra.NOTIFICATION_EMAIL?.trim() || ""
+  let adminTo = configured || DEFAULT_OWNER_INBOX
+
+  const fromMailbox = parseMailbox(FROM_LINE)
+  if (fromMailbox && adminTo.toLowerCase() === fromMailbox) {
+    const [user, domain] = fromMailbox.split("@")
+    if (user && domain) {
+      adminTo = `${user}+project-enquiries@${domain}`
+    }
   }
 
   let body: Record<string, unknown>
@@ -46,8 +71,9 @@ export async function POST(request: NextRequest) {
 
   try {
     const { error: adminError } = await resend.emails.send({
-      from: "Olive Bishop <hello@olivebishop.com>",
-      to: "hello@olivebishop.com",
+      from: FROM_LINE,
+      to: adminTo,
+      replyTo: email,
       subject: `New Project Request from ${name}`,
       react: AdminNotificationEmail({
         name,
@@ -70,7 +96,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { error: clientError } = await resend.emails.send({
-      from: "Olive Bishop <hello@olivebishop.com>",
+      from: FROM_LINE,
       to: email,
       subject: "Thanks for reaching out! I've received your project request",
       react: ClientConfirmationEmail({

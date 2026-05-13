@@ -29,7 +29,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Deploy with [Cloudflare Pages](https://pages.cloudflare.com/) (for example via the OpenNext Cloudflare adapter or your chosen Next-on-Workers setup). Set **`NEXT_PUBLIC_SITE_URL`** to your production origin (for example `https://olivebishop.com`) so metadata and the image loader resolve correctly.
 
-**Contact form (`/api/enquire`):** add a Worker secret **`RESEND_API_KEY`** (from [Resend](https://resend.com/) → API Keys). Without it, submissions return **503** with a clear hint.
+**Contact form (`/api/enquire`):** add Worker secret **`RESEND_API_KEY`**. Owner notifications default to **`hello+project-enquiries@olivebishop.com`** when the inbox would match the same address as `from` (many providers hide “send to self”). Override with **`ADMIN_NOTIFY_EMAIL`** or **`NOTIFICATION_EMAIL`** (e.g. your personal Gmail) if you prefer.
 
 **Images:** plain `/images/...` URLs are used by default (reliable on Workers). After you enable [Image Resizing](https://developers.cloudflare.com/images/transform-images/) on the zone, set **`NEXT_PUBLIC_CF_IMAGES=1`** so the custom loader emits **`/cdn-cgi/image/...`** URLs.
 
