@@ -40,69 +40,71 @@ export default function AdminNotificationEmail({
   return (
     <Html>
       <Head />
-      <Preview>🚀 New project enquiry from {name} — {projectType || "General"}</Preview>
+      <Preview>New lead: {name} — {projectType || "Project enquiry"}</Preview>
       <Body style={main}>
-        <Container style={container}>
-          {/* Header */}
-          <Section style={headerSection}>
-            <Text style={label}>NEW ENQUIRY</Text>
-            <Heading style={heading}>Project Request from {name}</Heading>
-            <Text style={timestamp}>Received on {submittedAt}</Text>
+        <Container style={shell}>
+          <Section style={hero}>
+            <Text style={heroBadge}>ACTION REQUIRED</Text>
+            <Heading style={heroTitle}>New project enquiry</Heading>
+            <Text style={heroLead}>
+              <strong style={heroName}>{name}</strong> just submitted the contact form.
+            </Text>
+            <Text style={heroMeta}>{submittedAt}</Text>
           </Section>
 
-          <Hr style={hr} />
-
-          {/* Quick glance cards */}
-          <Section>
-            <Row>
-              <Column style={card}>
-                <Text style={cardLabel}>PROJECT TYPE</Text>
-                <Text style={cardValue}>{projectType || "Not specified"}</Text>
+          <Section style={body}>
+            <Row style={statRow}>
+              <Column style={statCell}>
+                <Text style={statLabel}>Project type</Text>
+                <Text style={statValue}>{projectType || "Not specified"}</Text>
               </Column>
-              <Column style={{ width: "16px" }} />
-              <Column style={card}>
-                <Text style={cardLabel}>BUDGET</Text>
-                <Text style={cardValue}>{budget || "Not specified"}</Text>
+              <Column style={statGap} />
+              <Column style={statCell}>
+                <Text style={statLabel}>Budget</Text>
+                <Text style={statValue}>{budget || "Not specified"}</Text>
               </Column>
             </Row>
+
+            <Text style={blockTitle}>Contact</Text>
+            <Section style={contactCard}>
+              <Text style={contactLine}>
+                <span style={contactKey}>Name</span>
+                <br />
+                <span style={contactVal}>{name}</span>
+              </Text>
+              <Text style={contactLine}>
+                <span style={contactKey}>Email</span>
+                <br />
+                <Link href={`mailto:${email}`} style={contactLink}>
+                  {email}
+                </Link>
+              </Text>
+            </Section>
+
+            <Text style={blockTitle}>What they&apos;re looking for</Text>
+            <Section style={projectHighlight}>
+              <Text style={projectText}>{project}</Text>
+            </Section>
+
+            <Section style={ctaWrap}>
+              <Link
+                href={`mailto:${email}?subject=${encodeURIComponent(`Re: Your project request`)}&body=${encodeURIComponent(`Hi ${name},\n\nThanks for reaching out regarding your project. `)}`}
+                style={ctaButton}
+              >
+                Reply to {name}
+              </Link>
+              <Text style={ctaHint}>Reply-To on this message is set to the lead&apos;s address.</Text>
+            </Section>
+
+            <Hr style={hr} />
+
+            <Text style={footer}>
+              Internal notification ·{" "}
+              <Link href="https://olivebishop.com" style={footerLink}>
+                olivebishop.com
+              </Link>
+            </Text>
           </Section>
-
-          {/* Contact details */}
-          <Section style={section}>
-            <Text style={sectionTitle}>Contact</Text>
-            <Container style={detailRow}>
-              <Text style={detailLabel}>Name</Text>
-              <Text style={detailValue}>{name}</Text>
-            </Container>
-            <Container style={detailRow}>
-              <Text style={detailLabel}>Email</Text>
-              <Link href={`mailto:${email}`} style={emailLink}>{email}</Link>
-            </Container>
-          </Section>
-
-          {/* Project description */}
-          <Section style={section}>
-            <Text style={sectionTitle}>Project Description</Text>
-            <Container style={descriptionBox}>
-              <Text style={descriptionText}>{project}</Text>
-            </Container>
-          </Section>
-
-          {/* Quick action */}
-          <Section style={{ textAlign: "center" as const, margin: "28px 0" }}>
-            <Link href={`mailto:${email}?subject=Re: Your Project Request&body=Hi ${name},%0D%0A%0D%0AThanks for reaching out! `} style={replyButton}>
-              Reply to {name}
-            </Link>
-          </Section>
-
-          <Hr style={hr} />
-
-          <Text style={footer}>
-            Sent from the contact form at{" "}
-            <Link href="https://olivebishop.com" style={footerLink}>
-              olivebishop.com
-            </Link>
-          </Text>
         </Container>
       </Body>
     </Html>
@@ -110,148 +112,191 @@ export default function AdminNotificationEmail({
 }
 
 const main = {
-  backgroundColor: "#f0f0f0",
-  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-  padding: "20px 0",
+  backgroundColor: "#e8e8ea",
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+  padding: "32px 16px",
 };
 
-const container = {
-  backgroundColor: "#ffffff",
+const shell = {
   margin: "0 auto",
   maxWidth: "600px",
+  backgroundColor: "#ffffff",
+  border: "2px solid #0f0f0f",
   borderRadius: "0",
   overflow: "hidden" as const,
-  border: "1px solid #e0e0e0",
 };
 
-const headerSection = {
-  padding: "28px 36px 0",
+const hero = {
+  backgroundColor: "#0f0f0f",
+  padding: "32px 36px 28px",
 };
 
-const label = {
+const heroBadge = {
+  margin: "0 0 12px",
   fontSize: "11px",
   fontWeight: "700" as const,
-  letterSpacing: "0.12em",
-  color: "#888888",
-  margin: "0 0 8px",
-};
-
-const heading = {
-  fontSize: "22px",
-  fontWeight: "700" as const,
-  color: "#111111",
-  lineHeight: "30px",
-  margin: "0 0 6px",
-};
-
-const timestamp = {
-  fontSize: "12px",
-  color: "#999999",
-  margin: "0",
-};
-
-const hr = {
-  borderColor: "#eeeeee",
-  margin: "24px 36px",
-};
-
-const card = {
-  backgroundColor: "#f8f8f8",
-  borderRadius: "0",
-  padding: "16px 20px",
-  border: "1px solid #e0e0e0",
-};
-
-const cardLabel = {
-  fontSize: "10px",
-  fontWeight: "700" as const,
-  letterSpacing: "0.1em",
-  color: "#999999",
-  margin: "0 0 4px",
-};
-
-const cardValue = {
-  fontSize: "15px",
-  fontWeight: "600" as const,
-  color: "#111111",
-  margin: "0",
-};
-
-const section = {
-  padding: "0 36px",
-  marginBottom: "20px",
-};
-
-const sectionTitle = {
-  fontSize: "13px",
-  fontWeight: "700" as const,
-  letterSpacing: "0.06em",
-  color: "#333333",
-  marginBottom: "12px",
+  letterSpacing: "0.2em",
+  color: "#fbbf24",
   textTransform: "uppercase" as const,
 };
 
-const detailRow = {
-  display: "flex" as const,
-  marginBottom: "8px",
+const heroTitle = {
+  margin: "0 0 10px",
+  fontSize: "28px",
+  fontWeight: "700" as const,
+  lineHeight: "1.15",
+  color: "#fafafa",
 };
 
-const detailLabel = {
-  fontSize: "13px",
-  color: "#888888",
-  margin: "0 0 2px",
+const heroLead = {
+  margin: "0 0 8px",
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#d4d4d8",
 };
 
-const detailValue = {
-  fontSize: "14px",
-  color: "#222222",
-  fontWeight: "500" as const,
+const heroName = {
+  color: "#ffffff",
+  fontWeight: "700" as const,
+};
+
+const heroMeta = {
+  margin: "0",
+  fontSize: "12px",
+  color: "#a1a1aa",
+};
+
+const body = {
+  padding: "32px 36px 28px",
+};
+
+const statRow = {
+  marginBottom: "28px",
+};
+
+const statGap = {
+  width: "14px",
+};
+
+const statCell = {
+  backgroundColor: "#f4f4f5",
+  border: "1px solid #d4d4d8",
+  borderRadius: "0",
+  padding: "16px 18px",
+  width: "50%",
+};
+
+const statLabel = {
+  margin: "0 0 6px",
+  fontSize: "10px",
+  fontWeight: "700" as const,
+  letterSpacing: "0.14em",
+  color: "#71717a",
+  textTransform: "uppercase" as const,
+};
+
+const statValue = {
+  margin: "0",
+  fontSize: "16px",
+  fontWeight: "600" as const,
+  color: "#18181b",
+  lineHeight: "22px",
+};
+
+const blockTitle = {
   margin: "0 0 12px",
+  fontSize: "12px",
+  fontWeight: "700" as const,
+  letterSpacing: "0.12em",
+  color: "#52525b",
+  textTransform: "uppercase" as const,
 };
 
-const emailLink = {
-  fontSize: "14px",
-  color: "#000000",
-  fontWeight: "500" as const,
+const contactCard = {
+  backgroundColor: "#fafafa",
+  border: "1px solid #e4e4e7",
+  padding: "18px 20px",
+  marginBottom: "24px",
+};
+
+const contactLine = {
+  margin: "0 0 14px",
+};
+
+const contactKey = {
+  fontSize: "11px",
+  fontWeight: "600" as const,
+  color: "#71717a",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.06em",
+};
+
+const contactVal = {
+  fontSize: "16px",
+  fontWeight: "600" as const,
+  color: "#18181b",
+};
+
+const contactLink = {
+  fontSize: "16px",
+  fontWeight: "600" as const,
+  color: "#0f0f0f",
   textDecoration: "underline",
 };
 
-const descriptionBox = {
-  backgroundColor: "#fafafa",
-  padding: "18px 20px",
-  borderRadius: "0",
-  border: "1px solid #e0e0e0",
+const projectHighlight = {
+  backgroundColor: "#fffbeb",
+  border: "1px solid #fcd34d",
+  padding: "20px 22px",
+  marginBottom: "28px",
 };
 
-const descriptionText = {
-  fontSize: "14px",
-  color: "#333333",
-  lineHeight: "24px",
-  whiteSpace: "pre-wrap" as const,
+const projectText = {
   margin: "0",
+  fontSize: "15px",
+  lineHeight: "26px",
+  color: "#27272a",
+  whiteSpace: "pre-wrap" as const,
 };
 
-const replyButton = {
+const ctaWrap = {
+  textAlign: "center" as const,
+  marginBottom: "8px",
+};
+
+const ctaButton = {
   display: "inline-block" as const,
-  backgroundColor: "#000000",
+  backgroundColor: "#0f0f0f",
   color: "#ffffff",
-  fontSize: "13px",
-  fontWeight: "600" as const,
-  padding: "12px 28px",
-  borderRadius: "0",
+  fontSize: "15px",
+  fontWeight: "700" as const,
+  padding: "14px 36px",
   textDecoration: "none",
   letterSpacing: "0.02em",
+  border: "2px solid #0f0f0f",
+};
+
+const ctaHint = {
+  margin: "14px 0 0",
+  fontSize: "12px",
+  color: "#71717a",
+  lineHeight: "18px",
+};
+
+const hr = {
+  borderColor: "#e4e4e7",
+  margin: "24px 0 20px",
 };
 
 const footer = {
   fontSize: "11px",
-  color: "#aaaaaa",
+  color: "#a1a1aa",
   textAlign: "center" as const,
-  padding: "0 36px 28px",
   margin: "0",
 };
 
 const footerLink = {
-  color: "#888888",
+  color: "#52525b",
   textDecoration: "underline",
 };
