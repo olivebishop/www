@@ -34,19 +34,30 @@ function getGoogleApiKey() {
   );
 }
 
-function getGooglePlaceId() {
-  return process.env.GOOGLE_PLACE_ID?.trim() || process.env.GOOGLE_REVIEWS_PLACE_ID?.trim() || "";
+/**
+ * Google Place Details (New) path is `GET .../v1/places/{placeId}` where `{placeId}` is
+ * the bare id (e.g. `ChIJ...`). If you paste the full resource name `places/ChIJ...`,
+ * strip the prefix or the API returns 404.
+ */
+function getGooglePlaceId(): string {
+  const raw =
+    process.env.GOOGLE_PLACE_ID?.trim() || process.env.GOOGLE_REVIEWS_PLACE_ID?.trim() || "";
+  if (!raw) return "";
+  return raw.startsWith("places/") ? raw.slice("places/".length) : raw;
 }
 
 function normalizeReview(review: PlacesV1Review, index: number): GoogleReviewItem {
   const reviewText = review.text?.text?.trim() || review.originalText?.text?.trim() || "";
   const author = review.authorAttribution;
+  const text =
+    reviewText ||
+    "(No written review — verified star rating on Google Business Profile.)";
 
   return {
     id: `${review.publishTime ?? index}-${author?.displayName ?? "review"}`,
     authorName: author?.displayName?.trim() || "Google reviewer",
     rating: Math.min(5, Math.max(1, Number(review.rating ?? 5))),
-    text: reviewText,
+    text,
     relativeTimeDescription: review.relativePublishTimeDescription?.trim() || null,
     authorUrl: author?.uri?.trim() || null,
     profilePhotoUrl: author?.photoUri?.trim() || null,
@@ -65,14 +76,18 @@ export async function getGoogleReviews(limit = 6): Promise<GoogleReviewsSummary 
   const response = await fetch(endpoint, {
     headers: {
       "X-Goog-Api-Key": apiKey,
-      "X-Goog-FieldMask":
-        "displayName,rating,userRatingCount,googleMapsUri,reviews",
+      "X-Goog-FieldMask": "displayName,rating,userRatingCount,googleMapsUri,reviews",
     },
   });
 
   if (!response.ok) {
     const body = await response.text().catch(() => "");
-    console.error(`[Google Reviews] fetch failed (${response.status}): ${body}`);
+    console.error(
+      `[Google Reviews] Places API request failed (${response.status}). ` +
+        `Check: (1) "Places API (New)" enabled in Google Cloud, (2) billing on project, ` +
+        `(3) API key restrictions allow server-side calls (not "HTTP referrers only" for this Worker). ` +
+        `Body: ${body.slice(0, 500)}`,
+    );
     return null;
   }
 
@@ -87,8 +102,9 @@ export async function getGoogleReviews(limit = 6): Promise<GoogleReviewsSummary 
 
   const reviews = (payload.reviews ?? [])
     .filter((r) => {
-      const text = r.text?.text?.trim() || r.originalText?.text?.trim();
-      return typeof text === "string" && text.length > 0;
+      const t = r.text?.text?.trim() || r.originalText?.text?.trim() || "";
+      const ratingNum = typeof r.rating === "number" ? r.rating : Number(r.rating);
+      return t.length > 0 || (!Number.isNaN(ratingNum) && ratingNum > 0);
     })
     .slice(0, Math.max(1, Math.min(limit, 12)))
     .map((review, index) => normalizeReview(review, index));
