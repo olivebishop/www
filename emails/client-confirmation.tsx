@@ -91,7 +91,7 @@ const container = {
   backgroundColor: "#ffffff",
   margin: "40px auto",
   padding: "32px 40px",
-  borderRadius: "8px",
+  borderRadius: "0",
   maxWidth: "600px",
   border: "1px solid #e5e5e5",
 };
@@ -113,8 +113,8 @@ const text = {
 const summaryBox = {
   backgroundColor: "#f9f9f9",
   padding: "20px 24px",
-  borderRadius: "6px",
-  borderLeft: "3px solid #000000",
+  borderRadius: "0",
+  border: "1px solid #e5e5e5",
   marginBottom: "20px",
 };
 

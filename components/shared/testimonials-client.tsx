@@ -172,6 +172,8 @@ export default function TestimonialsClient({
   reviews: GoogleReviewItem[];
   summary: GoogleReviewsSummary | null;
 }) {
+  const reviewsWithWrittenFeedback = reviews.filter((r) => r.text.trim().length > 0);
+
   return (
     <motion.section
       id="testimonials"
@@ -228,8 +230,8 @@ export default function TestimonialsClient({
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {reviews.length > 0 ? (
-            reviews.map((review, index) => (
+          {reviewsWithWrittenFeedback.length > 0 ? (
+            reviewsWithWrittenFeedback.map((review, index) => (
               <ReviewCard key={review.id} review={review} index={index} />
             ))
           ) : (

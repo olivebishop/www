@@ -43,9 +43,6 @@ export default function AdminNotificationEmail({
       <Preview>🚀 New project enquiry from {name} — {projectType || "General"}</Preview>
       <Body style={main}>
         <Container style={container}>
-          {/* Top accent bar */}
-          <Section style={accentBar} />
-
           {/* Header */}
           <Section style={headerSection}>
             <Text style={label}>NEW ENQUIRY</Text>
@@ -122,15 +119,9 @@ const container = {
   backgroundColor: "#ffffff",
   margin: "0 auto",
   maxWidth: "600px",
-  borderRadius: "12px",
+  borderRadius: "0",
   overflow: "hidden" as const,
   border: "1px solid #e0e0e0",
-};
-
-const accentBar = {
-  backgroundColor: "#000000",
-  height: "4px",
-  width: "100%",
 };
 
 const headerSection = {
@@ -166,9 +157,9 @@ const hr = {
 
 const card = {
   backgroundColor: "#f8f8f8",
-  borderRadius: "8px",
+  borderRadius: "0",
   padding: "16px 20px",
-  border: "1px solid #eeeeee",
+  border: "1px solid #e0e0e0",
 };
 
 const cardLabel = {
@@ -228,8 +219,8 @@ const emailLink = {
 const descriptionBox = {
   backgroundColor: "#fafafa",
   padding: "18px 20px",
-  borderRadius: "8px",
-  borderLeft: "3px solid #000000",
+  borderRadius: "0",
+  border: "1px solid #e0e0e0",
 };
 
 const descriptionText = {
@@ -247,7 +238,7 @@ const replyButton = {
   fontSize: "13px",
   fontWeight: "600" as const,
   padding: "12px 28px",
-  borderRadius: "6px",
+  borderRadius: "0",
   textDecoration: "none",
   letterSpacing: "0.02em",
 };

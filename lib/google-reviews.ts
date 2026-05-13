@@ -49,15 +49,12 @@ function getGooglePlaceId(): string {
 function normalizeReview(review: PlacesV1Review, index: number): GoogleReviewItem {
   const reviewText = review.text?.text?.trim() || review.originalText?.text?.trim() || "";
   const author = review.authorAttribution;
-  const text =
-    reviewText ||
-    "(No written review — verified star rating on Google Business Profile.)";
 
   return {
     id: `${review.publishTime ?? index}-${author?.displayName ?? "review"}`,
     authorName: author?.displayName?.trim() || "Google reviewer",
     rating: Math.min(5, Math.max(1, Number(review.rating ?? 5))),
-    text,
+    text: reviewText,
     relativeTimeDescription: review.relativePublishTimeDescription?.trim() || null,
     authorUrl: author?.uri?.trim() || null,
     profilePhotoUrl: author?.photoUri?.trim() || null,
@@ -101,10 +98,10 @@ export async function getGoogleReviews(limit = 6): Promise<GoogleReviewsSummary 
   }
 
   const reviews = (payload.reviews ?? [])
+    // Only reviews with written body (rating-only / empty text excluded from cards).
     .filter((r) => {
       const t = r.text?.text?.trim() || r.originalText?.text?.trim() || "";
-      const ratingNum = typeof r.rating === "number" ? r.rating : Number(r.rating);
-      return t.length > 0 || (!Number.isNaN(ratingNum) && ratingNum > 0);
+      return t.length > 0;
     })
     .slice(0, Math.max(1, Math.min(limit, 12)))
     .map((review, index) => normalizeReview(review, index));
