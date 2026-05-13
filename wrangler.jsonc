@@ -22,5 +22,6 @@
   },
   "routes": [
     { "pattern": "olivebishop.com", "custom_domain": true },
+    { "pattern": "www.olivebishop.com", "custom_domain": true },
   ],
 }
