@@ -5,7 +5,7 @@ import AdminNotificationEmail from "@/emails/admin-notification"
 import ClientConfirmationEmail from "@/emails/client-confirmation"
 
 const FROM_LINE = "Olive Bishop <hello@olivebishop.com>"
-const DEFAULT_OWNER_INBOX = "hello@olivebishop.com"
+const DEFAULT_OWNER_INBOX = "olivehendrilgen1@gmail.com"
 
 function resendErrorMessage(err: unknown): string {
   if (err && typeof err === "object" && "message" in err && typeof (err as { message: unknown }).message === "string") {
