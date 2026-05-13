@@ -18,19 +18,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to load [Geist](https://fonts.google.com/specimen/Geist) and local display fonts.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy on Cloudflare
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy with [Cloudflare Pages](https://pages.cloudflare.com/) (for example via the OpenNext Cloudflare adapter or your chosen Next-on-Workers setup). Set **`NEXT_PUBLIC_SITE_URL`** to your production origin (for example `https://olivebishop.com`) so metadata and the image loader resolve correctly.
 
-## Deploy on Vercel
+Images use Cloudflare’s **`/cdn-cgi/image/`** transforms in production when Image Resizing / Transformations are enabled on your zone. Set **`NEXT_PUBLIC_CF_IMAGES=0`** if you need plain static URLs without resizing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Workers / Pages deploy:** use `pnpm run deploy`, or build with `pnpm run build && pnpm exec opennextjs-cloudflare build` then deploy with Wrangler. In `wrangler.jsonc`, keep **`name`** and **`services[].service`** (for `WORKER_SELF_REFERENCE`) identical — if you rename the worker, update both or the API returns error 10143.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for general options.

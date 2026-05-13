@@ -8,7 +8,6 @@ import GrainOverlay from "@/components/shared/grain-overlay";
 import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
 import Preloader from "@/components/shared/preloader";
-import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import { seo, siteUrl } from "@/lib/seo";
 
@@ -43,18 +42,24 @@ export const metadata: Metadata = {
     "hire Next.js developer",
     "hire React developer",
     "freelance web developer",
-    "Next.js developer",
-    "React developer",
-    "TypeScript developer",
-    "frontend developer",
-    "full stack developer",
-    "web development services",
-    "software engineer",
-    "client projects",
-    "Event Parlour",
-    "TanStack Showcase",
-    "digital events",
-    "mobile photography",
+    "freelance software engineer",
+    "Next.js consultant",
+    "React TypeScript developer for hire",
+    "full stack web developer",
+    "web app development services",
+    "custom web application developer",
+    "SaaS frontend engineer",
+    "startup MVP developer",
+    "Cloudflare Pages Next.js",
+    "high performance web apps",
+    "accessible web design",
+    "UI/UX engineer",
+    "production React apps",
+    "Tailwind CSS developer",
+    "headless CMS integration",
+    "API-first web development",
+    "remote web developer",
+    "Kenya software engineer",
   ],
   authors: [{ name: "Olive Bishop" }],
   creator: "Olive Bishop",
@@ -133,7 +138,6 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster />
-        <Analytics />
       </body>
     </html>
   );

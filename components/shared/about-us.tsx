@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   TeenyiconsNextjsSolid,
-  LogosVercel,
+  LogosCloudflare,
   DeviconReactWordmark,
   MaterialIconThemeDocker,
   CibTypescript,
@@ -108,7 +108,7 @@ export function About() {
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 {[
                   { icon: TeenyiconsNextjsSolid, name: 'Next.js' },
-                  { icon: LogosVercel, name: 'Vercel', isLogo: true },
+                  { icon: LogosCloudflare, name: 'Cloudflare', isLogo: true },
                   { icon: DeviconReactWordmark, name: 'React' },
                   { icon: MaterialIconThemeDocker, name: 'Docker' },
                   { icon: CibTypescript, name: 'TypeScript' },

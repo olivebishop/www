@@ -13,7 +13,7 @@ const sections = [
     content: [
       'We use cookies for the following purposes:',
       '• Essential cookies — Required for the website to function properly, such as maintaining your session.',
-      '• Analytics cookies — Help us understand how visitors interact with our website through Vercel Analytics. These cookies collect anonymous data.',
+      '• Analytics cookies — We may use privacy-focused analytics to understand traffic in aggregate. These cookies collect anonymous data where enabled.',
       '• Preference cookies — Remember your settings and preferences for future visits.',
     ],
   },
@@ -24,14 +24,14 @@ const sections = [
       '• Session cookies — Temporary cookies that are deleted when you close your browser.',
       '• Persistent cookies — Remain on your device for a set period or until you manually delete them.',
       '• First-party cookies — Set by our website directly.',
-      '• Third-party cookies — Set by third-party services we use (e.g., Vercel Analytics).',
+      '• Third-party cookies — Set by third-party services we use (for example, analytics or embedded content).',
     ],
   },
   {
     title: '4. Third-Party Cookies',
     content: [
       'We may use the following third-party services that set cookies:',
-      '• Vercel Analytics — For understanding website traffic and usage patterns. Vercel Analytics is privacy-focused and does not use cookies for advertising.',
+      '• Analytics providers — For understanding website traffic and usage patterns in aggregate, without advertising cookies.',
       'These third-party services have their own cookie and privacy policies.',
     ],
   },

@@ -7,7 +7,7 @@ import { ScrambleText } from "@/components/ui/scramble-text";
 
 /**
  * No `new Date()` here — Cache Components prerender flags that on client modules.
- * Override per deploy: set `NEXT_PUBLIC_COPYRIGHT_YEAR` (e.g. `2027`) in Vercel env.
+ * Override per deploy: set `NEXT_PUBLIC_COPYRIGHT_YEAR` (e.g. `2027`) in Cloudflare / build env.
  */
 const COPYRIGHT_YEAR =
   typeof process.env.NEXT_PUBLIC_COPYRIGHT_YEAR === "string" &&

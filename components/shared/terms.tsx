@@ -9,7 +9,7 @@ const sections = [
       '• Your name and email address',
       '• Project details and budget preferences',
       '• Any additional information you voluntarily provide in your message',
-      'We do not collect any personal data automatically through cookies or tracking technologies beyond basic analytics provided by Vercel Analytics.',
+      'We do not collect any personal data automatically through cookies or tracking technologies beyond what is strictly necessary for the site to function.',
     ],
   },
   {
@@ -33,7 +33,7 @@ const sections = [
     title: '4. Third-Party Services',
     content: [
       'We may use the following third-party services:',
-      '• Vercel — for hosting and analytics',
+      '• Cloudflare — for hosting, security, and content delivery (CDN)',
       '• Resend — for transactional email delivery',
       'These services have their own privacy policies governing the use of your information.',
     ],

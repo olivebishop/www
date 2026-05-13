@@ -3,30 +3,37 @@ export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://olivebishop.
 
 export const seo = {
   brand: "Olive Bishop",
-  /** Default when a page does not set `title` (full string; root layout has no template segment) */
-  defaultTitle: "Next.js & React Developer for Hire — Web Apps & Client Work",
+
+  defaultTitle:
+    "Olive Bishop — Freelance Next.js & React Developer | Fast Web Apps & SaaS",
   defaultDescription:
-    "Hire a software engineer for fast, accessible web apps. Next.js, React, and TypeScript — from MVPs to production. View work and book a project.",
-  /** Page `title` segments — combined with template `%s | Olive Bishop` in layout */
-  homeTitle: "Hire a Next.js & React Developer",
+    "Olive Bishop is a freelance software engineer who builds fast, accessible web applications with Next.js, React, and TypeScript. Serving startups and businesses worldwide — from MVPs to production-grade SaaS. View projects and book a call.",
+
+  homeTitle: "Freelance Next.js & React Developer for Hire",
   homeDescription:
-    "Freelance software engineer building fast web products for clients. Next.js, React, TypeScript, and modern UX. Explore the portfolio and start your project.",
-  aboutTitle: "About — Software Engineer & Web Developer",
+    "Hire Olive Bishop — a freelance software engineer specializing in Next.js, React, and TypeScript. High-performance web apps, startup MVPs, and SaaS frontends shipped on time. Explore the portfolio and start your project today.",
+
+  aboutTitle: "About Olive Bishop — Software Engineer & Web Developer",
   aboutDescription:
-    "Background, stack, and how Olive works with clients: Next.js, React, TypeScript, cloud, and product-minded delivery.",
-  workTitle: "Portfolio & Client Work",
+    "Olive Bishop is a software engineer based in Kenya working with clients globally. Stack: Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, Cloudflare, and AWS. Product-minded delivery from concept to launch.",
+
+  workTitle: "Portfolio — Web Apps, SaaS & Client Projects",
   workDescription:
-    "Selected projects: web apps, platforms, and products — Event Parlour, client work, and more. Real shipping experience you can hire for.",
-  contactTitle: "Contact — Book a Project",
+    "Real projects shipped for real businesses: Event Parlour (events SaaS), Brinex Tech, Navejo (bookmark workspace), and more. Next.js, React, TypeScript — see the code, the results, and the business impact.",
+
+  contactTitle: "Hire Olive Bishop — Book a Project or Consultation",
   contactDescription:
-    "Tell Olive about your product, timeline, and budget. Quick responses for new projects, collaborations, and freelance engagements.",
-  workflowTitle: "Design & Build Process",
+    "Ready to build? Tell Olive about your product, timeline, and budget. Fast responses for freelance web development, SaaS builds, MVP sprints, and ongoing collaborations.",
+
+  workflowTitle: "How I Work — Discovery, Design, Build & Launch",
   workflowDescription:
-    "How projects run: discovery, UX, build, and launch — a clear, repeatable workflow for client work.",
-  bookmarksTitle: "Bookmarks — Tools & Design Inspiration",
+    "Olive Bishop's project workflow: from discovery and UX research to design, development, testing, and deployment. A clear, repeatable process for client web projects.",
+
+  bookmarksTitle: "Developer Bookmarks — Tools, UI Inspiration & Resources",
   bookmarksDescription:
-    "Curated tools, UI inspiration, and dev resources Olive uses — ecommerce UI, galleries, Mobbin, and more.",
-  feedbackTitle: "Google reviews — Verified client feedback",
+    "Curated developer tools, UI inspiration, and frontend resources Olive Bishop uses daily — Mobbin, design galleries, component libraries, performance tools, and more.",
+
+  feedbackTitle: "Client Reviews — Verified Google Feedback",
   feedbackDescription:
-    "Verified Google reviews pulled from the business profile: real ratings, recent feedback, and social proof for visitors who want to see what clients say.",
+    "Read verified Google reviews from Olive Bishop's clients. Real ratings, honest feedback, and social proof from businesses who hired a Next.js developer.",
 } as const;

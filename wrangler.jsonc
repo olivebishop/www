@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  // Must match `services[0].service` below (OpenNext cache self-binding).
+  "name": "www",
+  "compatibility_date": "2026-05-13",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      // Same string as top-level `name` — mismatch causes deploy error 10143.
+      "service": "www",
+    },
+  ],
+  "images": {
+    "binding": "IMAGES",
+  },
+}
