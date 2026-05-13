@@ -12,8 +12,10 @@ function stripTrailingSlash(url: string): string {
  * optimized at the edge and cached on Cloudflare’s CDN.
  * @see https://developers.cloudflare.com/images/transform-images/transform-url/
  *
+ * Local paths use **same-origin relative** `/cdn-cgi/image/...` URLs so the browser
+ * always hits the live hostname (avoids wrong absolute origin from build-time env).
+ *
  * Set `NEXT_PUBLIC_CF_IMAGES=0` to skip resizing (plain `src` URLs).
- * `NEXT_PUBLIC_SITE_URL` must match your deployed origin (e.g. https://olivebishop.com).
  */
 export default function cloudflareImageLoader({
   src,
@@ -27,9 +29,14 @@ export default function cloudflareImageLoader({
   const isProd = process.env.NODE_ENV === "production";
   const disabled = process.env.NEXT_PUBLIC_CF_IMAGES === "0";
 
-  if (!isProd || disabled || !site) {
-    if (src.startsWith("/")) return src;
+  if (!isProd || disabled) {
     return src;
+  }
+
+  /** Same-origin `/cdn-cgi/image/...` (preferred for local assets on Workers). */
+  function cdnCgiLocal(path: string): string {
+    const p = path.startsWith("/") ? path : `/${path}`;
+    return `/cdn-cgi/image/${options}${p}`;
   }
 
   if (src.startsWith("http://") || src.startsWith("https://")) {
@@ -38,7 +45,7 @@ export default function cloudflareImageLoader({
       const originSite = new URL(site);
       if (parsed.origin === originSite.origin) {
         const path = `${parsed.pathname}${parsed.search}`;
-        return `${site}/cdn-cgi/image/${options}${path}`;
+        return cdnCgiLocal(path);
       }
       return `${site}/cdn-cgi/image/${options}/${src}`;
     } catch {
@@ -47,5 +54,5 @@ export default function cloudflareImageLoader({
   }
 
   const path = src.startsWith("/") ? src : `/${src}`;
-  return `${site}/cdn-cgi/image/${options}${path}`;
+  return cdnCgiLocal(path);
 }

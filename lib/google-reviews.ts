@@ -1,6 +1,5 @@
 import "server-only";
 
-import { cacheLife, cacheTag } from "next/cache";
 import type { GoogleReviewItem, GoogleReviewsSummary } from "@/types/google-reviews";
 
 type PlacesV1Review = {
@@ -55,10 +54,6 @@ function normalizeReview(review: PlacesV1Review, index: number): GoogleReviewIte
 }
 
 export async function getGoogleReviews(limit = 6): Promise<GoogleReviewsSummary | null> {
-  "use cache";
-  cacheLife("hours");
-  cacheTag("google-reviews");
-
   const placeId = getGooglePlaceId();
   const apiKey = getGoogleApiKey();
   if (!placeId || !apiKey) {

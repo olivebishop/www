@@ -4,8 +4,8 @@ import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
-  /** Cache Components + `"use cache"` (e.g. Google reviews list). @see https://nextjs.org/docs/app/api/reference/config/next-config-js/cacheComponents */
-  cacheComponents: true,
+  /** Off on Cloudflare Workers: Cache Components / `"use cache"` can misbehave with the OpenNext runtime. */
+  cacheComponents: false,
   images: {
     loader: "custom",
     loaderFile: "./lib/cloudflare-image-loader.ts",
