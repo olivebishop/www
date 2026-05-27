@@ -237,7 +237,21 @@ export default function TestimonialsClient({
           ) : (
             <div className="md:col-span-2 lg:col-span-3 border border-white/[0.08] bg-[#0c0c0c] p-8 sm:p-10 text-center text-white/50">
               <GoogleLogo className="mx-auto h-8 w-8 mb-4 opacity-40" />
-              <p>Google reviews will appear here once configured.</p>
+              <p className="max-w-md mx-auto">
+                Add your public Google reviews in{" "}
+                <code className="text-white/60">data/google-reviews.curated.ts</code>.
+              </p>
+              {summary?.placeUrl ? (
+                <a
+                  href={summary.placeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 text-[0.8125rem] font-medium text-[#8AB4F8] hover:text-[#AECBFA]"
+                >
+                  Read reviews on Google Maps
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              ) : null}
             </div>
           )}
         </div>
