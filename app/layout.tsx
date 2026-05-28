@@ -10,7 +10,7 @@ import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
 import Preloader from "@/components/shared/preloader";
 import { Toaster } from "sonner";
-import { geoKeywords, getGeoMetadataExtras } from "@/lib/geo";
+import { geoKeywords, getGeoMetadataExtras } from "@/lib/site-meta";
 import { getRootSocialMetadata, seo, siteUrl } from "@/lib/seo";
 
 const geist = Geist({

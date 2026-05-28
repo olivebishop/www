@@ -1,8 +1,7 @@
 /** Base site copy for SEO & GEO — titles, social cards, geography, and AI entity signals. */
 
-import { geoKeywords, getGeoMetadataExtras } from "@/lib/geo";
-
 import type { Metadata } from "next";
+import { geoKeywords, getGeoMetadataExtras } from "@/lib/site-meta";
 
 const DEFAULT_SITE_URL = "https://olivebishop.com";
 

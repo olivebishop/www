@@ -4,8 +4,6 @@
  * Generative: entity summaries, FAQ depth, and /llms.txt for AI crawlers.
  */
 
-import type { Metadata } from "next";
-
 const BRAND = "Olive Bishop";
 
 /** Primary business location (matches contact page). */
@@ -46,34 +44,6 @@ export const geoEntity = {
   contactEmail: "hello@olivebishop.com",
   summary: `${BRAND} is a freelance software engineer based in ${geoLocation.locality}, ${geoLocation.country}, building fast web applications with Next.js, React, and TypeScript for clients globally. Services include SaaS MVPs, business websites, UI engineering, and performance optimization.`,
 } as const;
-
-const geoPosition = `${geoLocation.latitude};${geoLocation.longitude}`;
-const icbm = `${geoLocation.latitude}, ${geoLocation.longitude}`;
-
-/** HTML meta tags for geographic discovery (search + maps-adjacent signals). */
-export function getGeoMetadataExtras(): Pick<Metadata, "other"> & { abstract?: string } {
-  return {
-    abstract: geoEntity.summary,
-    other: {
-      "geo.region": geoLocation.countryCode,
-      "geo.placename": `${geoLocation.locality}, ${geoLocation.country}`,
-      "geo.position": geoPosition,
-      ICBM: icbm,
-      "content-language": "en",
-      "geo.service": geoServiceAreas.slice(0, 6).join(", "),
-    },
-  };
-}
-
-/** Extra keywords for geographic + generative discovery. */
-export const geoKeywords = [
-  "Next.js developer Kenya",
-  "freelance developer Nairobi",
-  "remote React developer Africa",
-  "hire software engineer Kenya",
-  "SaaS developer East Africa",
-  "web developer for startups worldwide",
-] as const;
 
 /** Plain-text brief for /llms.txt (AI crawler convention). */
 export function buildLlmsTxt(siteUrl: string): string {
