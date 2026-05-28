@@ -184,10 +184,10 @@ function BookmarkRowLink({ bookmark }: { bookmark: Bookmark }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${bookmark.title} — ${bookmark.focus}`}
-      className="group grid grid-cols-1 gap-2 items-start px-4 py-3.5 outline-none transition-colors hover:bg-muted/25 focus-visible:bg-muted/25 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/35 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.75fr)_minmax(0,1.35fr)_auto] sm:gap-x-3 md:gap-x-4"
+      className="group grid grid-cols-1 gap-2 items-start px-4 py-3.5 outline-none transition-colors hover:bg-muted/25 focus-visible:bg-muted/25 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/25 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.75fr)_minmax(0,1.35fr)_auto] sm:gap-x-3 md:gap-x-4"
     >
       <div className="min-w-0">
-        <span className="font-medium text-foreground group-hover:text-primary transition-colors tracking-[-0.01em] break-words">
+        <span className="font-medium text-foreground group-hover:text-foreground transition-colors tracking-[-0.01em] break-words">
           {bookmark.title}
         </span>
         <span className="mt-1 block text-[11px] uppercase tracking-[0.08em] text-foreground/35">{bookmark.category}</span>
@@ -195,7 +195,7 @@ function BookmarkRowLink({ bookmark }: { bookmark: Bookmark }) {
       <span className="text-sm text-foreground/55 break-words sm:pt-0.5 sm:whitespace-nowrap">{bookmark.focus}</span>
       <span className="text-sm text-foreground/45 leading-relaxed min-w-0 break-words">{bookmark.description}</span>
       <span className="flex justify-end pt-0.5 sm:pt-1" aria-hidden>
-        <HugeiconsArrowUpRight className="w-4 h-4 shrink-0 text-foreground/30 group-hover:text-primary transition-colors" />
+        <HugeiconsArrowUpRight className="w-4 h-4 shrink-0 text-foreground/30 group-hover:text-foreground transition-colors" />
       </span>
     </a>
   );
@@ -222,7 +222,7 @@ export function Bookmarks() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Resources i <span className="text-primary">use</span>
+            Resources i use
           </motion.h1>
           <motion.p
             className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-xl"
@@ -304,7 +304,7 @@ export function Bookmarks() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 px-5 sm:px-8 md:px-16 bg-background border-t border-border/30">
+      <section className="py-20 md:py-28 px-5 sm:px-8 md:px-16 bg-background">
         <motion.div
           className="max-w-3xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}
@@ -319,7 +319,7 @@ export function Bookmarks() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Like what you <span className="text-primary">see</span>?
+            Like what you see?
           </motion.h2>
           <motion.p
             className="body-lg text-foreground/50 mb-10 max-w-lg mx-auto"
@@ -332,30 +332,25 @@ export function Bookmarks() {
             yours.
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="cta-row"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.button
+              type="button"
               onClick={() => setDrawerOpen(true)}
               className="cta-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Start a Project
               <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
-            <Link href="/work">
-              <motion.span
-                className="cta-secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View My Work
-                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.span>
+            <Link href="/work" className="cta-secondary">
+              View My Work
+              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
           </motion.div>
         </motion.div>

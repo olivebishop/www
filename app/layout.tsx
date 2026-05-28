@@ -5,6 +5,7 @@ import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Navigation } from "@/components/shared/navbar";
 import GrainOverlay from "@/components/shared/grain-overlay";
+import ViewportEdgeFade from "@/components/shared/viewport-edge-fade";
 import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
 import Preloader from "@/components/shared/preloader";
@@ -134,6 +135,7 @@ export default function RootLayout({
         <StructuredData />
         <Preloader />
         <GrainOverlay />
+        <ViewportEdgeFade />
         <Navigation />
         {children}
         <Footer />

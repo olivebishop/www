@@ -1,8 +1,7 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { Sparkles } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import Brands from './brands';
 import ProjectDrawer from './project-drawer';
 import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02, HugeiconsArrowUpRight } from './icons';
@@ -61,311 +60,82 @@ const homeSelectedWorks: HomeWorkItem[] = [
   },
 ];
 
+const socialLinks = [
+  { href: 'https://github.com/olivebishop', icon: HugeiconsGithub, label: 'GitHub' },
+  { href: 'https://www.instagram.com/rhymer_ke/', icon: HugeiconsInstagram, label: 'Instagram' },
+  { href: 'https://x.com/olivebishop_dev', icon: HugeiconsNewTwitter, label: 'Twitter' },
+  { href: 'https://www.linkedin.com/in/olivebishop/', icon: HugeiconsLinkedin02, label: 'LinkedIn' },
+] as const;
+
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const circleScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-  const circleOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.3]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const scrollY = window.scrollY;
-        const elements = heroRef.current.querySelectorAll('.parallax');
-        elements.forEach((el, i) => {
-          const speed = 0.1 + (i * 0.05);
-          (el as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[100svh] flex flex-col bg-background pt-20 sm:pt-24 md:pt-28 lg:pt-32 overflow-hidden"
-      >
-        {/* Background circle — desktop / large tablet only (removed on small screens for clarity) */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 hidden items-center justify-center lg:flex"
-          style={{ scale: circleScale, opacity: circleOpacity }}
-        >
+      <section className="relative bg-background pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-10 md:pb-12">
+        <div className="relative z-10 flex w-full flex-col gap-8 px-5 sm:px-8 md:px-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
           <motion.div
-            className="h-[78vw] w-[78vw] max-h-[800px] max-w-[800px] rounded-full border border-border/50 md:h-[78vw] md:w-[78vw]"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          />
-        </motion.div>
-
-        {/* Horizontal Line — hidden on mobile */}
-        <motion.div 
-          className="absolute left-0 right-0 top-1/2 h-px bg-border/50 hidden md:block"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        />
-
-        {/* Number Indicators — hidden on small screens */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 hidden md:flex justify-between px-8 md:px-16 pointer-events-none">
-          {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map((num, index) => (
-            <motion.span 
-              key={num} 
-              className="text-[11px] text-foreground/30 font-light tracking-wider"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {num}
-            </motion.span>
-          ))}
-        </div>
-
-        {/* Main Content — centered vertically */}
-        <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-center px-5 pt-2 sm:px-8 sm:pt-4 md:px-12 lg:pt-6">
-          {/* Desktop: split name + hero image */}
-          <div className="hidden flex-row items-center justify-center gap-4 sm:gap-6 lg:flex lg:gap-10 xl:gap-12">
-            <motion.h1
-              className="hero-name text-foreground parallax"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Olive
-            </motion.h1>
-
-            <motion.div
-              className="relative px-1 sm:px-3 md:px-6 lg:px-10 xl:px-12"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <motion.div
-                className="relative h-36 w-36 overflow-hidden rounded-sm bg-muted shadow-2xl sm:h-52 sm:w-52 md:h-64 md:w-64 lg:h-80 lg:w-80 xl:h-96 xl:w-96"
-                whileHover={{ scale: 1.02, rotate: 0.5 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <Image
-                  src="/images/hero.jpeg"
-                  alt="Portfolio Preview"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, (max-width: 1024px) 288px, (max-width: 1280px) 320px, 384px"
-                  priority
-                  quality={90}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.h1
-              className="hero-name text-foreground parallax"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Bishop
-            </motion.h1>
-          </div>
-
-          {/* Small screens: no circle / no photo — typographic hero */}
-          <motion.div
-            className="flex w-full max-w-xl flex-col items-center text-center lg:hidden"
-            initial={{ opacity: 0, y: 16 }}
+            className="flex w-full max-w-2xl flex-col gap-6 sm:gap-7"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="section-label mb-3 text-primary sm:mb-4">Next.js · React · TypeScript</p>
-            <h1 className="font-display flex flex-row flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-2.5 text-[clamp(2.65rem,10vw,4.25rem)] font-normal leading-none tracking-[-0.035em] sm:text-[clamp(3rem,9.5vw,4.75rem)]">
-              <span className="text-foreground">Olive</span>
-              <span className="text-primary">Bishop</span>
+            <h1 className="font-display text-[clamp(1.65rem,4.5vw,2.65rem)] font-normal leading-[1.18] tracking-[-0.03em] text-foreground">
+              I build high-performance web platforms that help businesses grow, convert, and scale.
             </h1>
-            <div
-              className="mx-auto mt-4 h-px w-16 max-w-[min(12rem,40vw)] bg-gradient-to-r from-transparent via-primary/70 to-transparent sm:mt-5"
-              aria-hidden
-            />
-          </motion.div>
-
-          {/* Value Proposition - Below hero name */}
-          <motion.p
-            className="body-base mx-auto mt-6 max-w-[22rem] px-2 text-center text-foreground/60 sm:mt-7 sm:max-w-md sm:px-4 md:mt-8 lg:mt-8"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            I build high-performance web platforms that help businesses grow, convert, and scale.
-          </motion.p>
-
-          {/* CTA — visible on small/medium screens, hidden on lg+ */}
-          <div className="block lg:hidden mt-6 sm:mt-8">
             <motion.button
+              type="button"
               onClick={() => setDrawerOpen(true)}
-              className="cta-primary"
-              initial={{ opacity: 0, y: 10 }}
+              className="cta-primary cta-hero w-full justify-center sm:w-auto sm:justify-start sm:self-start"
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Start a Project
-              <HugeiconsArrowUpRight className="w-4 h-4" />
+              <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Mobile Bottom Bar — social links, centered, only on small screens */}
-        <motion.div 
-          className="relative z-10 flex md:hidden flex-col items-center gap-3 px-5 pb-7 sm:pb-8 pt-3 sm:pt-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className="text-primary text-[11px] uppercase tracking-[0.15em] font-medium">
-            IAM SOCIAL :)
-          </p>
-          <div className="flex items-center gap-3">
-            {[
-              { href: 'https://github.com/olivebishop', icon: HugeiconsGithub, label: 'GitHub' },
-              { href: 'https://www.instagram.com/rhymer_ke/', icon: HugeiconsInstagram, label: 'Instagram' },
-              { href: 'https://x.com/olivebishop_dev', icon: HugeiconsNewTwitter, label: 'Twitter' },
-              { href: 'https://www.linkedin.com/in/olivebishop/', icon: HugeiconsLinkedin02, label: 'LinkedIn' },
-            ].map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
-                aria-label={social.label}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 1.9 + index * 0.1,
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 15
-                }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <social.icon className="w-4 h-4 text-foreground group-hover:text-primary-foreground transition-colors" />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Desktop Social Links — absolute positioned, hidden on mobile */}
-        <motion.div 
-          className="absolute left-8 md:left-16 bottom-16 md:bottom-32 z-20 hidden md:block"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.p 
-            className="text-primary text-xs uppercase tracking-[0.15em] font-medium mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.7 }}
+          <motion.div
+            className="flex items-center gap-3 sm:gap-4 lg:flex-col lg:items-end"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           >
-            IAM SOCIAL :)
-          </motion.p>
-          <div className="flex items-center gap-4">
-            {[
-              { href: 'https://github.com/olivebishop', icon: HugeiconsGithub, label: 'GitHub' },
-              { href: 'https://www.instagram.com/rhymer_ke/', icon: HugeiconsInstagram, label: 'Instagram' },
-              { href: 'https://x.com/olivebishop_dev', icon: HugeiconsNewTwitter, label: 'Twitter' },
-              { href: 'https://www.linkedin.com/in/olivebishop/', icon: HugeiconsLinkedin02, label: 'LinkedIn' },
-            ].map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 md:w-11 md:h-11 border border-foreground/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
-                aria-label={social.label}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 1.8 + index * 0.1,
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 15
-                }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <social.icon className="w-5 h-5 text-foreground group-hover:text-primary-foreground transition-colors" />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Desktop Services & CTA — absolute positioned, hidden on mobile */}
-        <motion.div 
-          className="absolute right-8 md:right-16 bottom-16 md:bottom-32 z-20 text-right hidden md:block"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.div 
-            className="flex items-start gap-4 mb-4"
-            whileHover={{ scale: 1.05 }}
-          >
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              <Sparkles className="text-primary w-7 h-7 md:w-8 md:h-8" />
-            </motion.div>
-            <div className="text-xs text-foreground/40 uppercase tracking-[0.12em] -rotate-12 origin-bottom-left">
-              Click click
+            <p className="text-foreground/50 text-[11px] uppercase tracking-[0.15em] font-medium shrink-0 hidden sm:block lg:mb-1">
+              IAM SOCIAL :)
+            </p>
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 border border-foreground/20 flex items-center justify-center hover:bg-white/10 hover:border-foreground/40 transition-all duration-300 group"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-4 h-4 text-foreground/80 transition-colors" />
+                </a>
+              ))}
             </div>
           </motion.div>
-          <motion.ul 
-            className="space-y-1.5 text-[0.9375rem] text-foreground/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.7 }}
-          >
-            <li className="tracking-[-0.01em]">Software Engineer</li>
-          </motion.ul>
-          <motion.button
-            onClick={() => setDrawerOpen(true)}
-            className="cta-primary mt-6"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.9, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start a Project
-            <HugeiconsArrowUpRight className="w-5 h-5" />
-          </motion.button>
-        </motion.div>
-
+        </div>
       </section>
+
+      <Brands id="home-brands" />
 
       {/* Project Drawer */}
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
 
-      {/* Brands Section */}
-      <Brands />
-
       {/* Selected Works Section */}
-      <section className="py-24 sm:py-28 md:py-32 bg-background">
+      <section id="work" className="pt-10 sm:pt-12 pb-24 sm:pb-28 md:pb-32 bg-background">
         <motion.div
-          className="px-5 sm:px-8 md:px-16 mb-10 sm:mb-14 flex items-baseline justify-between gap-4"
+          className="mb-10 flex flex-col gap-6 px-5 sm:mb-14 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:px-8 md:px-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -373,17 +143,18 @@ export default function Home() {
         >
           <div>
             <p className="section-label mb-2">Selected works</p>
-            <p className="mt-3 body-sm text-foreground/50 max-w-sm">
+            <p className="mt-3 body-sm max-w-sm text-foreground/50">
               A snapshot of products and collaborations I&apos;ve been building recently.
             </p>
           </div>
           <motion.a
             href="/work"
-            className="hidden sm:inline-flex text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/50 hover:text-primary transition-colors font-medium"
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
+            className="cta-secondary cta-hero w-full justify-center sm:inline-flex sm:w-auto sm:shrink-0"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            View all work +
+            View all work
+            <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </motion.a>
         </motion.div>
 
@@ -433,7 +204,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Live site</p>
-                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-primary">
+                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-foreground/80">
                           {item.live}
                           <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
                         </span>
@@ -447,7 +218,7 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="flex justify-center mt-14 sm:mt-16 md:mt-20 px-5 sm:px-8 md:px-16"
+          className="mt-14 w-full px-5 sm:mt-16 md:mt-20 sm:px-8 md:px-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
@@ -455,12 +226,12 @@ export default function Home() {
         >
           <motion.a
             href="/work"
-            className="cta-secondary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="cta-primary cta-hero flex w-full max-w-full justify-center sm:mx-auto sm:w-auto sm:max-w-none"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            View All Work
-            <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            View all work
+            <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </motion.a>
         </motion.div>
       </section>
@@ -485,7 +256,7 @@ export default function Home() {
           </div>
           <motion.a
             href="/work"
-            className="hidden sm:inline-flex text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/50 hover:text-primary transition-colors font-medium"
+            className="hidden sm:inline-flex text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/50 hover:text-foreground transition-colors font-medium"
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -501,7 +272,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <motion.div 
               className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
@@ -567,7 +338,7 @@ export default function Home() {
                 href="https://eventparlour.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
@@ -587,7 +358,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
               <motion.p 
@@ -639,7 +410,7 @@ export default function Home() {
                 href="https://navejo.crowstudios.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors mt-2"
+                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors mt-2"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
@@ -682,7 +453,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <motion.div 
               className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
@@ -757,7 +528,7 @@ export default function Home() {
                 href="https://www.crowstudios.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
@@ -777,7 +548,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
               <motion.p 
@@ -829,7 +600,7 @@ export default function Home() {
                 href="https://www.brinex-tech.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors mt-2"
+                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors mt-2"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
@@ -872,7 +643,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(var(--primary), 0.3)' }}
+            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <motion.div 
               className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
@@ -947,7 +718,7 @@ export default function Home() {
                 href="https://gatambiairungu.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-primary transition-colors text-foreground mt-2"
+                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0 }}
@@ -971,7 +742,7 @@ export default function Home() {
         >
           <motion.a
             href="/work"
-            className="cta-secondary"
+            className="cta-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

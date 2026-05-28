@@ -211,7 +211,7 @@ export default function TestimonialsClient({
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 What clients say on{" "}
-                <span className="text-primary">Google</span>
+                Google
               </motion.h2>
               <motion.p
                 className="mt-4 body-base text-foreground/50 max-w-xl"

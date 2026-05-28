@@ -60,7 +60,7 @@ export function Navigation() {
             >
               <Link
                 href="/about"
-                className={`nav-link ${isActive('/about') ? 'active text-primary' : 'text-foreground'}`}
+                className={`nav-link ${isActive('/about') ? 'active text-foreground' : 'text-foreground'}`}
               >
                 <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Info</span>
                 <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">About me</span>
@@ -74,7 +74,7 @@ export function Navigation() {
             >
               <Link
                 href="/work"
-                className={`nav-link ${isActive('/work') ? 'active text-primary' : 'text-foreground'}`}
+                className={`nav-link ${isActive('/work') ? 'active text-foreground' : 'text-foreground'}`}
               >
                 <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Work</span>
                 <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">Some cases</span>
@@ -95,14 +95,14 @@ export function Navigation() {
                 className="flex items-center"
                 onClick={closeMenu}
               >
-                <MaterialSymbolsChessBishop2 className="w-6 h-6 text-foreground hover:text-primary transition-colors" />
+                <MaterialSymbolsChessBishop2 className="w-6 h-6 text-foreground hover:text-foreground transition-colors" />
               </Link>
             </motion.div>
 
             {/* Hamburger Button */}
             <motion.button
               onClick={toggleMenu}
-              className="p-2 -mr-2 text-foreground hover:text-primary transition-colors"
+              className="p-2 -mr-2 text-foreground hover:text-foreground transition-colors"
               aria-label="Toggle menu"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -176,7 +176,7 @@ export function Navigation() {
             >
               <Link
                 href="/workflow"
-                className={`nav-link ${isActive('/workflow') ? 'active text-primary' : 'text-foreground'}`}
+                className={`nav-link ${isActive('/workflow') ? 'active text-foreground' : 'text-foreground'}`}
               >
                 <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Workflow</span>
                 <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">All the processes</span>
@@ -190,7 +190,7 @@ export function Navigation() {
             >
               <Link
                 href="/contact"
-                className={`nav-link ${isActive('/contact') ? 'active text-primary' : 'text-foreground'}`}
+                className={`nav-link ${isActive('/contact') ? 'active text-foreground' : 'text-foreground'}`}
               >
                 <span className="text-[0.9375rem] md:text-base lg:text-lg tracking-[-0.01em]">Contact me</span>
                 <span className="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-foreground/40 mt-1">For any collaborations</span>
@@ -259,7 +259,7 @@ export function Navigation() {
                 <h2 className="text-lg font-normal tracking-[-0.01em] text-foreground">Menu</h2>
                 <motion.button
                   onClick={closeMenu}
-                  className="p-2 text-foreground hover:text-primary transition-colors"
+                  className="p-2 text-foreground hover:text-foreground transition-colors"
                   aria-label="Close menu"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
@@ -281,7 +281,7 @@ export function Navigation() {
                         href="/"
                         onClick={closeMenu}
                         className={`block px-4 py-4 rounded-sm text-base font-normal tracking-[-0.01em] transition-colors hover:bg-muted/30 ${
-                          isActive('/') ? 'text-primary bg-primary/10' : 'text-foreground hover:text-primary'
+                          isActive('/') ? 'text-foreground bg-white/10' : 'text-foreground/70 hover:text-foreground'
                         }`}
                       >
                         <span>Home</span>
@@ -301,7 +301,7 @@ export function Navigation() {
                         href={link.href}
                         onClick={closeMenu}
                         className={`block px-4 py-4 rounded-sm text-base font-normal tracking-[-0.01em] transition-colors hover:bg-muted/30 ${
-                          isActive(link.href) ? 'text-primary bg-primary/10' : 'text-foreground hover:text-primary'
+                          isActive(link.href) ? 'text-foreground bg-white/10' : 'text-foreground/70 hover:text-foreground'
                         }`}
                       >
                         <span>{link.label}</span>

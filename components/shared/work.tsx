@@ -1,7 +1,10 @@
 'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
+import { Globe2, Layers3, Radio } from 'lucide-react';
 import { HugeiconsArrowUpRight } from './icons';
 import ProjectDrawer from './project-drawer';
 
@@ -11,6 +14,7 @@ interface Project {
   image: string;
   url: string;
   type: string;
+  headline: string;
   description: string;
   tech: string;
   subtitle?: string;
@@ -28,405 +32,401 @@ const projects: Project[] = [
     image: '/images/irungu.jpeg',
     url: 'https://gatambiairungu.com',
     type: 'Client project',
+    headline: 'Premium portfolio and booking for a personal brand.',
     description:
       'A minimal, premium personal portfolio for a client: responsive bento layout, restrained motion, and Cal.com booking — built to feel editorial, not template-driven.',
     subtitle: 'Personal portfolio website',
     tech: 'Next.js (latest), TypeScript, Tailwind CSS, GSAP, View Transitions API, Cloudflare hosting, and Cal.com for scheduling.',
     problem:
-      'The client needed a polished one-page presence that communicated credibility and made it effortless to book time — without a heavy CMS or cluttered UI. It had to perform well on mobile, rank cleanly for search and social previews, and still feel bespoke.',
+      'The client needed a polished one-page presence that communicated credibility and made it effortless to book time — without a heavy CMS or cluttered UI.',
     systemArchitecture:
-      'Next.js App Router with TypeScript and Tailwind CSS. GSAP handles scroll and micro-interactions; the View Transitions API ties route and UI state changes into smooth, native-feeling motion. Deployed on Cloudflare for fast global delivery; Cal.com embedded for booking. Typography pairs Figtree and Geist Mono with Chillax for display moments. SEO includes Open Graph metadata and performance-minded defaults; Lighthouse scores landed above 94% in lab testing.',
+      'Next.js App Router with TypeScript and Tailwind CSS. GSAP handles scroll and micro-interactions; the View Transitions API ties route and UI state changes into smooth, native-feeling motion. Deployed on Cloudflare for fast global delivery; Cal.com embedded for booking.',
     keyFeatures: [
-      'Responsive bento-style layout: structured grids that scale cleanly from phone to desktop',
-      'Minimal visual language with premium spacing, hierarchy, and motion (GSAP + View Transitions)',
-      'Cal.com integration so visitors can book without leaving the experience',
-      'SEO and Open Graph setup for accurate link previews and discoverability',
-      'Strong Core Web Vitals and Lighthouse lab scores (94%+ overall)',
-      'Cloudflare-hosted edge delivery for low latency worldwide',
+      'Responsive bento-style layout',
+      'GSAP + View Transitions motion',
+      'Cal.com integration',
+      'SEO and Open Graph setup',
+      'Cloudflare edge delivery',
     ],
-    techStack: [
-      'Next.js',
-      'TypeScript',
-      'Tailwind CSS',
-      'GSAP',
-      'View Transitions API',
-      'Cloudflare',
-      'Cal.com',
-      'Open Graph / SEO',
-    ],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Cloudflare', 'Cal.com'],
     businessImpact:
-      'The client gets a fast, trustworthy portfolio that reflects their personal brand, reduces back-and-forth scheduling, and ships with metrics and metadata that support growth from day one.',
+      'A fast, trustworthy portfolio that reflects their brand and reduces scheduling friction from day one.',
   },
-  { 
-    id: 2, 
-    name: 'Brinex Tech', 
-    image: '/images/project1.png', 
+  {
+    id: 2,
+    name: 'Brinex Tech',
+    image: '/images/project1.png',
     url: 'https://brinex-tech.com/',
     type: 'Freelance',
+    headline: 'Lead-gen site for smart tech equipment and services.',
     description: 'A clean, responsive marketing site for a technology company, focused on clarity and trust.',
     subtitle: 'Brand / Company website',
     tech: 'Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.',
-    problem: 'The owner was selling smart tech equipment (smart curtains, intelligent car parking, CCTV maintenance) with solid products, but couldn\'t make sales or reach a wide audience due to lack of digital presence.',
-    systemArchitecture: 'Static site generation with optimized performance, SEO-first architecture, and analytics integration for lead tracking and conversion optimization.',
+    problem:
+      'Strong products but no digital presence — sales relied on word of mouth and local reach only.',
+    systemArchitecture:
+      'Static site generation with optimized performance, SEO-first architecture, and analytics integration for lead tracking.',
     keyFeatures: [
-      'SEO optimization for better search visibility',
-      'Google Analytics integration for tracking and insights',
-      'Fast page loads and performance optimization',
-      'Fully responsive design across all devices',
-      'Clear product showcase and lead generation forms'
+      'SEO optimization',
+      'Google Analytics',
+      'Performance optimization',
+      'Lead generation forms',
     ],
-    techStack: ['Next.js', 'SEO Optimization', 'Google Analytics', 'Responsive Design', 'Performance Optimization'],
-    businessImpact: 'Generated significant leads and improved online visibility. The digital presence helped Brinex Tech reach a wider audience, resulting in increased inquiries and sales opportunities for their smart tech equipment.'
+    techStack: ['Next.js', 'SEO', 'Google Analytics', 'Responsive Design'],
+    businessImpact:
+      'Increased inquiries and visibility for smart tech equipment across a wider audience.',
   },
-  { 
-    id: 1, 
-    name: 'Event Parlour', 
-    image: '/images/project2.png', 
+  {
+    id: 1,
+    name: 'Event Parlour',
+    image: '/images/project2.png',
     url: 'https://eventparlour.com/',
     type: 'Startup project',
+    headline: 'Unified events, ticketing, and speaker ops in one platform.',
     description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
     tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
-    problem: 'Event organizers were juggling multiple tools (Luma for events, Google Forms for call for speakers) and creating multiple accounts instead of having unified workspaces. A user could be an organizer at Angular, GDG Pwani, etc., but had to manage separate accounts for each.',
-    systemArchitecture: 'Multi-tenant SaaS architecture with workspace-based organization, allowing users to manage multiple event organizations from a single account. Built on serverless infrastructure with real-time capabilities.',
+    problem:
+      'Organizers juggled Luma, Google Forms, and separate accounts per community — no single workspace.',
+    systemArchitecture:
+      'Multi-tenant SaaS with workspace-based organization and serverless real-time infrastructure.',
     keyFeatures: [
-      'Unified workspace system for managing multiple organizations',
-      'Event creation and management in one platform',
-      'Call for speakers functionality',
-      'Ticketing and registration system',
-      'Real-time updates and notifications'
+      'Multi-org workspaces',
+      'Ticketing & registration',
+      'Call for speakers',
+      'Paystack payments',
     ],
-    techStack: ['Next.js', 'Supabase', 'Drizzle ORM', 'Resend', 'Google Analytics', 'Paystack'],
-    businessImpact: 'Currently in beta with strong reception. The platform addresses a real gap in the event management space, providing organizers with a streamlined solution that eliminates the need for multiple tools and accounts.'
+    techStack: ['Next.js', 'Supabase', 'Drizzle', 'Resend', 'Paystack'],
+    businessImpact:
+      'In beta with strong reception — one account, many organizations, fewer tools.',
   },
   {
     id: 3,
     name: 'Navejo',
     image: '/images/navejo.png',
     url: 'https://navejo.crowstudios.tech/',
-    type: 'Personal Product',
-    description: 'A bookmark management workspace built for frontend engineers and designers who are tired of losing track of useful links.',
+    type: 'Product',
+    headline: 'Bookmark workspace for designers and frontend teams.',
+    description:
+      'A bookmark management workspace built for frontend engineers and designers who are tired of losing track of useful links.',
     tech: 'Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).',
-    problem: 'As a frontend engineer, I was constantly losing track of useful links — tutorials, design references, tools, docs. Browser bookmarks were messy, unsearchable, and impossible to share with teammates. I needed something purpose-built for how developers actually work.',
-    systemArchitecture: 'Full-stack Next.js application with Prisma ORM connected to XATA (PostgreSQL). Authentication handled via Better Auth with session management. AI-powered auto-tagging pipeline for bookmark categorization. Real-time sync for team collaboration features.',
+    problem:
+      'Browser bookmarks were messy, unsearchable, and impossible to share with teammates.',
+    systemArchitecture:
+      'Full-stack Next.js with Prisma, Better Auth, and AI-assisted tagging for collections.',
     keyFeatures: [
-      'AI-powered auto-tagging and smart folder organization',
-      'Team collaboration with shared workspaces and real-time sync',
-      'Collection sharing with public/private visibility controls',
-      'Browser-ready experience with import from Chrome, Safari, and Firefox',
-      'Advanced search across all bookmarks and collections',
-      'Pricing tiers with free and premium plans'
+      'AI auto-tagging',
+      'Team workspaces',
+      'Public/private sharing',
+      'Browser import',
     ],
-    techStack: ['Next.js', 'Prisma', 'Better Auth', 'XATA DB (PostgreSQL)', 'AI Auto-tagging'],
-    businessImpact: 'Turned a personal pain point into a real product with authentication, pricing tiers, and a polished browser-ready experience. Actively used by frontend engineers and designers to organize their digital resources.'
+    techStack: ['Next.js', 'Prisma', 'Better Auth', 'PostgreSQL'],
+    businessImpact:
+      'Shipped as a real product with auth, tiers, and daily use by engineers and designers.',
   },
   {
-    id: 5, 
-    name: 'Sol of African', 
-    image: '/images/sol.png', 
+    id: 5,
+    name: 'Sol of African',
+    image: '/images/sol.png',
     url: 'https://www.thesolofafrican.com/',
     type: 'Redesign',
+    headline: 'Cultural travel platform with modern booking flow.',
     description: 'A modern redesign for a cultural platform celebrating African heritage and stories.',
     tech: 'Built with Next.js, modern design principles, and engaging user experience.',
-    problem: 'Micheal had a poor website with no booking functionality, requiring manual handling of bookings, scheduling, and testimonial management. This created excessive workload and limited the ability to attract clients beyond the local market.',
-    systemArchitecture: 'Modern web application with integrated booking system, automated scheduling, and content management. Built with performance and user experience as core priorities.',
+    problem:
+      'Manual bookings, outdated UX, and no way to reach travelers beyond the local market.',
+    systemArchitecture:
+      'Modern web app with integrated booking, scheduling automation, and content management.',
     keyFeatures: [
-      'Modern, attractive design that appeals to travel audience',
-      'Fast loading times and responsive across all devices',
-      'Integrated booking system following modern best practices',
-      'Automated scheduling to reduce manual work',
-      'Testimonial management system',
-      'SEO optimization for broader reach'
+      'Integrated booking',
+      'Automated scheduling',
+      'Testimonial management',
+      'SEO for broader reach',
     ],
-    techStack: ['Next.js', 'Booking System', 'Responsive Design', 'Performance Optimization', 'Modern UX/UI'],
-    businessImpact: 'Dramatically reduced Micheal\'s workload by automating bookings, scheduling, and testimonial management. The modern web app attracted more clients both locally and overseas, expanding the business reach and improving operational efficiency.'
+    techStack: ['Next.js', 'Booking System', 'Performance', 'UX/UI'],
+    businessImpact:
+      'Less manual ops, more inbound clients locally and overseas.',
   },
   {
     id: 4,
     name: 'Crow Studios',
     image: '/images/crow.png',
     url: 'https://www.crowstudios.tech/',
-    type: 'Agency Website',
+    type: 'Agency',
+    headline: 'Conversion-focused site for a tech agency brand.',
     description: 'A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.',
     subtitle: 'Tech Agency / Brand Website',
     tech: 'Built with Next.js, Tailwind CSS, and Motion for smooth animations.',
-    problem: 'Crow Studios needed a strong digital presence that communicated credibility, showcased past work, and converted visitors into leads. The site had to reflect the agency\'s bold brand while maintaining performance and accessibility.',
-    systemArchitecture: 'Static-first Next.js site with dynamic sections powered by Motion for scroll-driven animations. Tailwind CSS for rapid, consistent styling. Optimized for performance with lazy loading and responsive images.',
+    problem:
+      'Needed credibility, case studies, and a site that converts visitors into leads.',
+    systemArchitecture:
+      'Static-first Next.js with Motion scroll animations and performance-minded media.',
     keyFeatures: [
-      'Bold, modern design reflecting the agency brand identity',
-      'Project showcases with detailed case studies',
-      'Smooth scroll-driven animations using Motion',
-      'Service breakdowns with clear call-to-actions',
-      'Client testimonials and social proof sections',
-      'Fully responsive across all devices'
+      'Case study showcases',
+      'Scroll-driven motion',
+      'Service CTAs',
+      'Social proof',
     ],
-    techStack: ['Next.js', 'Tailwind CSS', 'Motion', 'Responsive Design', 'SEO Optimization'],
-    businessImpact: 'Established a strong brand presence for Crow Studios, driving client inquiries and building trust through professional design, case studies, and a seamless user experience.'
+    techStack: ['Next.js', 'Tailwind CSS', 'Motion', 'SEO'],
+    businessImpact:
+      'Stronger brand presence and steady client inquiry flow.',
   },
 ];
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-50px' as const },
+  transition: { duration: 0.65, ease },
+};
+
+function liveHost(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
+}
+
+function WorkPortfolioSnapshot({ count }: { count: number }) {
+  const countLabel = String(count).padStart(2, '0');
+
+  return (
+    <motion.div
+      className="hidden w-full lg:col-span-5 lg:col-start-8 lg:block lg:mt-0 xl:col-span-4 xl:col-start-9"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, delay: 0.1, ease }}
+    >
+      <div className="relative overflow-hidden border border-white/12 bg-[#080808]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -12deg,
+              transparent,
+              transparent 11px,
+              rgba(255,255,255,0.03) 11px,
+              rgba(255,255,255,0.03) 12px
+            )`,
+          }}
+          aria-hidden
+        />
+        <span
+          className="pointer-events-none absolute -right-1 bottom-0 font-display text-[6.5rem] leading-none tracking-[-0.05em] text-white/[0.04] sm:text-[7.5rem] select-none"
+          aria-hidden
+        >
+          {countLabel}
+        </span>
+
+        <div className="relative border-l-2 border-white pl-5 pr-5 py-6 sm:pl-6 sm:pr-6 sm:py-7">
+          <p className="section-label mb-5">Portfolio snapshot</p>
+
+          <div className="flex items-end justify-between gap-4">
+            <p className="font-display text-[clamp(3.25rem,10vw,4.75rem)] leading-[0.88] tracking-[-0.04em] text-foreground tabular-nums">
+              {countLabel}
+            </p>
+            <p className="max-w-[7rem] pb-1 text-right text-[0.6875rem] uppercase leading-[1.35] tracking-[0.14em] text-foreground/40">
+              Shipped case studies
+            </p>
+          </div>
+
+          <ul className="mt-6 space-y-0 divide-y divide-white/10 border-y border-white/10">
+            <li className="flex items-start gap-3 py-3.5 sm:py-4">
+              <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center border border-white/12 bg-white/[0.04] text-foreground/70">
+                <Layers3 className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+              </span>
+              <div>
+                <p className="text-sm font-medium tracking-[-0.01em] text-foreground/85">SaaS &amp; products</p>
+                <p className="mt-0.5 text-xs leading-relaxed text-foreground/45">
+                  Platforms, tools, and multi-tenant builds
+                </p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 py-3.5 sm:py-4">
+              <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center border border-white/12 bg-white/[0.04] text-foreground/70">
+                <Globe2 className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+              </span>
+              <div>
+                <p className="text-sm font-medium tracking-[-0.01em] text-foreground/85">Client &amp; agency</p>
+                <p className="mt-0.5 text-xs leading-relaxed text-foreground/45">
+                  Marketing sites, portfolios, and redesigns
+                </p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3 py-3.5 sm:py-4">
+              <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center border border-white/12 bg-white/[0.04] text-foreground/70">
+                <Radio className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+              </span>
+              <div className="flex flex-1 flex-wrap items-center justify-between gap-2">
+                <div>
+                  <p className="text-sm font-medium tracking-[-0.01em] text-foreground/85">Live in production</p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-foreground/45">
+                    Every project below has a public URL
+                  </p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-sm border border-white/15 bg-white/[0.04] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-foreground/60">
+                  <span className="relative flex h-1.5 w-1.5" aria-hidden>
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--button)] opacity-50" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--button)]" />
+                  </span>
+                  Live
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Work() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="pt-28 sm:pt-32 md:pt-36 pb-14 sm:pb-18 px-5 sm:px-8 md:px-16">
-        <div className="max-w-5xl">
-          <motion.p 
-            className="section-label mb-5"
-            initial={{ opacity: 0, y: 20 }}
+      {/* Hero */}
+      <section className="px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 md:px-16 md:pb-12 md:pt-32 lg:pb-16 lg:pt-36">
+        <div className="mx-auto max-w-7xl">
+          <motion.p
+            className="section-label mb-6"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease }}
           >
-            Selected work
+            Work
           </motion.p>
-          <motion.h1 
-            className="page-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            A few <span className="text-primary">projects</span> I&apos;ve worked on
-          </motion.h1>
-          <motion.p 
-            className="mt-6 sm:mt-8 body-base text-foreground/50 max-w-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            A snapshot of products and collaborations I&apos;ve been building recently. Each one solved a real problem for a real business.
-          </motion.p>
+
+          <div className="lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+            <motion.div className="lg:col-span-7 xl:col-span-8" {...fadeUp}>
+              <h1 className="font-display text-[clamp(2rem,5.5vw,3.5rem)] font-normal leading-[1.08] tracking-[-0.03em] text-foreground">
+                Products and platforms shipped for real businesses.
+              </h1>
+              <p className="body-base mt-5 max-w-xl leading-[1.75] text-foreground/55 sm:body-lg">
+                Client sites, SaaS, and internal tools — each tied to a clear problem, a maintainable
+                stack, and measurable outcomes.
+              </p>
+            </motion.div>
+
+            <WorkPortfolioSnapshot count={projects.length} />
+          </div>
         </div>
       </section>
 
       {/* Projects */}
-      <section className="py-20 sm:py-24 px-5 sm:px-8 md:px-16">
-        <div className="space-y-10 sm:space-y-12 md:space-y-14 max-w-7xl mx-auto">
+      <section className="bg-[#050505] px-5 py-10 sm:px-8 sm:py-14 md:px-16 md:py-20">
+        <div className="mx-auto max-w-7xl space-y-4 sm:space-y-5">
           {projects.map((project, index) => (
-            <motion.article 
+            <motion.article
               key={project.id}
-              className="group border border-border/40 bg-black/40 overflow-hidden"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ 
-                duration: 0.7, 
-                delay: index * 0.08,
-                ease: [0.16, 1, 0.3, 1] 
-              }}
+              className="group relative overflow-hidden border border-white/12 bg-[#080808] transition-colors hover:border-white/22"
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: index * 0.04 }}
             >
-              <motion.a
+              <span
+                className="pointer-events-none absolute right-4 top-3 font-display text-[4.5rem] leading-none tracking-[-0.04em] text-white/[0.035] sm:right-6 sm:text-[5.5rem] select-none"
+                aria-hidden
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
+              <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
-                whileTap={{ scale: 0.995 }}
               >
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-muted">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                    sizes="(max-width: 768px) 100vw, 90vw"
-                    priority={index === 0}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    quality={88}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
-                </div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#0b0b0b] sm:aspect-[16/9] lg:grid lg:grid-cols-12 lg:gap-0">
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:col-span-7 lg:aspect-auto lg:min-h-[16rem]">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      priority={index === 0}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      quality={88}
+                      placeholder="blur"
+                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#080808]/90" />
+                  </div>
 
-                <div className="border-t border-white/10 px-5 sm:px-7 md:px-8 py-5 sm:py-6 md:py-7 bg-[#0b0b0b]">
-                  <div className="grid gap-6 md:grid-cols-12 md:items-start">
-                    <div className="md:col-span-5">
-                      <h3 className="font-display text-[1.35rem] sm:text-[1.6rem] md:text-[1.9rem] leading-[1.2] tracking-[-0.02em] text-white">
-                        {project.name} — {project.description}
-                      </h3>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {project.techStack.slice(0, 3).map((tech) => (
-                          <span
-                            key={`${project.id}-${tech}`}
-                            className="text-[0.6875rem] uppercase tracking-[0.08em] px-2.5 py-1 border border-white/15 text-white/55"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                  <div className="relative z-[1] flex flex-col justify-between border-t border-white/10 p-5 sm:p-7 lg:col-span-5 lg:border-l lg:border-t-0 lg:min-h-[16rem]">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-foreground/40">
+                        {project.type}
+                      </p>
+                      <h2 className="mt-2 font-display text-2xl tracking-[-0.02em] text-foreground sm:text-[1.75rem]">
+                        {project.name}
+                      </h2>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground/55 sm:text-[0.9375rem]">
+                        {project.headline}
+                      </p>
                     </div>
 
-                    <div className="md:col-span-5">
-                      <p className="text-[0.95rem] text-white/80 leading-[1.65]">
+                    <div className="mt-6 space-y-4">
+                      <p className="line-clamp-3 text-sm leading-[1.65] text-foreground/45">
                         {project.problem}
                       </p>
-                      <p className="mt-3 text-[0.8125rem] text-white/50 leading-[1.6]">
-                        {project.businessImpact}
-                      </p>
-                    </div>
-
-                    <div className="md:col-span-2 md:text-right space-y-3">
-                      <div>
-                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Industry</p>
-                        <p className="mt-1 text-[0.875rem] text-white/80">{project.type}</p>
-                      </div>
-                      <div>
-                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Live site</p>
-                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-primary">
-                          Visit
-                          <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.techStack.slice(0, 4).map((tech) => (
+                            <span
+                              key={tech}
+                              className="border border-white/12 px-2 py-0.5 text-[0.625rem] uppercase tracking-[0.08em] text-foreground/45"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="inline-flex shrink-0 items-center gap-1 text-[0.8125rem] text-foreground/70 transition-colors group-hover:text-foreground">
+                          {liveHost(project.url)}
+                          <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </motion.a>
+              </a>
             </motion.article>
           ))}
         </div>
-        {/* Start a Project CTA */}
-        <motion.div
-          className="flex justify-center mt-14 sm:mt-16 md:mt-20 px-5 sm:px-8 md:px-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.button
-            onClick={() => setDrawerOpen(true)}
-            className="cta-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start a Project
-            <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </motion.button>
+      </section>
+
+      {/* CTA */}
+      <section className="px-5 py-20 md:px-16 md:py-28">
+        <motion.div className="mx-auto max-w-3xl text-center" {...fadeUp}>
+          <h2 className="section-title mb-6">Building something similar?</h2>
+          <p className="body-lg mx-auto mb-10 max-w-lg text-foreground/55">
+            Tell me about the product, users, and timeline. I&apos;ll reply within 24 hours with an
+            honest take on fit and approach.
+          </p>
+          <div className="cta-row">
+            <motion.button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              className="cta-primary"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Start a Project
+              <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+            </motion.button>
+            <Link href="/workflow" className="cta-secondary">
+              See how I work
+              <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+            </Link>
+          </div>
         </motion.div>
       </section>
 
-      {/* Project Drawer */}
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
-
-      {/* Phone Photography */}
-      <section className="py-24 md:py-32 px-5 sm:px-8 md:px-16">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="mb-14 sm:mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <motion.p 
-              className="section-label mb-5"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              Phone photography
-            </motion.p>
-            <motion.h2 
-              className="section-title mb-5 sm:mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Moments captured on my phone
-            </motion.h2>
-            <motion.p 
-              className="body-lg text-foreground/50 max-w-3xl"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              A collection of moments captured through mobile photography, showcasing everyday beauty and spontaneous compositions.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-16 sm:mb-20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {[
-              '/images/photography/image0.jpeg',
-              '/images/photography/image1.jpeg',
-              '/images/photography/image2.jpeg',
-              '/images/photography/image6.jpeg',
-              '/images/photography/image7.jpeg',
-              '/images/photography/image8.jpeg',
-              '/images/photography/image9.jpeg',
-            ].map((src, index) => (
-              <motion.div
-                key={src}
-                className="relative aspect-[3/4] bg-muted overflow-hidden group cursor-pointer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.5 + index * 0.1,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
-                whileHover={{ scale: 1.05, zIndex: 10 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Image
-                  src={src}
-                  alt={`Phone photography ${index + 1}`}
-                  fill
-                  className="object-cover transition-all duration-500 saturate-0 group-hover:saturate-100 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  quality={80}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* X Thread CTA */}
-          <motion.div 
-            className="border-t border-border/30 pt-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <motion.p 
-              className="section-label mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-            >
-              More context
-            </motion.p>
-            <motion.a
-              href="https://x.com/olivebishop_dev/status/1999532067701359103?s=20"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm md:text-[0.9375rem] text-foreground hover:text-primary transition-colors underline tracking-[-0.01em]"
-              whileHover={{ x: 5, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              Read the X thread about this work
-              <HugeiconsArrowUpRight className="w-4 h-4" />
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

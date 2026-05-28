@@ -77,7 +77,7 @@ const sections = [
 
 export default function CookiesPolicy() {
   return (
-    <div className="px-6 sm:px-10 md:px-14 lg:px-16 py-16 sm:py-20 md:py-24 lg:py-32 max-w-3xl text-black">
+    <div className="max-w-3xl scroll-mt-24 px-5 pb-16 pt-24 text-black sm:px-8 sm:pb-20 sm:pt-28 md:px-14 md:pb-24 md:pt-32 lg:px-16 lg:pb-32">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

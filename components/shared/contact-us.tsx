@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
@@ -12,6 +13,14 @@ const socials = [
   { name: 'GitHub', href: 'https://github.com/olivebishop' },
   { name: 'Instagram', href: 'https://www.instagram.com/rhymer_ke/' },
 ];
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const imageSpacerCol =
+  'hidden lg:col-span-5 lg:col-start-1 xl:col-span-6';
+
+const contentCol =
+  'lg:col-span-7 lg:col-start-6 xl:col-span-6 xl:col-start-7';
 
 export function Contact() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -30,219 +39,218 @@ export function Contact() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-background">
-      {/* Image Section - Left Side - Hidden on small devices */}
-      <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-0 lg:h-screen relative">
-        <Image
-          src="/images/contact.png"
-          alt="Do hello before you go"
-          fill
-          priority
-          className="object-cover"
-          quality={90}
-        />
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-
-      {/* Content - Right Side */}
-      <div className="w-full lg:w-1/2">
-        <div className="px-5 sm:px-8 md:px-14 lg:px-16 pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-40 max-w-2xl mx-auto lg:mx-0">
-          {/* Label */}
-          <motion.p
-            className="section-label mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Get in touch
-          </motion.p>
-
-          {/* Heading */}
-          <motion.h1
-            className="font-display text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] leading-[1.12] mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Let&apos;s make{' '}
-            <span className="text-primary">something</span>{' '}
-            <span className="hidden sm:inline"><br /></span>
-            great together.
-          </motion.h1>
-
-          {/* Subtext */}
-          <motion.p
-            className="body-base sm:body-lg text-foreground/50 leading-[1.7] mb-8 sm:mb-12 max-w-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Have a project in mind, want to collaborate, or just want to say hello? 
-            I&apos;d love to hear from you.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="w-full sm:w-auto">
-              <motion.button
-                onClick={() => setDrawerOpen(true)}
-                className="cta-primary w-full sm:w-auto justify-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Start a Project
-                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.button>
-            </div>
-
-            <div className="w-full sm:w-auto">
-              <motion.button
-                onClick={() => setCallDrawerOpen(true)}
-                onMouseEnter={() => setShouldPreloadCal(true)}
-                onFocus={() => setShouldPreloadCal(true)}
-                onTouchStart={() => setShouldPreloadCal(true)}
-                className="cta-secondary w-full sm:w-auto justify-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Book a Call
-                <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.button>
-            </div>
-          </motion.div>
-
-          {/* Trust Indicators */}
-          <motion.div
-            className="mb-8 sm:mb-12 grid grid-cols-3 gap-4 sm:gap-10 font-body"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div>
-              <p className="font-display text-xl sm:text-3xl font-bold text-foreground tracking-[-0.02em]">24h</p>
-              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Response time</p>
-            </div>
-            <div>
-              <p className="font-display text-xl sm:text-3xl font-bold text-foreground tracking-[-0.02em]">5+</p>
-              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Projects delivered</p>
-            </div>
-            <div>
-              <p className="font-display text-xl sm:text-3xl font-bold text-primary tracking-[-0.02em]">100%</p>
-              <p className="text-[0.75rem] sm:text-[0.8125rem] text-foreground/40 mt-1">Client satisfaction</p>
-            </div>
-          </motion.div>
-
-          {/* Divider */}
-          <motion.div
-            className="h-px bg-border mb-8 sm:mb-12"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            style={{ transformOrigin: 'left' }}
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
+      {/* Slanted image — left half of viewport, aligned with site grid */}
+      <motion.div
+        className="pointer-events-none absolute z-0 max-lg:inset-x-0 max-lg:top-0 max-lg:h-[min(44vh,19rem)] lg:bottom-0 lg:left-0 lg:top-0 lg:h-full lg:w-[min(54vw,42rem)]"
+        style={{
+          clipPath: 'polygon(0 12%, 100% 0, 100% 100%, 0 100%)',
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.9, ease }}
+        aria-hidden
+      >
+        <div className="absolute inset-0 lg:hidden" style={{ clipPath: 'inherit' }}>
+          <Image
+            src="/images/contact.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-[center_20%]"
+            sizes="100vw"
+            quality={90}
           />
-
-          {/* Email Section */}
-          <motion.div
-            className="mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="section-label mb-3">
-              Email
-            </p>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <a
-                href="mailto:hello@olivebishop.com"
-                className="text-base sm:text-xl md:text-2xl font-medium tracking-[-0.02em] hover:text-primary transition-colors truncate"
-              >
-                hello@olivebishop.com
-              </a>
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="p-1.5 rounded border border-foreground/10 hover:border-primary hover:text-primary transition-colors flex-shrink-0"
-                aria-label="Copy email address"
-              >
-                <HugeiconsCopy01 className="w-4 h-4" />
-              </button>
-              {copied && (
-                <motion.span
-                  className="text-[0.8125rem] text-foreground/40 flex-shrink-0"
-                  initial={{ opacity: 0, x: -5 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0 }}
-                >
-                  Copied!
-                </motion.span>
-              )}
-            </div>
-          </motion.div>
-
-          {/* Based In */}
-          <motion.div
-            className="mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="section-label mb-3">
-              Based in
-            </p>
-            <p className="text-base sm:text-xl md:text-2xl font-medium tracking-[-0.02em]">
-              Nairobi, Kenya
-            </p>
-          </motion.div>
-
-          {/* Socials */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="section-label mb-4">
-              Socials
-            </p>
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
-              {socials.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 border border-foreground/10 text-[0.8125rem] sm:text-sm text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 rounded-sm tracking-[-0.01em]"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.08 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.name}
-                  <HugeiconsArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
         </div>
-      </div>
+        <div
+          className="absolute inset-0 hidden lg:block"
+          style={{ clipPath: 'polygon(0 0, 84% 0, 100% 100%, 0 100%)' }}
+        >
+          <Image
+            src="/images/contact.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="54vw"
+            quality={90}
+          />
+        </div>
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-background/25 via-background/60 to-background lg:hidden"
+          style={{ clipPath: 'inherit' }}
+        />
+        <div
+          className="absolute inset-0 hidden bg-gradient-to-l from-background from-20% via-background/55 via-50% to-transparent lg:block"
+          style={{ clipPath: 'polygon(0 0, 84% 0, 100% 100%, 0 100%)' }}
+        />
+      </motion.div>
 
-      {/* Project Drawer */}
+      {/* Hero — same shell as About / Work */}
+      <section className="relative z-10 px-5 pb-12 pt-[max(5.5rem,min(36vh,16rem))] sm:px-8 sm:pb-14 sm:pt-[max(6rem,min(38vh,17rem))] md:px-16 md:pb-16 lg:min-h-[min(100vh,52rem)] lg:pb-20 lg:pt-32 xl:pt-36">
+        <div className="mx-auto max-w-7xl">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+            <div className={imageSpacerCol} aria-hidden />
+
+            <div
+              className={`${contentCol} flex flex-col justify-center lg:min-h-[calc(100vh-11rem)] lg:py-8`}
+            >
+              <motion.p
+                className="section-label mb-5 sm:mb-6"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease }}
+              >
+                Contact
+              </motion.p>
+
+              <motion.h1
+                className="font-display text-[clamp(2rem,5.5vw,3.25rem)] font-normal leading-[1.08] tracking-[-0.03em] text-foreground"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.06, ease }}
+              >
+                Let&apos;s build something worth shipping.
+              </motion.h1>
+
+              <motion.p
+                className="body-base mt-5 max-w-xl leading-[1.7] text-foreground/55 sm:body-lg"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.12, ease }}
+              >
+                Taking 1–2 new system builds per month. Tell me what you&apos;re working on — I&apos;ll
+                reply within 24 hours with honest thoughts, not a sales script.
+              </motion.p>
+
+              <motion.div
+                className="cta-row cta-row--align-start mt-8 w-full sm:mt-10"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.18, ease }}
+              >
+                <motion.button
+                  type="button"
+                  onClick={() => setDrawerOpen(true)}
+                  className="cta-primary"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Start a Project
+                  <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                </motion.button>
+                <motion.button
+                  type="button"
+                  onClick={() => setCallDrawerOpen(true)}
+                  onMouseEnter={() => setShouldPreloadCal(true)}
+                  onFocus={() => setShouldPreloadCal(true)}
+                  onTouchStart={() => setShouldPreloadCal(true)}
+                  className="cta-secondary"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Book a Call
+                  <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                </motion.button>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Details — same column width as hero for alignment */}
+      <section className="relative z-10 px-5 pb-24 sm:px-8 md:px-16 md:pb-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
+            <div className={imageSpacerCol} aria-hidden />
+
+            <div className={contentCol}>
+              <motion.div
+                className="border-t border-white/10 py-10 sm:py-12"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, ease }}
+              >
+                <p className="section-label mb-4">Email</p>
+                <div className="flex flex-wrap items-end gap-3 sm:gap-4">
+                  <a
+                    href="mailto:hello@olivebishop.com"
+                    className="font-display text-[clamp(1.5rem,4vw,2.75rem)] leading-none tracking-[-0.03em] text-foreground transition-opacity hover:opacity-80"
+                  >
+                    hello@olivebishop.com
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="mb-1 inline-flex items-center gap-1.5 text-[0.8125rem] text-foreground/40 transition-colors hover:text-foreground"
+                    aria-label="Copy email address"
+                  >
+                    <HugeiconsCopy01 className="h-3.5 w-3.5" />
+                    {copied ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="grid gap-8 border-t border-white/10 py-10 sm:grid-cols-2 sm:gap-12 sm:py-12"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease }}
+              >
+                <div>
+                  <p className="section-label mb-2">Based in</p>
+                  <p className="text-lg font-medium tracking-[-0.02em] text-foreground sm:text-xl">
+                    Nairobi, Kenya
+                  </p>
+                  <p className="mt-1.5 text-sm text-foreground/40">EAT (UTC+3)</p>
+                </div>
+                <div>
+                  <p className="section-label mb-2">Working with</p>
+                  <p className="text-sm leading-relaxed text-foreground/50">
+                    Founders and teams across Africa, the US, and Europe — async-friendly, flexible
+                    on call times.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.nav
+                className="flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-10 sm:pt-12"
+                aria-label="Social links"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease }}
+              >
+                {socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1 text-sm text-foreground/45 transition-colors hover:text-foreground"
+                  >
+                    {social.name}
+                    <HugeiconsArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </a>
+                ))}
+              </motion.nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <span className="sr-only">Do hello before you go — contact page portrait</span>
+
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
 
-      {/* Call Drawer */}
       <AnimatePresence>
         <CalBookingDrawer isOpen={callDrawerOpen} onClose={() => setCallDrawerOpen(false)} />
       </AnimatePresence>
 
-      {/* Cal preloader: warm iframe before drawer opens */}
       <CalBookingPreload enabled={shouldPreloadCal && !callDrawerOpen} />
     </div>
   );

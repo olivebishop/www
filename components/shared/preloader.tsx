@@ -1,40 +1,65 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const greetings = ['Jambo,', 'Holla,', 'Bonjour,', 'Nǐ hǎo'];
+const PRELOADER_SEEN_KEY = 'olivebishop-portfolio-preloader-seen';
+
+function subscribePreloader() {
+  return () => {};
+}
+
+function getPreloaderSnapshot() {
+  try {
+    return !localStorage.getItem(PRELOADER_SEEN_KEY);
+  } catch {
+    return false;
+  }
+}
+
+function getPreloaderServerSnapshot() {
+  return false;
+}
 
 export default function Preloader() {
-  const [isLoading, setIsLoading] = useState(true);
+  const shouldShow = useSyncExternalStore(
+    subscribePreloader,
+    getPreloaderSnapshot,
+    getPreloaderServerSnapshot,
+  );
+  const [finished, setFinished] = useState(false);
   const [animationPhase, setAnimationPhase] = useState<'initial' | 'in' | 'out' | 'hide'>('initial');
 
+  const isLoading = shouldShow && !finished;
+
   useEffect(() => {
-    // Prevent body scroll during preloader
+    if (!shouldShow) return;
+
     document.body.style.overflowY = 'hidden';
 
-    // Phase 1: Show container immediately
     const timer0 = setTimeout(() => {
       setAnimationPhase('in');
     }, 0);
 
-    // Phase 2: Enable scroll earlier for better perceived performance
     const timer1 = setTimeout(() => {
       document.body.style.overflowY = 'scroll';
     }, 1500);
 
-    // Phase 3: Start text out animation
     const timer2 = setTimeout(() => {
       setAnimationPhase('out');
     }, 2000);
 
-    // Phase 4: Hide preloader (collapse)
     const timer3 = setTimeout(() => {
       setAnimationPhase('hide');
     }, 2400);
 
-    // Phase 5: Remove from DOM - faster total time (3.5s vs 4.5s)
     const timer4 = setTimeout(() => {
-      setIsLoading(false);
+      try {
+        localStorage.setItem(PRELOADER_SEEN_KEY, '1');
+      } catch {
+        // ignore storage errors
+      }
+      setFinished(true);
     }, 3500);
 
     return () => {
@@ -45,7 +70,7 @@ export default function Preloader() {
       clearTimeout(timer4);
       document.body.style.overflowY = '';
     };
-  }, []);
+  }, [shouldShow]);
 
   return (
     <AnimatePresence mode="wait">
