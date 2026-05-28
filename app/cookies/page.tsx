@@ -2,34 +2,15 @@ import React from 'react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import CookiesPolicy from "@/components/shared/cookies"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Cookie Policy - Olive Bishop",
-  description: "Learn about how Olive Bishop uses cookies and similar technologies on our website.",
-  openGraph: {
-    title: "Cookie Policy - Olive Bishop",
-    description: "Learn about how Olive Bishop uses cookies and similar technologies on our website.",
-    url: "https://olivebishop.com/cookies",
-    siteName: "Olive Bishop",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Cookie Policy - Olive Bishop",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Cookie Policy - Olive Bishop",
-    description: "Learn about how Olive Bishop uses cookies and similar technologies on our website.",
-    images: ["/opengraph-image.png"],
-    creator: "@olivebishop_dev",
-  },
-}
+  description:
+    "Learn about how Olive Bishop uses cookies and similar technologies on our website.",
+  path: "/cookies",
+  imageAlt: "Cookie Policy - Olive Bishop",
+})
 
 function page() {
   return (

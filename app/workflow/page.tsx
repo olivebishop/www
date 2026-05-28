@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
 import { Workflow } from "@/components/shared/workflow";
-import { seo } from "@/lib/seo";
+import { buildPageMetadata, seo } from "@/lib/seo";
 
-const fullTitle = `${seo.workflowTitle} | ${seo.brand}`;
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: seo.workflowTitle,
   description: seo.workflowDescription,
-  alternates: {
-    canonical: "/workflow",
-  },
-  openGraph: {
-    title: fullTitle,
-    description: seo.workflowDescription,
-    url: "/workflow",
-  },
-  twitter: {
-    title: fullTitle,
-    description: seo.workflowDescription,
-  },
-};
+  path: "/workflow",
+});
 
-export default function Page() {
+export default function WorkflowPage() {
   return <Workflow />;
 }

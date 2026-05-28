@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
 import { Work } from "@/components/shared/work";
-import { seo } from "@/lib/seo";
+import { buildPageMetadata, seo } from "@/lib/seo";
 
-const fullTitle = `${seo.workTitle} | ${seo.brand}`;
-
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: seo.workTitle,
   description: seo.workDescription,
-  alternates: {
-    canonical: "/work",
-  },
-  openGraph: {
-    title: fullTitle,
-    description: seo.workDescription,
-    url: "/work",
-  },
-  twitter: {
-    title: fullTitle,
-    description: seo.workDescription,
-  },
-};
+  path: "/work",
+});
 
-export default function Page() {
+export default function WorkPage() {
   return <Work />;
 }

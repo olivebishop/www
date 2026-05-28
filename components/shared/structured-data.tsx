@@ -1,9 +1,25 @@
-import { seo, siteUrl } from "@/lib/seo";
+import { geoEntity as entity, geoLocation as location, geoServiceAreas as areas } from "@/lib/geo";
+import { getOgImageUrl, seo, siteUrl } from "@/lib/seo";
 
 export function StructuredData() {
   const personId = `${siteUrl}/#person`;
   const websiteId = `${siteUrl}/#website`;
   const serviceId = `${siteUrl}/#professional-service`;
+  const profilePageId = `${siteUrl}/about#profilepage`;
+  const homePageId = `${siteUrl}/#webpage`;
+
+  const postalAddress = {
+    "@type": "PostalAddress" as const,
+    addressCountry: location.countryCode,
+    addressLocality: location.locality,
+    addressRegion: location.region,
+  };
+
+  const areaServed = areas.map((name) => ({
+    "@type":
+      name === "Europe" || name === "Africa" ? ("AdministrativeArea" as const) : ("Country" as const),
+    name,
+  }));
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -16,6 +32,7 @@ export function StructuredData() {
         description: seo.defaultDescription,
         inLanguage: "en-US",
         publisher: { "@id": personId },
+        about: { "@id": personId },
         potentialAction: {
           "@type": "SearchAction",
           target: `${siteUrl}/work?q={search_term_string}`,
@@ -24,15 +41,56 @@ export function StructuredData() {
       },
 
       {
+        "@type": "WebPage",
+        "@id": homePageId,
+        url: siteUrl,
+        name: seo.defaultTitle,
+        description: seo.defaultDescription,
+        isPartOf: { "@id": websiteId },
+        about: { "@id": personId },
+        inLanguage: "en-US",
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: getOgImageUrl(),
+        },
+      },
+
+      {
+        "@type": "ProfilePage",
+        "@id": profilePageId,
+        url: `${siteUrl}/about`,
+        name: seo.aboutTitle,
+        description: seo.aboutDescription,
+        mainEntity: { "@id": personId },
+        isPartOf: { "@id": websiteId },
+        inLanguage: "en-US",
+      },
+
+      {
         "@type": "Person",
         "@id": personId,
         name: seo.brand,
         url: siteUrl,
-        image: `${siteUrl}/opengraph-image.png`,
+        image: getOgImageUrl(),
+        email: `mailto:${entity.contactEmail}`,
         jobTitle: "Freelance Software Engineer & Next.js Developer",
         worksFor: { "@type": "Organization", name: "Self-employed (Freelance)" },
         alumniOf: { "@type": "Organization", name: "Crow Studios" },
-        nationality: { "@type": "Country", name: "Kenya" },
+        nationality: { "@type": "Country", name: location.country },
+        homeLocation: {
+          "@type": "Place",
+          name: `${location.locality}, ${location.country}`,
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: location.latitude,
+            longitude: location.longitude,
+          },
+          address: postalAddress,
+        },
+        workLocation: {
+          "@type": "Place",
+          name: "Remote — worldwide",
+        },
         sameAs: [
           "https://github.com/olivebishop",
           "https://www.instagram.com/rhymer_ke/",
@@ -57,7 +115,7 @@ export function StructuredData() {
           "REST APIs",
           "Headless CMS",
         ],
-        description: seo.aboutDescription,
+        description: entity.summary,
       },
 
       {
@@ -66,7 +124,14 @@ export function StructuredData() {
         name: `${seo.brand} — Freelance Web Development`,
         url: `${siteUrl}/contact`,
         provider: { "@id": personId },
-        areaServed: { "@type": "GeoShape", name: "Worldwide" },
+        areaServed,
+        availableLanguage: ["English"],
+        address: postalAddress,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: location.latitude,
+          longitude: location.longitude,
+        },
         serviceType: [
           "Custom web application development",
           "Next.js & React development",
@@ -115,13 +180,30 @@ export function StructuredData() {
 
       {
         "@type": "FAQPage",
+        "@id": `${siteUrl}/#faq`,
         mainEntity: [
+          {
+            "@type": "Question",
+            name: "Who is Olive Bishop?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: entity.summary,
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Where is Olive Bishop based?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: `Olive Bishop is based in ${entity.baseLocation} and works remotely with clients worldwide, with strong overlap for US and European time zones.`,
+            },
+          },
           {
             "@type": "Question",
             name: "What technologies does Olive Bishop use?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Olive builds with Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, Supabase, and deploys to Cloudflare and AWS. Motion and accessibility are priorities on every project.",
+              text: `Olive builds with ${entity.primaryStack}. Motion and accessibility are priorities on every project.`,
             },
           },
           {
@@ -137,7 +219,7 @@ export function StructuredData() {
             name: "Does Olive work with international clients?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Olive is based in Kenya and works remotely with startups and businesses across the US, Europe, Middle East, and Africa. Communication is async-friendly with overlap hours available.",
+              text: `Yes. Olive is based in ${location.country} and works remotely with startups and businesses across ${areas.slice(0, 5).join(", ")}, and more. Communication is async-friendly with overlap hours available.`,
             },
           },
           {
@@ -145,7 +227,15 @@ export function StructuredData() {
             name: "What kind of projects does Olive Bishop take on?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Olive specializes in web applications, SaaS platforms, business websites, and startup MVPs. Past work includes Event Parlour (events SaaS), Brinex Tech, Navejo (bookmark workspace), and personal portfolio sites.",
+              text: `Olive specializes in web applications, SaaS platforms, business websites, and startup MVPs. Notable work includes ${entity.notableWork}.`,
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How do I hire Olive Bishop for a web project?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: `Email ${entity.contactEmail} or use the contact form at ${siteUrl}/contact to share your product, timeline, and budget. Olive typically takes 1–2 new client projects per month.`,
             },
           },
         ],

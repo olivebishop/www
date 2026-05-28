@@ -1,6 +1,18 @@
-/** Base site copy for SEO — single place to keep titles/descriptions aligned. */
+/** Base site copy for SEO & GEO — titles, social cards, geography, and AI entity signals. */
+
+import { geoKeywords, getGeoMetadataExtras } from "@/lib/geo";
+
+import type { Metadata } from "next";
 
 const DEFAULT_SITE_URL = "https://olivebishop.com";
+
+/** Served from `app/opengraph-image.png` (also used as `app/twitter-image.png`). */
+export const OG_IMAGE_PATH = "/opengraph-image.png";
+
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
+
+export const TWITTER_HANDLE = "@olivebishop_dev" as const;
 
 /** Safe origin for metadata, JSON-LD, and loaders. Malformed env (spaces, no scheme) must not crash the Worker. */
 function resolveSiteUrl(): string {
@@ -54,3 +66,105 @@ export const seo = {
   feedbackDescription:
     "Read verified Google reviews from Olive Bishop's clients. Real ratings, honest feedback, and social proof from businesses who hired a Next.js developer.",
 } as const;
+
+const defaultOgImageAlt = `${seo.brand} — Next.js and React developer for hire`;
+
+/** Absolute OG/Twitter image URL — required for reliable X (Twitter) card previews. */
+export function getOgImageUrl(): string {
+  return `${siteUrl}${OG_IMAGE_PATH}`;
+}
+
+export function getDefaultOgImage(alt: string = defaultOgImageAlt) {
+  const absoluteUrl = getOgImageUrl();
+  return {
+    url: absoluteUrl,
+    secureUrl: absoluteUrl,
+    width: OG_WIDTH,
+    height: OG_HEIGHT,
+    alt,
+    type: "image/png" as const,
+  };
+}
+
+/** Shared Open Graph + Twitter/X metadata so every route ships a large image card. */
+export function buildPageMetadata(options: {
+  title: string;
+  description: string;
+  path: string;
+  imageAlt?: string;
+}): Metadata {
+  const { title, description, path, imageAlt } = options;
+  const fullTitle = title.includes(seo.brand) ? title : `${title} | ${seo.brand}`;
+  const ogImage = getDefaultOgImage(imageAlt);
+  const canonicalPath = path === "/" ? "/" : path.startsWith("/") ? path : `/${path}`;
+  const pageUrl = canonicalPath === "/" ? siteUrl : `${siteUrl}${canonicalPath}`;
+
+  return {
+    title,
+    description,
+    keywords: [...geoKeywords],
+    ...getGeoMetadataExtras(),
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: pageUrl,
+      siteName: `${seo.brand} — Web development`,
+      title: fullTitle,
+      description,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      creator: TWITTER_HANDLE,
+      site: TWITTER_HANDLE,
+      images: [
+        {
+          url: ogImage.url,
+          secureUrl: ogImage.secureUrl,
+          width: ogImage.width,
+          height: ogImage.height,
+          alt: ogImage.alt,
+          type: ogImage.type,
+        },
+      ],
+    },
+  };
+}
+
+/** Root layout defaults — same image contract as `buildPageMetadata`. */
+export function getRootSocialMetadata(): Pick<Metadata, "openGraph" | "twitter"> {
+  const ogImage = getDefaultOgImage();
+  return {
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: siteUrl,
+      siteName: `${seo.brand} — Web development`,
+      title: seo.defaultTitle,
+      description: seo.defaultDescription,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.defaultTitle,
+      description: seo.defaultDescription,
+      creator: TWITTER_HANDLE,
+      site: TWITTER_HANDLE,
+      images: [
+        {
+          url: ogImage.url,
+          secureUrl: ogImage.secureUrl,
+          width: ogImage.width,
+          height: ogImage.height,
+          alt: ogImage.alt,
+          type: ogImage.type,
+        },
+      ],
+    },
+  };
+}

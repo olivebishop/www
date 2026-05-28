@@ -10,7 +10,8 @@ import Footer from "@/components/shared/footer";
 import { StructuredData } from "@/components/shared/structured-data";
 import Preloader from "@/components/shared/preloader";
 import { Toaster } from "sonner";
-import { seo, siteUrl } from "@/lib/seo";
+import { geoKeywords, getGeoMetadataExtras } from "@/lib/geo";
+import { getRootSocialMetadata, seo, siteUrl } from "@/lib/seo";
 
 const geist = Geist({
   subsets: ['latin'],
@@ -61,7 +62,9 @@ export const metadata: Metadata = {
     "API-first web development",
     "remote web developer",
     "Kenya software engineer",
+    ...geoKeywords,
   ],
+  ...getGeoMetadataExtras(),
   authors: [{ name: "Olive Bishop" }],
   creator: "Olive Bishop",
   publisher: "Olive Bishop",
@@ -70,30 +73,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: `${seo.brand} — Web development`,
-    title: seo.defaultTitle,
-    description: seo.defaultDescription,
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: `${seo.brand} — Next.js and React developer for hire`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: seo.defaultTitle,
-    description: seo.defaultDescription,
-    creator: "@olivebishop_dev",
-    site: "@olivebishop_dev",
-    images: ["/opengraph-image.png"],
-  },
+  ...getRootSocialMetadata(),
   robots: {
     index: true,
     follow: true,
