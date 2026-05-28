@@ -411,7 +411,10 @@ export function About() {
                 className="flex flex-col items-center justify-center gap-2 border border-white/10 bg-[#0b0b0b] px-3 py-5 sm:py-6 hover:border-white/20 transition-colors"
               >
                 <tech.icon
-                  className={`h-7 w-7 sm:h-8 sm:w-8 text-foreground/80 ${tech.wide ? 'w-16 sm:w-20 h-auto' : ''}`}
+                  className={cn(
+                    'h-7 w-7 sm:h-8 sm:w-8 text-foreground/80',
+                    'wide' in tech && tech.wide && 'w-16 sm:w-20 h-auto',
+                  )}
                 />
                 <span className="text-[0.6875rem] sm:text-xs uppercase tracking-[0.08em] text-foreground/45 text-center">
                   {tech.name}
@@ -422,25 +425,34 @@ export function About() {
         </div>
       </section>
 
-      {/* Featured achievement */}
+      {/* Recognition — TanStack showcase (only external credential for now) */}
       <section className="px-5 sm:px-8 md:px-16 py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto">
+          <motion.div className="mb-8 sm:mb-10" {...fadeUp}>
+            <p className="section-label mb-3">Recognition</p>
+            <p className="body-sm text-foreground/50 max-w-md">
+              One official pick so far — production Event Parlour on the TanStack gallery.
+            </p>
+          </motion.div>
           <motion.a
-            href="https://tanstack.com/showcase/3c337dc8-cc31-40ee-adfc-413e9bdf041b"
+            href={TANSTACK_SHOWCASE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group block relative overflow-hidden border border-white/15 bg-[#0b0b0b] p-8 sm:p-10 md:p-12 hover:border-white/30 transition-colors duration-300"
             {...fadeUp}
+            transition={{ ...fadeUp.transition, delay: 0.06 }}
           >
-            <p className="section-label mb-4">Featured</p>
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-foreground max-w-2xl mb-4 group-hover:text-foreground transition-colors duration-300">
+            <span className="inline-flex items-center gap-2 mb-5 px-2.5 py-1 border border-white/20 bg-white/5 text-[10px] uppercase tracking-[0.12em] text-foreground/80 font-medium">
+              TanStack Showcase
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-foreground max-w-2xl mb-4">
               Event Parlour on the official TanStack Showcase
             </h3>
             <p className="body-base text-foreground/60 max-w-xl mb-6 leading-[1.7]">
               Production use case for TanStack Query and TanStack Table — real users, real data,
               real event operations.
             </p>
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:text-foreground transition-colors">
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
               View showcase entry
               <HugeiconsArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
