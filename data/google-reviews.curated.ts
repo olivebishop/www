@@ -18,7 +18,7 @@ export const curatedGoogleReviews: GoogleReviewsSummary = {
       id: "erick-muturi",
       authorName: "Erick Muturi",
       rating: 5,
-      text: "Best platform as far as hosting and ticketing of events is concerned. I highly recommend.",
+      text: "A designer and developer with user's in mind. Partnered with him to develop a tours and travel website and did a great job crafting unique user interface and experience. I highly recommend him.",
       relativeTimeDescription: "2 weeks ago",
       authorUrl: null,
       profilePhotoUrl:
