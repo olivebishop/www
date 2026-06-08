@@ -47,7 +47,7 @@ export const seo = {
 
   workTitle: "Portfolio — Web Apps, SaaS & Client Projects",
   workDescription:
-    "Real projects shipped for real businesses: Event Parlour (events SaaS), Brinex Tech, Navejo (bookmark workspace), and more. Next.js, React, TypeScript — see the code, the results, and the business impact.",
+    "Real projects shipped for real businesses: Palpluss (M-Pesa payment gateway), Event Parlour (events SaaS), Brinex Tech, Navejo (bookmark workspace), and more. Next.js, React, TypeScript — see the code, the results, and the business impact.",
 
   contactTitle: "Hire Olive Bishop — Book a Project or Consultation",
   contactDescription:

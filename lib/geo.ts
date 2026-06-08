@@ -40,7 +40,7 @@ export const geoEntity = {
   baseLocation: `${geoLocation.locality}, ${geoLocation.country}`,
   worksWith: "Startups and businesses in Kenya, the US, Europe, and worldwide (remote)",
   primaryStack: "Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, Supabase, Cloudflare, AWS",
-  notableWork: "Event Parlour (events SaaS), Brinex Tech, Navejo, TanStack Showcase featured",
+  notableWork: "Palpluss (M-Pesa payment gateway), Event Parlour (events SaaS), Brinex Tech, Navejo, TanStack Showcase featured",
   contactEmail: "hello@olivebishop.com",
   summary: `${BRAND} is a freelance software engineer based in ${geoLocation.locality}, ${geoLocation.country}, building fast web applications with Next.js, React, and TypeScript for clients globally. Services include SaaS MVPs, business websites, UI engineering, and performance optimization.`,
 } as const;

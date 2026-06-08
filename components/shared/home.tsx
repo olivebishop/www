@@ -19,6 +19,17 @@ interface HomeWorkItem {
 
 const homeSelectedWorks: HomeWorkItem[] = [
   {
+    name: 'Palpluss',
+    type: 'Client project',
+    image: '/images/palpuss.webp',
+    url: 'https://www.palpluss.com/',
+    headline: 'Marketing site for an M-Pesa payment gateway API.',
+    detail:
+      'Palpluss lets businesses integrate STK Push and B2C payouts via REST APIs and a Service Wallet prepay model — I rebuilt the landing for speed, SEO, and developer sign-ups.',
+    industry: 'Fintech / payment gateway',
+    live: 'palpluss.com',
+  },
+  {
     name: 'Irungu',
     type: 'Client project',
     image: '/images/irungu.jpeg',

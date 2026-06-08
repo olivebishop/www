@@ -27,6 +27,33 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: 7,
+    name: 'Palpluss',
+    image: '/images/palpuss.webp',
+    url: 'https://www.palpluss.com/',
+    type: 'Client project',
+    headline: 'Marketing site for an M-Pesa payment gateway API.',
+    description:
+      'Palpluss is an API-driven fintech that lets businesses integrate M-Pesa STK Push and B2C disbursements without Daraja configuration — I revamped the landing to explain the product and drive developer sign-ups.',
+    subtitle: 'Fintech / payment gateway',
+    tech: 'Next.js, GSAP, Tailwind CSS — SEO, geo metadata, Open Graph image, custom 404, and performance-first delivery.',
+    problem:
+      'Businesses struggle to add mobile money to apps without wrestling with Daraja setup, OAuth tokens, and callback URLs. Palpluss solves that with clean REST APIs and a Service Wallet model where teams prepay dedicated funds for transaction fees — but the marketing site had to communicate STK Push, bulk payouts, webhooks, and the console in seconds.',
+    systemArchitecture:
+      'Revamped the public landing in Next.js with Tailwind CSS and GSAP scroll motion. SEO, geo metadata, Open Graph assets, and a branded 404 support discoverability. The page mirrors the product: one API call triggers STK prompts, B2C disbursements run in bulk, and webhooks log payment events in real time via the developer console.',
+    keyFeatures: [
+      'M-Pesa STK Push & B2C API',
+      'Service Wallet prepay model',
+      'Bulk payouts & webhooks',
+      'Landing page revamp',
+      'SEO, geo & Open Graph',
+      'Custom 404 & GSAP motion',
+    ],
+    techStack: ['Next.js', 'GSAP', 'Tailwind CSS', 'SEO'],
+    businessImpact:
+      'A faster, clearer entry point that explains programmable M-Pesa integration and routes developers to the console to start building.',
+  },
+  {
     id: 6,
     name: 'Irungu',
     image: '/images/irungu.jpeg',

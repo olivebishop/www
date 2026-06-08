@@ -12,8 +12,18 @@ export const curatedGoogleReviews: GoogleReviewsSummary = {
   placeUrl:
     "https://www.google.com/maps/search/?api=1&query_place_id=ChIJC3ifDWbeoacRxE2W8alFokw",
   rating: 5,
-  userRatingsTotal: 3,
+  userRatingsTotal: 4,
   reviews: [
+    {
+      id: "bazarin-technologies",
+      authorName: "Bazarin Technologies",
+      rating: 5,
+      text: "Creative and exceptional in his work.",
+      relativeTimeDescription: "19 hours ago",
+      authorUrl: null,
+      profilePhotoUrl:
+        "https://lh3.googleusercontent.com/a-/ALV-UjXxOfN13hUgw8ZUg_pwy7TaAB_RcqYX10J1SX50KdK66pNJ9--6=s36-c-rp-mo-br100",
+    },
     {
       id: "erick-muturi",
       authorName: "Erick Muturi",
