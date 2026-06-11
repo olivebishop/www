@@ -130,7 +130,7 @@ const projects: Project[] = [
     id: 3,
     name: 'Navejo',
     image: '/images/navejo.png',
-    url: 'https://navejo.crowstudios.tech/',
+    url: 'https://navejo.vercel.app/',
     type: 'Product',
     headline: 'Bookmark workspace for designers and frontend teams.',
     description:
@@ -177,7 +177,7 @@ const projects: Project[] = [
     id: 4,
     name: 'Crow Studios',
     image: '/images/crow.png',
-    url: 'https://www.crowstudios.tech/',
+    url: 'https://crow-studios.vercel.app/',
     type: 'Agency',
     headline: 'Conversion-focused site for a tech agency brand.',
     description: 'A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.',

@@ -63,11 +63,11 @@ const homeSelectedWorks: HomeWorkItem[] = [
     name: 'Navejo',
     type: 'Product',
     image: '/images/navejo.png',
-    url: 'https://navejo.crowstudios.tech/',
+    url: 'https://navejo.vercel.app/',
     headline: 'Bookmark workspace for designers and frontend teams.',
     detail: 'Structured around smart organization and collaboration so teams can save, find, and share high-value resources faster.',
     industry: 'Productivity',
-    live: 'navejo.crowstudios.tech',
+    live: 'navejo.vercel.app',
   },
 ];
 
@@ -418,7 +418,7 @@ export default function Home() {
                 Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).
               </motion.p>
               <motion.a 
-                href="https://navejo.crowstudios.tech/" 
+                href="https://navejo.vercel.app/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors mt-2"
@@ -536,7 +536,7 @@ export default function Home() {
                 Built with Next.js, Tailwind CSS, and Motion for smooth animations.
               </motion.p>
               <motion.a 
-                href="https://www.crowstudios.tech/" 
+                href="https://crow-studios.vercel.app/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
