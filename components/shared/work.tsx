@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe2, Layers3, Radio } from 'lucide-react';
+import { Beaker, Globe2, Layers3, Radio } from 'lucide-react';
 import { HugeiconsArrowUpRight } from './icons';
 import ProjectDrawer from './project-drawer';
 
@@ -24,6 +24,88 @@ interface Project {
   techStack: string[];
   businessImpact: string;
 }
+
+interface ExplorationReaction {
+  author: string;
+  handle: string;
+  text: string;
+  avatarUrl: string;
+}
+
+interface Exploration {
+  id: number;
+  code: string;
+  name: string;
+  image: string;
+  url: string;
+  xUrl: string;
+  headline: string;
+  description: string;
+  intent: string;
+  techStack: string[];
+  reactions: ExplorationReaction[];
+}
+
+const explorations: Exploration[] = [
+  {
+    id: 1,
+    code: 'EXP·01',
+    name: 'Container',
+    image: '/images/container-homes.png',
+    url: 'https://container-homes.vercel.app/',
+    xUrl: 'https://x.com/olivebishop_dev/status/2064236832812945530',
+    headline: 'Modular living concept — motion-first marketing site.',
+    description:
+      'A speculative container-home brand exploring editorial layout, SVG diagram storytelling, and scroll-linked GSAP micro-animations — posted publicly on X for feedback.',
+    intent:
+      'No client brief — just a question: what would a premium modular-housing site feel like if factory timelines, terrain adaptability, and install flows were told through animated schematics instead of stock photos?',
+    techStack: ['Next.js', 'Tailwind CSS', 'GSAP'],
+    reactions: [
+      {
+        author: 'Blackie',
+        handle: '@blackie_360',
+        text: 'Smooth',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/2010648446818992128/V2Vj11v2_400x400.jpg',
+      },
+      {
+        author: 'Christal Riziki',
+        handle: '@Crissytech',
+        text: '👏🙌 Amazing 🤩',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/1995750640153165824/azITXmt5_400x400.jpg',
+      },
+      {
+        author: 'Hillary',
+        handle: '@nyakundi_66',
+        text: 'Nice one 🔥',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/2062648509170401280/nUBDckmP_400x400.jpg',
+      },
+      {
+        author: 'annuar',
+        handle: '@itsannuar',
+        text: 'This is dope🔥🔥🔥',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/1586629012901732356/D77h46Wh_400x400.jpg',
+      },
+      {
+        author: 'Lemar',
+        handle: '@prlemayian',
+        text: 'This is fire 🔥',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/1861070092504850432/o5f2PERf_400x400.jpg',
+      },
+      {
+        author: 'iamchris.base.eth',
+        handle: '@_ChrisOketch',
+        text: 'So sick bro!',
+        avatarUrl:
+          'https://pbs.twimg.com/profile_images/2062038913871499264/_-tCXfRs_400x400.jpg',
+      },
+    ],
+  },
+];
 
 const projects: Project[] = [
   {
@@ -216,6 +298,152 @@ function liveHost(url: string) {
   }
 }
 
+function ExplorationCard({ exploration, index }: { exploration: Exploration; index: number }) {
+  return (
+    <motion.article
+      className="group relative overflow-hidden border border-dashed border-white/20 bg-[#0a0a0a]"
+      {...fadeUp}
+      transition={{ ...fadeUp.transition, delay: index * 0.08 }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px',
+        }}
+        aria-hidden
+      />
+
+      <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4 sm:px-7">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex h-8 w-8 items-center justify-center border border-white/12 bg-white/[0.03] text-foreground/55">
+            <Beaker className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+          </span>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/35">
+              {exploration.code}
+            </p>
+            <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--button)]">Exploration</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <a
+            href={exploration.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 border border-white/15 bg-white/[0.03] px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:border-white/30 hover:text-foreground"
+          >
+            Live demo
+            <HugeiconsArrowUpRight className="h-3 w-3" />
+          </a>
+          <a
+            href={exploration.xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 border border-white/10 px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.1em] text-foreground/45 transition-colors hover:border-white/25 hover:text-foreground/75"
+          >
+            View on X
+            <HugeiconsArrowUpRight className="h-3 w-3" />
+          </a>
+        </div>
+      </div>
+
+      <div className="relative grid lg:grid-cols-12">
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#0b0b0b] lg:col-span-7 lg:aspect-auto lg:min-h-[22rem] lg:border-b-0 lg:border-r">
+          <Image
+            src={exploration.image}
+            alt={`${exploration.name} exploration screenshot`}
+            fill
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+            sizes="(max-width: 1024px) 100vw, 58vw"
+            loading="lazy"
+            quality={88}
+          />
+          <p className="absolute bottom-4 left-5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45 sm:left-7">
+            {liveHost(exploration.url)}
+          </p>
+        </div>
+
+        <div className="relative flex flex-col p-5 sm:p-7 lg:col-span-5 lg:min-h-[22rem]">
+          <h3 className="font-display text-2xl tracking-[-0.02em] text-foreground sm:text-[1.75rem]">
+            {exploration.name}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-foreground/60 sm:text-[0.9375rem]">
+            {exploration.headline}
+          </p>
+          <p className="mt-4 text-sm leading-[1.7] text-foreground/45">{exploration.description}</p>
+          <p className="mt-4 border-l-2 border-white/15 pl-4 text-sm italic leading-[1.7] text-foreground/40">
+            {exploration.intent}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {exploration.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="border border-dashed border-white/15 px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-foreground/45"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative border-t border-white/10 px-5 py-6 sm:px-7 sm:py-8">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-foreground/35">
+            <span className="relative flex h-1.5 w-1.5" aria-hidden>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--button)] opacity-40" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--button)]" />
+            </span>
+            Signals from X
+          </p>
+          <a
+            href={exploration.xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[0.6875rem] uppercase tracking-[0.1em] text-foreground/40 transition-colors hover:text-foreground/70"
+          >
+            View thread →
+          </a>
+        </div>
+
+        <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {exploration.reactions.map((reaction) => (
+            <li
+              key={`${reaction.handle}-${reaction.text}`}
+              className="flex gap-3 border border-white/[0.08] bg-white/[0.02] p-4"
+            >
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5">
+                <Image
+                  src={reaction.avatarUrl}
+                  alt={reaction.author}
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                  loading="lazy"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <span className="text-sm font-medium tracking-[-0.01em] text-foreground/85">
+                    {reaction.author}
+                  </span>
+                  <span className="text-[11px] text-foreground/30">{reaction.handle}</span>
+                </div>
+                <p className="mt-1.5 text-sm leading-snug text-foreground/65">&ldquo;{reaction.text}&rdquo;</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.article>
+  );
+}
+
 function WorkPortfolioSnapshot({ count }: { count: number }) {
   const countLabel = String(count).padStart(2, '0');
 
@@ -333,7 +561,7 @@ export function Work() {
               </h1>
               <p className="body-base mt-5 max-w-xl leading-[1.75] text-foreground/55 sm:body-lg">
                 Client sites, SaaS, and internal tools — each tied to a clear problem, a maintainable
-                stack, and measurable outcomes.
+                stack, and measurable outcomes. Scroll down for side explorations and motion labs.
               </p>
             </motion.div>
 
@@ -421,6 +649,53 @@ export function Work() {
               </a>
             </motion.article>
           ))}
+        </div>
+      </section>
+
+      {/* Explorations */}
+      <section className="relative overflow-hidden border-t border-white/10 bg-[#070707] px-5 py-14 sm:py-16 md:px-16 md:py-24">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.22]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -12deg,
+              transparent,
+              transparent 11px,
+              rgba(255,255,255,0.025) 11px,
+              rgba(255,255,255,0.025) 12px
+            )`,
+          }}
+          aria-hidden
+        />
+
+        <div className="relative mx-auto max-w-7xl">
+          <motion.div
+            className="mb-10 flex flex-col gap-6 sm:mb-12 lg:flex-row lg:items-end lg:justify-between"
+            {...fadeUp}
+          >
+            <div className="max-w-2xl">
+              <p className="section-label mb-4">Explorations</p>
+              <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-foreground">
+                Side builds &amp; motion labs
+              </h2>
+              <p className="body-base mt-4 max-w-xl leading-[1.75] text-foreground/50">
+                Personal experiments shipped in the open — no client brief, just curiosity, craft, and
+                feedback from the timeline.
+              </p>
+            </div>
+            <div className="flex shrink-0 items-center gap-3 border border-dashed border-white/15 bg-[#0a0a0a] px-4 py-3">
+              <Beaker className="h-4 w-4 text-foreground/40" strokeWidth={1.75} aria-hidden />
+              <p className="max-w-[10rem] text-[0.6875rem] uppercase leading-[1.45] tracking-[0.12em] text-foreground/40">
+                Pet projects · Posted for feedback
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="space-y-5">
+            {explorations.map((exploration, index) => (
+              <ExplorationCard key={exploration.id} exploration={exploration} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 
