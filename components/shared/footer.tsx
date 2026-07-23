@@ -33,19 +33,19 @@ export default function Footer() {
       <div className="px-5 sm:px-8 md:px-12 lg:px-16 py-6 md:py-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 mb-6">
           <nav className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-8 text-[0.9375rem] text-black tracking-[-0.01em]">
-            <Link href="/work" className="hover:text-foreground transition-colors">
+            <Link href="/work" className="hover:text-black transition-colors">
               <ScrambleText text="Work" duration={1000} delay={0} />
             </Link>
-            <Link href="/workflow" className="hover:text-foreground transition-colors">
+            <Link href="/workflow" className="hover:text-black transition-colors">
               <ScrambleText text="Workflow" duration={1000} delay={200} />
             </Link>
-            <Link href="/about" className="hover:text-foreground transition-colors">
+            <Link href="/about" className="hover:text-black transition-colors">
               <ScrambleText text="About" duration={1000} delay={400} />
             </Link>
-            <Link href="/bookmarks" className="hover:text-foreground transition-colors">
+            <Link href="/bookmarks" className="hover:text-black transition-colors">
               <ScrambleText text="Bookmarks" duration={1000} delay={500} />
             </Link>
-            <Link href="/contact" className="hover:text-foreground transition-colors">
+            <Link href="/contact" className="hover:text-black transition-colors">
               <ScrambleText text="Contact" duration={1000} delay={600} />
             </Link>
           </nav>
@@ -53,14 +53,14 @@ export default function Footer() {
           <div className="flex items-center gap-2.5">
             <a
               href="mailto:hello@olivebishop.com"
-              className="text-[0.8125rem] sm:text-sm md:text-[0.9375rem] text-black/80 hover:text-foreground transition-colors tracking-[-0.01em]"
+              className="text-[0.8125rem] sm:text-sm md:text-[0.9375rem] text-black/80 hover:text-black transition-colors tracking-[-0.01em]"
             >
               hello@olivebishop.com
             </a>
             <button
               type="button"
               onClick={handleCopy}
-              className="p-1 rounded border border-black/10 hover:border-foreground/30 hover:text-foreground transition-colors flex items-center justify-center"
+              className="p-1 rounded border border-black/10 hover:border-black/40 hover:text-black transition-colors flex items-center justify-center"
               aria-label="Copy email address"
             >
               <HugeiconsCopy01 className="w-4 h-4" />
@@ -105,17 +105,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-[0.9375rem]">
               <li>
-                <Link href="/privacy-policy" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/privacy-policy" className="text-black/70 hover:text-black transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/terms-of-service" className="text-black/70 hover:text-black transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/cookies" className="text-black/70 hover:text-black transition-colors">
                   Cookies
                 </Link>
               </li>
@@ -128,22 +128,22 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-[0.9375rem]">
               <li>
-                <Link href="/" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/" className="text-black/70 hover:text-black transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/contact" className="text-black/70 hover:text-black transition-colors">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/work" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/work" className="text-black/70 hover:text-black transition-colors">
                   Work
                 </Link>
               </li>
               <li>
-                <Link href="/bookmarks" className="text-black/70 hover:text-foreground transition-colors">
+                <Link href="/bookmarks" className="text-black/70 hover:text-black transition-colors">
                   Bookmarks
                 </Link>
               </li>
@@ -160,7 +160,7 @@ export default function Footer() {
                   href="https://www.instagram.com/rhymer_ke/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black/70 hover:text-foreground transition-colors"
+                  className="text-black/70 hover:text-black transition-colors"
                 >
                   Instagram
                 </a>
@@ -170,7 +170,7 @@ export default function Footer() {
                   href="https://x.com/olivebishop_dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black/70 hover:text-foreground transition-colors"
+                  className="text-black/70 hover:text-black transition-colors"
                 >
                   Twitter/X
                 </a>
@@ -180,7 +180,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/in/olivebishop/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black/70 hover:text-foreground transition-colors"
+                  className="text-black/70 hover:text-black transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -190,7 +190,7 @@ export default function Footer() {
                   href="https://github.com/olivebishop"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black/70 hover:text-foreground transition-colors"
+                  className="text-black/70 hover:text-black transition-colors"
                 >
                   GitHub
                 </a>

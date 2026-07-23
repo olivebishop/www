@@ -260,31 +260,58 @@ export function About() {
             About
           </motion.p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
-            {/* Portrait */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 lg:items-start">
+            {/* Portrait — cropped to upper half for a cleaner portfolio read */}
             <motion.div
-              className="lg:col-span-5 relative"
+              className="lg:col-span-5 relative lg:sticky lg:top-28"
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.05 }}
             >
-              <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:min-h-[32rem] overflow-hidden border border-white/10 bg-[#0b0b0b]">
-                <Image
-                  src="/images/hero.jpeg"
-                  alt="Olive Bishop"
-                  fill
-                  className="object-cover object-center"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  quality={90}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-              </div>
+              <figure className="relative">
+                <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-[#0b0b0b]">
+                  <Image
+                    src="/images/hero.jpeg"
+                    alt="Olive Bishop"
+                    fill
+                    className="object-cover object-top scale-[2] origin-top"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 42vw"
+                    quality={90}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/75 via-black/15 to-black/25"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10"
+                    aria-hidden
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/45 mb-1.5">
+                      Portrait
+                    </p>
+                    <p className="font-display text-xl sm:text-2xl tracking-[-0.03em] text-white">
+                      Olive Bishop
+                    </p>
+                    <p className="mt-1 text-sm text-white/55">
+                      Software engineer · Kenya
+                    </p>
+                  </figcaption>
+                </div>
+                <div
+                  className="mt-3 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.14em] text-foreground/35"
+                  aria-hidden
+                >
+                  <span>Based in Kenya</span>
+                  <span>Available remotely</span>
+                </div>
+              </figure>
             </motion.div>
 
             {/* Intro */}
-            <div className="lg:col-span-7 flex flex-col justify-center gap-8">
+            <div className="lg:col-span-7 flex flex-col justify-center gap-8 lg:min-h-[32rem]">
               <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
                 <h1 className="font-display text-[clamp(2rem,5.5vw,3.25rem)] font-normal leading-[1.08] tracking-[-0.03em] text-foreground mb-5 sm:mb-6">
                   Hey — I&apos;m Olive. I ship web products that{' '}
@@ -307,9 +334,14 @@ export function About() {
                   <span className="hidden sm:inline text-foreground/25" aria-hidden>
                     |
                   </span>
-                  <span>hello@olivebishop.com</span>
+                  <a
+                    href="mailto:hello@olivebishop.com"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    hello@olivebishop.com
+                  </a>
                 </div>
-                <div className="mt-8 pt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                   <div className="flex flex-wrap items-center gap-3">
                     {socialLinks.map((social) => (
                       <a
