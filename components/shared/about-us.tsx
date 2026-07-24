@@ -28,6 +28,9 @@ import {
 import ProjectDrawer from './project-drawer';
 import { cn } from '@/lib/utils';
 
+const PORTRAIT_GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' seed='1'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0.05 0.1 0.15 0.2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")";
+
 const techStack = [
   { icon: TeenyiconsNextjsSolid, name: 'Next.js' },
   { icon: LogosCloudflare, name: 'Cloudflare', wide: true },
@@ -268,9 +271,25 @@ export function About() {
               transition={{ ...fadeUp.transition, delay: 0.05 }}
             >
               <figure className="relative">
-                <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-[#0b0b0b]">
+                <div className="relative">
+                  {/* Soft blurred halo behind the frame */}
+                  <div
+                    className="absolute -inset-3 sm:-inset-4 pointer-events-none overflow-hidden opacity-35 blur-2xl"
+                    aria-hidden
+                  >
+                    <Image
+                      src="/images/hero.png"
+                      alt=""
+                      fill
+                      className="object-cover object-top scale-[1.35] brightness-[0.55] saturate-75"
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      quality={40}
+                    />
+                  </div>
+
+                  <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-[#0b0b0b]">
                   <Image
-                    src="/images/hero.jpeg"
+                    src="/images/hero.png"
                     alt="Olive Bishop"
                     fill
                     className="object-cover object-top scale-[2] origin-top"
@@ -280,9 +299,37 @@ export function About() {
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURITFBYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECAxEhMf/aAAwDAQACEQMRAD8Ao+ytrPW1qzLluTJSTamiY53BJA0D4iIlrodkW2f/2Q=="
                   />
+                  {/* Soft-blur everything below mid-frame so lower body stays out of focus */}
                   <div
-                    className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/75 via-black/15 to-black/25"
+                    className="absolute inset-0 pointer-events-none select-none"
                     aria-hidden
+                    style={{
+                      maskImage:
+                        'linear-gradient(to bottom, transparent 58%, black 78%)',
+                      WebkitMaskImage:
+                        'linear-gradient(to bottom, transparent 58%, black 78%)',
+                    }}
+                  >
+                    <Image
+                      src="/images/hero.png"
+                      alt=""
+                      fill
+                      className="object-cover object-top scale-[2] origin-top blur-2xl brightness-[0.65] saturate-50"
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      quality={60}
+                    />
+                  </div>
+                  <div
+                    className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/85 via-black/25 to-black/20"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-[0.07]"
+                    aria-hidden
+                    style={{
+                      backgroundImage: PORTRAIT_GRAIN,
+                      backgroundSize: '200px 200px',
+                    }}
                   />
                   <div
                     className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10"
@@ -299,6 +346,7 @@ export function About() {
                       Software engineer · Kenya
                     </p>
                   </figcaption>
+                </div>
                 </div>
                 <div
                   className="mt-3 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.14em] text-foreground/35"
