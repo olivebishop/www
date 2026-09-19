@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
@@ -12,6 +12,8 @@ interface Project {
   id: number;
   name: string;
   image: string;
+  width: number;
+  height: number;
   url: string;
   type: string;
   headline: string;
@@ -37,6 +39,8 @@ interface Exploration {
   code: string;
   name: string;
   image: string;
+  width: number;
+  height: number;
   url: string;
   xUrl: string;
   headline: string;
@@ -52,6 +56,8 @@ const explorations: Exploration[] = [
     code: 'EXP·01',
     name: 'Container',
     image: '/images/container-homes.png',
+    width: 309,
+    height: 1024,
     url: 'https://container-homes.vercel.app/',
     xUrl: 'https://x.com/olivebishop_dev/status/2064236832812945530',
     headline: 'Modular living concept — motion-first marketing site.',
@@ -109,9 +115,36 @@ const explorations: Exploration[] = [
 
 const projects: Project[] = [
   {
+    id: 1,
+    name: 'Event Parlour',
+    image: '/images/project2.png',
+    width: 1350,
+    height: 604,
+    url: 'https://eventparlour.com/',
+    type: 'Startup project',
+    headline: 'Unified events, ticketing, and speaker ops in one platform.',
+    description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
+    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
+    problem:
+      'Organizers juggled Luma, Google Forms, and separate accounts per community — no single workspace.',
+    systemArchitecture:
+      'Multi-tenant SaaS with workspace-based organization and serverless real-time infrastructure.',
+    keyFeatures: [
+      'Multi-org workspaces',
+      'Ticketing & registration',
+      'Call for speakers',
+      'Paystack payments',
+    ],
+    techStack: ['Next.js', 'Supabase', 'Drizzle', 'Resend', 'Paystack'],
+    businessImpact:
+      'In beta with strong reception — one account, many organizations, fewer tools.',
+  },
+  {
     id: 7,
     name: 'Palpluss',
     image: '/images/palpuss.webp',
+    width: 1334,
+    height: 618,
     url: 'https://www.palpluss.com/',
     type: 'Client project',
     headline: 'Marketing site for an M-Pesa payment gateway API.',
@@ -139,6 +172,8 @@ const projects: Project[] = [
     id: 6,
     name: 'Irungu',
     image: '/images/irungu.jpeg',
+    width: 997,
+    height: 522,
     url: 'https://gatambiairungu.com',
     type: 'Client project',
     headline: 'Premium portfolio and booking for a personal brand.',
@@ -165,6 +200,8 @@ const projects: Project[] = [
     id: 2,
     name: 'Brinex Tech',
     image: '/images/project1.png',
+    width: 1348,
+    height: 605,
     url: 'https://brinex-tech.com/',
     type: 'Freelance',
     headline: 'Lead-gen site for smart tech equipment and services.',
@@ -186,32 +223,11 @@ const projects: Project[] = [
       'Increased inquiries and visibility for smart tech equipment across a wider audience.',
   },
   {
-    id: 1,
-    name: 'Event Parlour',
-    image: '/images/project2.png',
-    url: 'https://eventparlour.com/',
-    type: 'Startup project',
-    headline: 'Unified events, ticketing, and speaker ops in one platform.',
-    description: 'Event and ticketing platform helping creators run digital and in-person experiences.',
-    tech: 'Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.',
-    problem:
-      'Organizers juggled Luma, Google Forms, and separate accounts per community — no single workspace.',
-    systemArchitecture:
-      'Multi-tenant SaaS with workspace-based organization and serverless real-time infrastructure.',
-    keyFeatures: [
-      'Multi-org workspaces',
-      'Ticketing & registration',
-      'Call for speakers',
-      'Paystack payments',
-    ],
-    techStack: ['Next.js', 'Supabase', 'Drizzle', 'Resend', 'Paystack'],
-    businessImpact:
-      'In beta with strong reception — one account, many organizations, fewer tools.',
-  },
-  {
     id: 3,
     name: 'Navejo',
     image: '/images/navejo.png',
+    width: 1343,
+    height: 596,
     url: 'https://navejo.vercel.app/',
     type: 'Product',
     headline: 'Bookmark workspace for designers and frontend teams.',
@@ -236,6 +252,8 @@ const projects: Project[] = [
     id: 5,
     name: 'Sol of African',
     image: '/images/sol.png',
+    width: 1352,
+    height: 559,
     url: 'https://www.thesolofafrican.com/',
     type: 'Redesign',
     headline: 'Cultural travel platform with modern booking flow.',
@@ -259,6 +277,8 @@ const projects: Project[] = [
     id: 4,
     name: 'Crow Studios',
     image: '/images/crow.png',
+    width: 1352,
+    height: 602,
     url: 'https://crow-studios.vercel.app/',
     type: 'Agency',
     headline: 'Conversion-focused site for a tech agency brand.',
@@ -296,6 +316,40 @@ function liveHost(url: string) {
   } catch {
     return url;
   }
+}
+
+const BLUR =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII=';
+
+function BrowserFrame({
+  live,
+  featured,
+  children,
+}: {
+  live: string;
+  featured?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className="overflow-hidden border-b border-white/10 bg-[#080808]">
+      <div
+        className={`flex items-center gap-3 border-b border-white/[0.07] bg-[#0c0c0c] ${
+          featured ? 'px-3.5 py-2.5 sm:px-5 sm:py-3' : 'px-3 py-2 sm:px-4 sm:py-2.5'
+        }`}
+      >
+        <div className="flex items-center gap-1.5" aria-hidden>
+          <span className="size-1.5 bg-white/25" />
+          <span className="size-1.5 bg-white/15" />
+          <span className="size-1.5 bg-white/10" />
+        </div>
+        <span className="min-w-0 flex-1 truncate text-center font-body text-[10px] tracking-[0.08em] text-white/30 sm:text-[11px]">
+          {live}
+        </span>
+        <HugeiconsArrowUpRight className="size-3.5 shrink-0 text-white/25 transition-colors duration-300 group-hover:text-white/70" />
+      </div>
+      <div className="relative bg-[#111]">{children}</div>
+    </div>
+  );
 }
 
 function ExplorationCard({ exploration, index }: { exploration: Exploration; index: number }) {
@@ -352,19 +406,17 @@ function ExplorationCard({ exploration, index }: { exploration: Exploration; ind
       </div>
 
       <div className="relative grid lg:grid-cols-12">
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#0b0b0b] lg:col-span-7 lg:aspect-auto lg:min-h-[22rem] lg:border-b-0 lg:border-r">
+        <div className="flex items-center justify-center border-b border-white/10 bg-[#0b0b0b] px-6 py-10 sm:px-10 sm:py-12 lg:col-span-7 lg:border-b-0 lg:border-r lg:py-14">
           <Image
             src={exploration.image}
             alt={`${exploration.name} exploration screenshot`}
-            fill
-            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
-            sizes="(max-width: 1024px) 100vw, 58vw"
+            width={exploration.width}
+            height={exploration.height}
+            className="h-auto w-full max-w-[200px] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:max-w-[240px] lg:max-w-[260px]"
+            sizes="260px"
             loading="lazy"
-            quality={88}
+            quality={75}
           />
-          <p className="absolute bottom-4 left-5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45 sm:left-7">
-            {liveHost(exploration.url)}
-          </p>
         </div>
 
         <div className="relative flex flex-col p-5 sm:p-7 lg:col-span-5 lg:min-h-[22rem]">
@@ -449,7 +501,7 @@ function WorkPortfolioSnapshot({ count }: { count: number }) {
 
   return (
     <motion.div
-      className="hidden w-full lg:col-span-5 lg:col-start-8 lg:block lg:mt-0 xl:col-span-4 xl:col-start-9"
+      className="mt-10 w-full lg:col-span-5 lg:col-start-8 lg:mt-0 xl:col-span-4 xl:col-start-9"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, delay: 0.1, ease }}
@@ -539,10 +591,10 @@ function WorkPortfolioSnapshot({ count }: { count: number }) {
 
 export function Work() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [featured, ...rest] = projects;
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
       <section className="px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 md:px-16 md:pb-12 md:pt-32 lg:pb-16 lg:pt-36">
         <div className="mx-auto max-w-7xl">
           <motion.p
@@ -570,85 +622,139 @@ export function Work() {
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="bg-[#050505] px-5 py-10 sm:px-8 sm:py-14 md:px-16 md:py-20">
-        <div className="mx-auto max-w-7xl space-y-4 sm:space-y-5">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.id}
-              className="group relative overflow-hidden border border-white/12 bg-[#080808] transition-colors hover:border-white/22"
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: index * 0.04 }}
+      <section className="bg-background px-5 pb-16 pt-4 sm:px-8 sm:pb-20 md:px-16 md:pb-24">
+        <div className="mx-auto max-w-7xl">
+          <motion.article
+            className="group border border-white/10 bg-[#0b0b0b] transition-colors duration-300 hover:border-white/22"
+            {...fadeUp}
+          >
+            <a
+              href={featured.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/30"
+              aria-label={`Open ${featured.name} live site`}
             >
-              <span
-                className="pointer-events-none absolute right-4 top-3 font-display text-[4.5rem] leading-none tracking-[-0.04em] text-white/[0.035] sm:right-6 sm:text-[5.5rem] select-none"
-                aria-hidden
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
+              <BrowserFrame live={liveHost(featured.url)} featured>
+                <Image
+                  src={featured.image}
+                  alt={`${featured.name} website`}
+                  width={featured.width}
+                  height={featured.height}
+                  className="block h-auto w-full"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1152px"
+                  priority
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL={BLUR}
+                />
+              </BrowserFrame>
 
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#0b0b0b] sm:aspect-[16/9] lg:grid lg:grid-cols-12 lg:gap-0">
-                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:col-span-7 lg:aspect-auto lg:min-h-[16rem]">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                      sizes="(max-width: 1024px) 100vw, 58vw"
-                      priority={index === 0}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      quality={88}
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#080808]/90" />
+              <div className="px-5 py-6 sm:px-7 sm:py-8 md:px-8">
+                <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">
+                  01 · {featured.type}
+                </p>
+                <h2 className="mt-2 font-display text-[1.55rem] leading-[1.15] tracking-[-0.02em] text-white sm:text-[1.9rem] md:text-[2.15rem]">
+                  {featured.name}
+                </h2>
+                <p className="mt-2 max-w-2xl text-[0.95rem] leading-relaxed text-white/60">
+                  {featured.headline}
+                </p>
+
+                <div className="mt-8 grid gap-6 border-t border-white/[0.08] pt-6 md:grid-cols-12">
+                  <div className="md:col-span-4">
+                    <p className="text-[0.625rem] uppercase tracking-[0.12em] text-white/35">Problem</p>
+                    <p className="mt-2 text-[0.9rem] leading-[1.65] text-white/70">{featured.problem}</p>
                   </div>
-
-                  <div className="relative z-[1] flex flex-col justify-between border-t border-white/10 p-5 sm:p-7 lg:col-span-5 lg:border-l lg:border-t-0 lg:min-h-[16rem]">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.14em] text-foreground/40">
-                        {project.type}
-                      </p>
-                      <h2 className="mt-2 font-display text-2xl tracking-[-0.02em] text-foreground sm:text-[1.75rem]">
-                        {project.name}
-                      </h2>
-                      <p className="mt-3 text-sm leading-relaxed text-foreground/55 sm:text-[0.9375rem]">
-                        {project.headline}
-                      </p>
-                    </div>
-
-                    <div className="mt-6 space-y-4">
-                      <p className="line-clamp-3 text-sm leading-[1.65] text-foreground/45">
-                        {project.problem}
-                      </p>
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div className="flex flex-wrap gap-1.5">
-                          {project.techStack.slice(0, 4).map((tech) => (
-                            <span
-                              key={tech}
-                              className="border border-white/12 px-2 py-0.5 text-[0.625rem] uppercase tracking-[0.08em] text-foreground/45"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        <span className="inline-flex shrink-0 items-center gap-1 text-[0.8125rem] text-foreground/70 transition-colors group-hover:text-foreground">
-                          {liveHost(project.url)}
-                          <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
+                  <div className="md:col-span-4">
+                    <p className="text-[0.625rem] uppercase tracking-[0.12em] text-white/35">Impact</p>
+                    <p className="mt-2 text-[0.9rem] leading-[1.65] text-white/70">{featured.businessImpact}</p>
+                  </div>
+                  <div className="md:col-span-4">
+                    <p className="text-[0.625rem] uppercase tracking-[0.12em] text-white/35">Stack</p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {featured.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="border border-white/12 px-2 py-0.5 text-[0.625rem] uppercase tracking-[0.08em] text-white/50"
+                        >
+                          {tech}
                         </span>
-                      </div>
+                      ))}
                     </div>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-[0.875rem] text-foreground/75 transition-colors group-hover:text-foreground">
+                      {liveHost(featured.url)}
+                      <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </div>
-              </a>
-            </motion.article>
-          ))}
+              </div>
+            </a>
+          </motion.article>
+
+          <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {rest.map((project, index) => (
+              <motion.article
+                key={project.id}
+                className="group border border-white/10 bg-[#0b0b0b] transition-colors duration-300 hover:border-white/22"
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: index * 0.05 }}
+              >
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/30"
+                  aria-label={`Open ${project.name} live site`}
+                >
+                  <BrowserFrame live={liveHost(project.url)}>
+                    <Image
+                      src={project.image}
+                      alt={`${project.name} website`}
+                      width={project.width}
+                      height={project.height}
+                      className="block h-auto w-full"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={75}
+                      placeholder="blur"
+                      blurDataURL={BLUR}
+                    />
+                  </BrowserFrame>
+
+                  <div className="flex flex-1 flex-col justify-between gap-5 px-5 py-5 sm:px-6 sm:py-6">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">
+                        {String(index + 2).padStart(2, '0')} · {project.type}
+                      </p>
+                      <h2 className="mt-2 font-display text-[1.35rem] leading-[1.2] tracking-[-0.02em] text-white sm:text-[1.5rem]">
+                        {project.name}
+                      </h2>
+                      <p className="mt-2 text-[0.9rem] leading-[1.65] text-white/65">{project.headline}</p>
+                      <p className="mt-3 line-clamp-2 text-[0.8125rem] leading-[1.65] text-white/40">
+                        {project.problem}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap items-end justify-between gap-3 border-t border-white/[0.07] pt-4">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.techStack.slice(0, 3).map((tech) => (
+                          <span
+                            key={tech}
+                            className="border border-white/12 px-2 py-0.5 text-[0.625rem] uppercase tracking-[0.08em] text-white/40"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="inline-flex shrink-0 items-center gap-1.5 text-[0.8125rem] text-foreground/70 transition-colors group-hover:text-foreground">
+                        {liveHost(project.url)}
+                        <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -699,29 +805,38 @@ export function Work() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-5 py-20 md:px-16 md:py-28">
-        <motion.div className="mx-auto max-w-3xl text-center" {...fadeUp}>
-          <h2 className="section-title mb-6">Building something similar?</h2>
-          <p className="body-lg mx-auto mb-10 max-w-lg text-foreground/55">
-            Tell me about the product, users, and timeline. I&apos;ll reply within 24 hours with an
-            honest take on fit and approach.
-          </p>
-          <div className="cta-row">
-            <motion.button
-              type="button"
-              onClick={() => setDrawerOpen(true)}
-              className="cta-primary"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start a Project
-              <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
-            </motion.button>
-            <Link href="/workflow" className="cta-secondary">
-              See how I work
-              <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
-            </Link>
+      <section className="px-5 pb-20 pt-4 sm:px-8 md:px-16 md:pb-28">
+        <motion.div
+          className="mx-auto max-w-7xl border border-white/10 bg-[#0b0b0b] px-5 py-10 sm:px-10 sm:py-14 md:px-14"
+          {...fadeUp}
+        >
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-xl">
+              <p className="section-label mb-3">Next</p>
+              <h2 className="font-display text-[clamp(1.6rem,3.2vw,2.15rem)] leading-[1.15] tracking-[-0.03em] text-foreground">
+                Building something similar?
+              </h2>
+              <p className="body-base mt-3 text-foreground/50">
+                Tell me about the product, users, and timeline. I&apos;ll reply within 24 hours with an
+                honest take on fit and approach.
+              </p>
+            </div>
+            <div className="cta-row lg:shrink-0">
+              <motion.button
+                type="button"
+                onClick={() => setDrawerOpen(true)}
+                className="cta-primary cta-hero"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Start a Project
+                <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              </motion.button>
+              <Link href="/workflow" className="cta-secondary cta-hero">
+                See how I work
+                <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </div>
           </div>
         </motion.div>
       </section>

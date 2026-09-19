@@ -1,15 +1,25 @@
 'use client';
-import { useState } from 'react';
+
+import { useState, type ReactNode } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import Brands from './brands';
 import ProjectDrawer from './project-drawer';
-import { HugeiconsGithub, HugeiconsInstagram, HugeiconsNewTwitter, HugeiconsLinkedin02, HugeiconsArrowUpRight } from './icons';
+import {
+  HugeiconsGithub,
+  HugeiconsInstagram,
+  HugeiconsNewTwitter,
+  HugeiconsLinkedin02,
+  HugeiconsArrowUpRight,
+} from './icons';
 
 interface HomeWorkItem {
   name: string;
   type: string;
   image: string;
+  width: number;
+  height: number;
   url: string;
   headline: string;
   detail: string;
@@ -19,9 +29,24 @@ interface HomeWorkItem {
 
 const homeSelectedWorks: HomeWorkItem[] = [
   {
+    name: 'Event Parlour',
+    type: 'Startup project',
+    image: '/images/project2.png',
+    width: 1350,
+    height: 604,
+    url: 'https://eventparlour.com/',
+    headline: 'Event platform unifying ticketing, speaker calls, and operations.',
+    detail:
+      'Created a streamlined organizer workflow that removes tool fragmentation and supports multi-organization collaboration.',
+    industry: 'Events SaaS',
+    live: 'eventparlour.com',
+  },
+  {
     name: 'Palpluss',
     type: 'Client project',
     image: '/images/palpuss.webp',
+    width: 1334,
+    height: 618,
     url: 'https://www.palpluss.com/',
     headline: 'Marketing site for an M-Pesa payment gateway API.',
     detail:
@@ -33,9 +58,12 @@ const homeSelectedWorks: HomeWorkItem[] = [
     name: 'Irungu',
     type: 'Client project',
     image: '/images/irungu.jpeg',
+    width: 997,
+    height: 522,
     url: 'https://gatambiairungu.com',
     headline: 'Premium portfolio and booking experience for a personal brand.',
-    detail: 'Designed to build trust fast, reduce booking friction, and convert profile visits into meetings through performance-first UX.',
+    detail:
+      'Designed to build trust fast, reduce booking friction, and convert profile visits into meetings through performance-first UX.',
     industry: 'Personal brand',
     live: 'gatambiairungu.com',
   },
@@ -43,29 +71,25 @@ const homeSelectedWorks: HomeWorkItem[] = [
     name: 'Brinex Tech',
     type: 'Business website',
     image: '/images/project1.png',
+    width: 1348,
+    height: 605,
     url: 'https://brinex-tech.com/',
     headline: 'Business website built to generate consistent qualified leads.',
-    detail: 'Improved visibility and credibility with a clear offer structure, stronger SEO foundations, and conversion-focused sections.',
+    detail:
+      'Improved visibility and credibility with a clear offer structure, stronger SEO foundations, and conversion-focused sections.',
     industry: 'Smart tech',
     live: 'brinex-tech.com',
-  },
-  {
-    name: 'Event Parlour',
-    type: 'Startup project',
-    image: '/images/project2.png',
-    url: 'https://eventparlour.com/',
-    headline: 'Event platform unifying ticketing, speaker calls, and operations.',
-    detail: 'Created a streamlined organizer workflow that removes tool fragmentation and supports multi-organization collaboration.',
-    industry: 'Events SaaS',
-    live: 'eventparlour.com',
   },
   {
     name: 'Navejo',
     type: 'Product',
     image: '/images/navejo.png',
+    width: 1343,
+    height: 596,
     url: 'https://navejo.vercel.app/',
     headline: 'Bookmark workspace for designers and frontend teams.',
-    detail: 'Structured around smart organization and collaboration so teams can save, find, and share high-value resources faster.',
+    detail:
+      'Structured around smart organization and collaboration so teams can save, find, and share high-value resources faster.',
     industry: 'Productivity',
     live: 'navejo.vercel.app',
   },
@@ -78,8 +102,71 @@ const socialLinks = [
   { href: 'https://www.linkedin.com/in/olivebishop/', icon: HugeiconsLinkedin02, label: 'LinkedIn' },
 ] as const;
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const BLUR =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII=';
+
+function BrowserFrame({
+  live,
+  featured,
+  children,
+}: {
+  live: string;
+  featured?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className="overflow-hidden border-b border-white/10 bg-[#080808]">
+      <div
+        className={`flex items-center gap-3 border-b border-white/[0.07] bg-[#0c0c0c] ${
+          featured ? 'px-3.5 py-2.5 sm:px-5 sm:py-3' : 'px-3 py-2 sm:px-4 sm:py-2.5'
+        }`}
+      >
+        <div className="flex items-center gap-1.5" aria-hidden>
+          <span className="size-1.5 bg-white/25" />
+          <span className="size-1.5 bg-white/15" />
+          <span className="size-1.5 bg-white/10" />
+        </div>
+        <span className="min-w-0 flex-1 truncate text-center font-body text-[10px] tracking-[0.08em] text-white/30 sm:text-[11px]">
+          {live}
+        </span>
+        <HugeiconsArrowUpRight className="size-3.5 shrink-0 text-white/25 transition-colors duration-300 group-hover:text-white/70" />
+      </div>
+      <div className="relative bg-[#111]">{children}</div>
+    </div>
+  );
+}
+
+function WorkShot({
+  item,
+  priority,
+  sizes,
+}: {
+  item: HomeWorkItem;
+  priority?: boolean;
+  sizes: string;
+}) {
+  return (
+    <Image
+      src={item.image}
+      alt={`${item.name} website — ${item.headline}`}
+      width={item.width}
+      height={item.height}
+      className="block h-auto w-full"
+      sizes={sizes}
+      priority={priority}
+      loading={priority ? 'eager' : 'lazy'}
+      quality={75}
+      placeholder="blur"
+      blurDataURL={BLUR}
+    />
+  );
+}
+
 export default function Home() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [featured, ...rest] = homeSelectedWorks;
 
   return (
     <div className="min-h-screen">
@@ -138,632 +225,168 @@ export default function Home() {
 
       <Brands id="home-brands" />
 
-      {/* Project Drawer */}
       <AnimatePresence>
         <ProjectDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </AnimatePresence>
 
-      {/* Selected Works Section */}
-      <section id="work" className="pt-10 sm:pt-12 pb-24 sm:pb-28 md:pb-32 bg-background">
-        <motion.div
-          className="mb-10 flex flex-col gap-6 px-5 sm:mb-14 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:px-8 md:px-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div>
-            <p className="section-label mb-2">Selected works</p>
-            <p className="mt-3 body-sm max-w-sm text-foreground/50">
-              A snapshot of products and collaborations I&apos;ve been building recently.
-            </p>
-          </div>
-          <motion.a
-            href="/work"
-            className="cta-secondary cta-hero w-full justify-center sm:inline-flex sm:w-auto sm:shrink-0"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+      <section id="work" className="scroll-mt-24 bg-background px-5 pb-24 pt-14 sm:px-8 sm:pb-28 sm:pt-16 md:px-16 md:pb-32 md:pt-20">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            className="mb-10 flex flex-col gap-6 sm:mb-12 sm:flex-row sm:items-end sm:justify-between"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease }}
           >
-            View all work
-            <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
-          </motion.a>
-        </motion.div>
+            <div className="max-w-lg">
+              <p className="section-label mb-3">Selected works</p>
+              <h2 className="font-display text-[clamp(1.75rem,3.6vw,2.35rem)] font-normal leading-[1.15] tracking-[-0.03em] text-foreground">
+                Recent products and collaborations.
+              </h2>
+              <p className="body-sm mt-3 max-w-sm text-foreground/50">
+                A snapshot of products and collaborations I&apos;ve been building recently.
+              </p>
+            </div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link href="/work" className="cta-secondary cta-hero w-full justify-center sm:w-auto">
+                View all work
+                <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
 
-        <div className="space-y-10 sm:space-y-12 md:space-y-14 px-5 sm:px-8 md:px-16">
-          {homeSelectedWorks.map((item, index) => (
-            <motion.article
-              key={item.name}
-              className="border border-white/10 bg-[#0b0b0b] overflow-hidden"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.75, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+          <motion.article
+            className="group border border-white/10 bg-[#0b0b0b] transition-colors duration-300 hover:border-white/22"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <a
+              href={featured.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/30"
+              aria-label={`Open ${featured.name} live site`}
             >
-              <a href={item.url} target="_blank" rel="noopener noreferrer" className="block group">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-muted">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                    sizes="(max-width: 768px) 100vw, 90vw"
-                    priority={index === 0}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    quality={88}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+              <BrowserFrame live={featured.live} featured>
+                <WorkShot
+                  item={featured}
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1152px"
+                />
+              </BrowserFrame>
+
+              <div className="grid gap-6 px-5 py-6 sm:px-7 sm:py-7 md:grid-cols-12 md:items-start md:px-8 md:py-8">
+                <div className="md:col-span-5">
+                  <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">
+                    01 · {featured.type}
+                  </p>
+                  <h3 className="mt-2 font-display text-[1.45rem] leading-[1.2] tracking-[-0.02em] text-white sm:text-[1.75rem] md:text-[1.95rem]">
+                    {featured.name}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-white/60">{featured.headline}</p>
                 </div>
-
-                <div className="border-t border-white/10 px-5 sm:px-7 md:px-8 py-5 sm:py-6 md:py-7">
-                  <div className="grid gap-6 md:grid-cols-12 md:items-start">
-                    <div className="md:col-span-5">
-                      <h3 className="font-display text-[1.35rem] sm:text-[1.6rem] md:text-[1.9rem] leading-[1.2] tracking-[-0.02em] text-white">
-                        {item.name} — {item.headline}
-                      </h3>
-                    </div>
-
-                    <div className="md:col-span-5">
-                      <p className="text-[0.95rem] text-white/80 leading-[1.65]">{item.detail}</p>
-                    </div>
-
-                    <div className="md:col-span-2 md:text-right space-y-3">
-                      <div>
-                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Industry</p>
-                        <p className="mt-1 text-[0.875rem] text-white/80">{item.industry}</p>
-                      </div>
-                      <div>
-                        <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/40">Live site</p>
-                        <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-foreground/80">
-                          {item.live}
-                          <HugeiconsArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
+                <p className="text-[0.9375rem] leading-[1.7] text-white/70 md:col-span-5">{featured.detail}</p>
+                <div className="space-y-4 md:col-span-2 md:text-right">
+                  <div>
+                    <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/35">Industry</p>
+                    <p className="mt-1 text-[0.875rem] text-white/75">{featured.industry}</p>
+                  </div>
+                  <div>
+                    <p className="text-[0.625rem] uppercase tracking-[0.11em] text-white/35">Live site</p>
+                    <span className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] text-foreground/80">
+                      {featured.live}
+                      <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </div>
-              </a>
-            </motion.article>
-          ))}
-        </div>
+              </div>
+            </a>
+          </motion.article>
 
-        <motion.div
-          className="mt-14 w-full px-5 sm:mt-16 md:mt-20 sm:px-8 md:px-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.a
-            href="/work"
-            className="cta-primary cta-hero flex w-full max-w-full justify-center sm:mx-auto sm:w-auto sm:max-w-none"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            View all work
-            <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
-          </motion.a>
-        </motion.div>
-      </section>
+          <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {rest.map((item, index) => (
+              <motion.article
+                key={item.name}
+                className="group border border-white/10 bg-[#0b0b0b] transition-colors duration-300 hover:border-white/22"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.65, delay: index * 0.06, ease }}
+              >
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-foreground/30"
+                  aria-label={`Open ${item.name} live site`}
+                >
+                  <BrowserFrame live={item.live}>
+                    <WorkShot item={item} sizes="(max-width: 768px) 100vw, 50vw" />
+                  </BrowserFrame>
 
-      {/* Legacy Selected Works (disabled) */}
-      {false && (
-      <section className="py-24 sm:py-28 md:py-32 bg-background">
-        <motion.div 
-          className="px-5 sm:px-8 md:px-16 mb-10 sm:mb-14 flex items-baseline justify-between gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div>
-            <p className="section-label mb-2">
-              Selected works
-            </p>
-            <p className="mt-3 body-sm text-foreground/50 max-w-sm">
-              A snapshot of products and collaborations I&apos;ve been building recently.
-            </p>
+                  <div className="flex flex-1 flex-col justify-between gap-5 px-5 py-5 sm:px-6 sm:py-6">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">
+                        {String(index + 2).padStart(2, '0')} · {item.type}
+                      </p>
+                      <h3 className="mt-2 font-display text-[1.35rem] leading-[1.2] tracking-[-0.02em] text-white sm:text-[1.5rem]">
+                        {item.name}
+                      </h3>
+                      <p className="mt-2 text-[0.9rem] leading-[1.65] text-white/65">{item.headline}</p>
+                    </div>
+                    <div className="flex items-end justify-between gap-4 border-t border-white/[0.07] pt-4">
+                      <p className="text-[0.75rem] text-white/40">{item.industry}</p>
+                      <span className="inline-flex shrink-0 items-center gap-1.5 text-[0.8125rem] text-foreground/70 transition-colors group-hover:text-foreground">
+                        {item.live}
+                        <HugeiconsArrowUpRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </motion.article>
+            ))}
           </div>
-          <motion.a
-            href="/work"
-            className="hidden sm:inline-flex text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/50 hover:text-foreground transition-colors font-medium"
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View all work +
-          </motion.a>
-        </motion.div>
 
-        <div className="space-y-12 sm:space-y-16 md:space-y-20 px-5 sm:px-8 md:px-16">
-          {/* Project 1: Event Parlour */}
-          <motion.article 
-            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-            initial={{ opacity: 0, y: 50 }}
+          <motion.div
+            className="mt-16 border border-white/10 bg-[#0b0b0b] px-5 py-10 sm:mt-20 sm:px-10 sm:py-14 md:px-14"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.6, ease }}
           >
-            <motion.div 
-              className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                  <Image 
-                    src="/images/project2.png" 
-                    alt="Event Parlour" 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-xl">
+                <p className="section-label mb-3">Next</p>
+                <h2 className="font-display text-[clamp(1.6rem,3.2vw,2.15rem)] leading-[1.15] tracking-[-0.03em] text-foreground">
+                  Building something similar?
+                </h2>
+                <p className="body-base mt-3 text-foreground/50">
+                  Tell me about the product, users, and timeline. I&apos;ll reply within 24 hours with
+                  an honest take on fit.
+                </p>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-            </motion.div>
-            <div className="p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
-              <motion.p 
-                className="section-label"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Startup project
-              </motion.p>
-              <motion.h3 
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Event Parlour
-              </motion.h3>
-              <motion.p 
-                className="body-base text-foreground/70"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Event and ticketing platform helping creators run digital and in-person experiences.
-              </motion.p>
-              <motion.p 
-                className="body-sm text-foreground/50 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Built with Next.js, Supabase, Drizzle ORM, Resend, Google Analytics, and Paystack.
-              </motion.p>
-              <motion.a 
-                href="https://eventparlour.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                Visit website +
-              </motion.a>
-            </div>
-          </motion.article>
-
-          {/* Project 2: Navejo */}
-          <motion.article 
-            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
-          >
-            <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
-              <motion.p 
-                className="section-label"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Personal Product
-              </motion.p>
-              <motion.h3 
-                className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-[-0.02em] text-foreground"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Navejo
-              </motion.h3>
-              <motion.p 
-                className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Bookmarking Tool
-              </motion.p>
-              <motion.p 
-                className="body-base text-foreground/70 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                A bookmark management workspace built for frontend engineers and designers. Features AI-powered auto-tagging, smart folders, team collaboration, and collection sharing.
-              </motion.p>
-              <motion.p 
-                className="body-sm text-foreground/50 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                Built with Next.js, Prisma, Better Auth, and XATA DB (PostgreSQL).
-              </motion.p>
-              <motion.a 
-                href="https://navejo.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors mt-2"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                Visit website +
-              </motion.a>
-            </div>
-            <motion.div 
-              className="relative hidden sm:block order-1 lg:order-2 aspect-[9/4] overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                  <Image 
-                    src="/images/navejo.png" 
-                    alt="Navejo" 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
+              <div className="cta-row lg:shrink-0">
+                <motion.button
+                  type="button"
+                  onClick={() => setDrawerOpen(true)}
+                  className="cta-primary cta-hero"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Start a Project
+                  <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                </motion.button>
+                <Link href="/work" className="cta-secondary cta-hero">
+                  View all work
+                  <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                </Link>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-            </motion.div>
-          </motion.article>
-
-          {/* Project 3: Crow Studios */}
-          <motion.article 
-            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
-          >
-            <motion.div 
-              className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                  <Image 
-                    src="/images/crow.png" 
-                    alt="Crow Studios" 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-            </motion.div>
-            <div className="p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
-              <motion.p 
-                className="section-label"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Agency Website
-              </motion.p>
-              <motion.h3 
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Crow Studios
-              </motion.h3>
-              <motion.p 
-                className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Tech Agency / Brand Website
-              </motion.p>
-              <motion.p 
-                className="body-base text-foreground/70"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                A bold, conversion-driven tech agency website showcasing projects, services, and brand identity.
-              </motion.p>
-              <motion.p 
-                className="body-sm text-foreground/50 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                Built with Next.js, Tailwind CSS, and Motion for smooth animations.
-              </motion.p>
-              <motion.a 
-                href="https://crow-studios.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                Visit website +
-              </motion.a>
             </div>
-          </motion.article>
-
-          {/* Project 4: Brinex */}
-          <motion.article 
-            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
-          >
-            <div className="order-2 lg:order-1 p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
-              <motion.p 
-                className="section-label"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Freelance
-              </motion.p>
-              <motion.h3 
-                className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-[-0.02em] text-foreground"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Brinex Tech
-              </motion.h3>
-              <motion.p 
-                className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Brand / Company website
-              </motion.p>
-              <motion.p 
-                className="body-base text-foreground/70 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                A clean, responsive marketing site for a technology company, focused on clarity and trust.
-              </motion.p>
-              <motion.p 
-                className="body-sm text-foreground/50 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                Built with Next.js, SEO best practices, responsive layout, and subtle motion to highlight key sections.
-              </motion.p>
-              <motion.a 
-                href="https://www.brinex-tech.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors mt-2"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                Visit website +
-              </motion.a>
-            </div>
-            <motion.div 
-              className="relative hidden sm:block order-1 lg:order-2 aspect-[9/4] overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                  <Image 
-                    src="/images/project1.png" 
-                    alt="Brinex Tech" 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-            </motion.div>
-          </motion.article>
-
-          {/* Project 5: Irungu — client personal portfolio */}
-          <motion.article 
-            className="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden border border-border/60 bg-background/60 backdrop-blur-sm depth-card transition-shadow duration-300 hover:depth-elevated"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
-          >
-            <motion.div 
-              className="relative hidden sm:block aspect-[9/4] overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-6 md:p-8">
-                <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/[0.08]">
-                  <Image 
-                    src="/images/irungu.jpeg" 
-                    alt="Irungu — client personal portfolio" 
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQYV2NkYPj/n4EBCBgZGRkYGBj+MzIy/mdkZPzPwMDA8J+RkfE/AwPDfyYGBgYGJgYGBgYmkBQjIyMDEwMDAwMTAwMDExMDAwMAFh8MCGbBHWoAAAAASUVORK5CYII="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
-            </motion.div>
-            <div className="p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center gap-4 sm:gap-5">
-              <motion.p 
-                className="section-label"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Client project
-              </motion.p>
-              <motion.h3 
-                className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Irungu
-              </motion.h3>
-              <motion.p 
-                className="text-[0.8125rem] uppercase tracking-[0.12em] text-foreground/40 font-medium mb-1"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Personal portfolio website
-              </motion.p>
-              <motion.p 
-                className="body-base text-foreground/70 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Minimal yet premium: a responsive bento layout with Figtree, Geist Mono, and Chillax, GSAP motion, View Transitions, Cal.com booking, Open Graph SEO, and Lighthouse lab scores over 94%.
-              </motion.p>
-              <motion.p 
-                className="body-sm text-foreground/50 max-w-md"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                Next.js (latest), TypeScript, Tailwind CSS, hosted on Cloudflare.
-              </motion.p>
-              <motion.a 
-                href="https://gatambiairungu.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium link-underline hover:text-foreground transition-colors text-foreground mt-2"
-                whileHover={{ x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                Visit website +
-              </motion.a>
-            </div>
-          </motion.article>
+          </motion.div>
         </div>
-
-        {/* View All Work CTA */}
-        <motion.div
-          className="flex justify-center mt-14 sm:mt-16 md:mt-20 px-5 sm:px-8 md:px-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.a
-            href="/work"
-            className="cta-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Work
-            <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </motion.a>
-        </motion.div>
       </section>
-      )}
-
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Brands({ id }: BrandsProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border border-white/[0.08] divide-x divide-y sm:divide-y-0 divide-white/[0.08]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-white/[0.08] border border-white/[0.08] sm:divide-y-0">
           {brands.map((brand, index) => (
             <motion.a
               key={brand.name}
