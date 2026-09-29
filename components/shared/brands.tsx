@@ -20,12 +20,12 @@ export default function Brands({ id }: BrandsProps) {
     >
       <div className="px-5 sm:px-8 md:px-12 py-8 sm:py-10 md:py-12">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-8 mb-8 sm:mb-10">
-          <p className="text-[0.8125rem] sm:text-sm text-foreground/50 tracking-[-0.01em]">
-            + Worked with startups across Kenya, US &amp; Europe
+          <p className=" text-[0.8125rem] sm:text-sm  text-foreground/50 tracking-[-0.01em]">
+           Trusted by teams and founders across Kenya, USA &amp; Europe
           </p>
           <div className="flex flex-col gap-1 sm:items-end sm:text-right text-[0.8125rem] sm:text-sm text-foreground/50 tracking-[-0.01em]">
-            <p>Accepting 1–2 new system builds per month</p>
-            <p className="text-foreground/35">Systems • Platforms • Automation</p>
+            <p>Available for select product &amp; web projects</p>
+            <p className="text-foreground/35">Websites · SaaS · Dashboards · MVPs</p>
           </div>
         </div>
 
@@ -67,3 +67,4 @@ export default function Brands({ id }: BrandsProps) {
     </motion.section>
   );
 }
+ 

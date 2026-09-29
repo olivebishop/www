@@ -173,13 +173,13 @@ export default function Home() {
       <section className="relative bg-background pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-10 md:pb-12">
         <div className="relative z-10 flex w-full flex-col gap-8 px-5 sm:px-8 md:px-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
           <motion.div
-            className="flex w-full max-w-2xl flex-col gap-6 sm:gap-7"
+  className="flex w-full max-w-2xl flex-col gap-6 pt-4 sm:gap-7 sm:pt-5"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="font-display text-[clamp(1.65rem,4.5vw,2.65rem)] font-normal leading-[1.18] tracking-[-0.03em] text-foreground">
-              I build high-performance web platforms that help businesses grow, convert, and scale.
+              I design and build digital products for startups, from ideas to experiences people actually use.
             </h1>
             <motion.button
               type="button"
@@ -191,7 +191,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Start a Project
+         GET IN TOUCH
               <HugeiconsArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
           </motion.div>
@@ -375,7 +375,7 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Start a Project
+                 GET IN TOUCH
                   <HugeiconsArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </motion.button>
                 <Link href="/work" className="cta-secondary cta-hero">
